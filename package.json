@@ -1,0 +1,25 @@
+{
+  "name": "@horyus/t721",
+  "private": true,
+  "version": "1.0.0",
+  "description": "t721 - Complete Environment for ticket721",
+  "main": "index.js",
+  "scripts": {
+    "init": "git subomdule foreach --init --recursive "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mortimr/t721.git"
+  },
+  "author": "Iulian Rotaru",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mortimr/t721/issues"
+  },
+  "homepage": "https://github.com/mortimr/t721#readme",
+  "dependencies": {
+    "gulp": "^4.0.0",
+    "gulp-shell": "^0.6.5",
+    "portalize": "^1.0.0"
+  }
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "path": "portal",
+    "name": "main"
+  },
+  {
+    "path": "./t721-companion-app/portal",
+    "name": "companion-app"
+  },
+  {
+    "path": "./t721-contracts/portal",
+    "name": "contracts"
+  },
+  {
+    "path": "./t721-identity/portal",
+    "name": "identity"
+  },
+  {
+    "path": "./t721-network/portal",
+    "name": "network"
+  },
+  {
+    "path": "./t721-scanner-app/portal",
+    "name": "scanner-app"
+  },
+  {
+    "path": "./t721-server/portal",
+    "name": "server"
+  },
+  {
+    "path": "./t721-web-app/portal",
+    "name": "web-app"
+  }
+]
