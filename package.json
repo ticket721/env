@@ -6,7 +6,7 @@
     "main": "index.js",
     "scripts": {
         "t721:init": "git submodule foreach npm install && gulp init",
-        "t721:fetch": "git submodule update --recursive --remote"
+        "t721:fetch": "git submodule update --recursive --remote --init"
     },
     "repository": {
         "type": "git",
