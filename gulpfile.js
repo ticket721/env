@@ -1,6 +1,13 @@
 const { series } = require('gulp');
 const shell = require('gulp-shell');
 
+const network = require('./network/gulpfile');
+const contracts = require('./contracts/gulpfile');
+
+if (!process.env.T721_NETWORK) {
+    process.env.T721_NETWORK = 'local';
+}
+
 const PortalizeInit = 'portalize:init';
 const PortalizeDismantle = 'portalize:dismantle';
 
@@ -11,5 +18,8 @@ const portalize_dismantle = shell.task('./node_modules/.bin/portalize dismantle 
 portalize_init.displayName = PortalizeDismantle;
 
 exports.init = series(portalize_init);
-exports.clean = series(portalize_dismantle);
+exports.clean = series(contracts['contracts:clean'], network['network:clean']);
+exports.dismantle = series(exports.clean, portalize_dismantle);
+exports.deploy = series(network['network:start'], contracts['contracts:configure'], contracts['contracts:deploy']);
+
 

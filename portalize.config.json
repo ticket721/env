@@ -4,31 +4,31 @@
     "name": "main"
   },
   {
-    "path": "./t721-companion-app/portal",
+    "path": "./companion-app/portal",
     "name": "companion-app"
   },
   {
-    "path": "./t721-contracts/portal",
+    "path": "./contracts/portal",
     "name": "contracts"
   },
   {
-    "path": "./t721-identity/portal",
+    "path": "./identity/portal",
     "name": "identity"
   },
   {
-    "path": "./t721-network/portal",
+    "path": "./network/portal",
     "name": "network"
   },
   {
-    "path": "./t721-scanner-app/portal",
+    "path": "./scanner-app/portal",
     "name": "scanner-app"
   },
   {
-    "path": "./t721-server/portal",
+    "path": "./server/portal",
     "name": "server"
   },
   {
-    "path": "./t721-web-app/portal",
+    "path": "./web-app/portal",
     "name": "web-app"
   }
 ]
