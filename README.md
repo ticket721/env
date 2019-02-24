@@ -6,6 +6,7 @@ Complete Environment for ticket721
 | Variable | Mandatory | Values | Description |
 | :---: | :---: | :---: | :---: |
 | `T721_NETWORK` | yes | `test`, `local` | This value will tell every task how it should behave / configure the tools |
+| `T721_SERVER` | yes | `development` | This value will tell the `server` module how it should behave, and where it should connect itself |
 
 ## Tasks
 
@@ -15,6 +16,8 @@ Complete Environment for ticket721
 | `dismantle` | Runs `clean` and dismantles the portalize configuration |
 | `clean` | Calls clean on submodules |
 | `deploy` | Configure the network dependeing on `T721_NETWORK`, and deploys all the smart contracts |
+| `server_setup` | Setup requirement processes for the server |
+| `server_start` | Run the server |
 
 ## Setup process
 
@@ -51,6 +54,22 @@ The contracts are deployed with `zos`.
 
 ```shell
 gulp deploy
+```
+
+#### Setting up the server
+
+The following command will run a `postgres` docker instance.
+
+```shell
+gulp server_setup
+```
+
+#### Starting the server
+
+The following command will start the `strapi` backend.
+
+```shell
+gulp server_start
 ```
 
 ## Teardown development environment
