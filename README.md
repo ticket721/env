@@ -15,7 +15,8 @@ Complete Environment for ticket721
 | `init` | Setup the portalize configuration |
 | `dismantle` | Runs `clean` and dismantles the portalize configuration |
 | `clean` | Calls clean on submodules |
-| `deploy` | Configure the network dependeing on `T721_NETWORK`, and deploys all the smart contracts |
+| `deploy` | Configure the network depending on `T721_NETWORK`, and deploys all the smart contracts |
+| `simulation` | Run the simulation script from the `contracts` module, populating the configured ethereum node |
 | `server_setup` | Setup requirement processes for the server |
 | `server_start` | Run the server |
 
@@ -54,6 +55,23 @@ The contracts are deployed with `zos`.
 
 ```shell
 gulp deploy
+```
+
+#### Mining blocks
+
+If you need to mine empty blocks for any reason during the development, use the following command
+
+```shell
+gulp fake_mine --blocks number_of_blocks
+```
+
+#### Creating Events, Tickets, Interactions
+
+If you need to create content on your test network, use the following command
+The actions that are executed are random transfers, buy, sales, and sale_closes
+
+```shell
+gulp simulate --accounts number_of_accounts_to_user --events number_of_events_to_create --tickets number_of_tickets_per_event_to_create --actions number_of_actions_to_executed
 ```
 
 #### Setting up the server

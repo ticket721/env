@@ -26,7 +26,9 @@ exports.init = series(portalize_init);
 exports.clean = series(server['server:clean'], contracts['contracts:clean'], network['network:clean']);
 exports.dismantle = series(exports.clean, portalize_dismantle);
 exports.deploy = series(network['network:start'], contracts['contracts:configure'], contracts['contracts:deploy']);
+exports.simulation = series(contracts['contracts:simulation']);
 exports.server_setup = series(server['server:setup']);
 exports.server_start = series(server['server:start']);
+exports.fake_mine = series(network['network:mine']);
 
 
