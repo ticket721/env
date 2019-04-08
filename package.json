@@ -6,7 +6,8 @@
     "main": "index.js",
     "scripts": {
         "t721:init": "git submodule foreach npm install && gulp init",
-        "t721:fetch": "git submodule update --recursive --remote --init"
+        "t721:fetch": "git submodule update --recursive --remote --init",
+        "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
     },
     "repository": {
         "type": "git",
@@ -26,8 +27,11 @@
         "portalize": "^1.0.3"
     },
     "devDependencies": {
-        "merge": ">=1.2.1",
-        "deep-extend": ">=0.5.1"
+        "@commitlint/cli": "^7.5.2",
+        "@commitlint/config-conventional": "^7.5.0",
+        "conventional-changelog-cli": "^2.0.12",
+        "deep-extend": ">=0.5.1",
+        "merge": ">=1.2.1"
     },
     "editorconfig-cli": [
         "./gulpfile.js",
@@ -35,7 +39,8 @@
     ],
     "husky": {
         "hooks": {
-            "pre-commit": "editorconfig-cli"
+            "pre-commit": "editorconfig-cli",
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
         }
     }
 }
