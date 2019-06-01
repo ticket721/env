@@ -3,3 +3,4 @@ node_modules
 /portal
 .DS_Store
 package-lock.json
+deployment.ropsten.json

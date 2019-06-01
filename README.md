@@ -17,8 +17,6 @@ Complete Environment for ticket721
 | `clean` | Calls clean on submodules |
 | `deploy` | Configure the network depending on `T721_NETWORK`, and deploys all the smart contracts |
 | `simulation` | Run the simulation script from the `contracts` module, populating the configured ethereum node |
-| `server_setup` | Setup requirement processes for the server |
-| `server_start` | Run the server |
 
 ## Setup process
 
@@ -102,4 +100,43 @@ gulp clean
 
 ```shell
 gulp dismantle
+```
+
+#### Deploying to ropsten testnet
+
+Start by writing a configuration file:
+
+```json
+{
+    "network": {
+        "name": "ropsten",
+        "id": 3
+    },
+    "infura": {
+        "project_id": "INFURA_PROJECT_ID",
+        "project_secret": "INFURA_PROJECT_SECRET",
+        "node_endpoint": "https://ropsten.infura.io/v3"
+    },
+    "nexus": {
+        "user": "NEXUS_USER",
+        "password": "NEXUS_PASS",
+        "endpoint": "https://nexus.ticket721.com",
+        "repository": "ropsten.raw"
+    },
+    "server": {
+        "url": "https://api.ropsten.ticket721.com"
+    },
+    "addresses": {
+        "deployer": "0x43003a92397e361072f238f63a29ec18f8e12841",
+        "admin": "0x31973c960E8BB7D939660244fD6dEf59162BbBd0"
+    }
+}
+```
+
+/!\ Deployer and admin should be derived from the same mnemonic as index 0 (deployer) and 1 (admin).
+
+Then run
+
+```shell
+env T721_CONFIG_PATH=./deployment.ropsten.json  gulp deploy_ropsten
 ```
