@@ -4,6 +4,7 @@ const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
 const signale = require('signale');
+const {execSync} = require('child_process');
 
 const load_net_config = async () => {
 
@@ -45,27 +46,15 @@ const nexus_upload_archives = async () => {
 
     for (const file of current_files) {
         if (file.match(/.+\..+\.tar\.gz/)) {
-            const data = fs.readFileSync(file);
-
-            const request_config = {
-                data,
-                withCredentials: true,
-                auth: {
-                    username: nexus.username,
-                    password: nexus.password
-                },
-            };
-
-
             const url_one = `${nexus.endpoint}/repository/${nexus.repository}/artifacts/${file}`;
             const url_two = `${nexus.endpoint}/repository/${nexus.repository}/artifacts/latest.tar.gz`;
 
             signale.info(`Uploading ${file} to ${url_one}`);
-            await axios.put(url_one, data, request_config);
+            execSync(`curl -u '${nexus.username}:${nexus.password}' --upload-file ${file} ${url_one}`);
             signale.success(`Uploaded ${file} to ${url_one}`);
 
             signale.info(`Uploading ${file} to ${url_two}`);
-            await axios.put(url_two, data, request_config);
+            execSync(`curl -u '${nexus.username}:${nexus.password}' --upload-file ${file} ${url_two}`);
             signale.success(`Uploaded ${file} to ${url_two}`);
         }
     }

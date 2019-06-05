@@ -77,7 +77,8 @@ gulp simulate --accounts number_of_accounts_to_user --events number_of_events_to
 The following command will run a `postgres` docker instance.
 
 ```shell
-gulp server_setup
+cd server/
+env T721_SERVER=development gulp server:setup
 ```
 
 #### Starting the server
@@ -85,8 +86,93 @@ gulp server_setup
 The following command will start the `strapi` backend.
 
 ```shell
-gulp server_start
+env T721_SERVER=development gulp server:start
 ```
+
+#### Starting the server modules
+
+In another terminal
+```shell
+cd server
+env DATABASE_HOST=127.0.0.1 DATABASE_PORT=5432 DATABASE_NAME=t721 \
+    DATABASE_USERNAME=admin DATABASE_PASSWORD=pass ETH_NODE_PROTOCOL=http \
+    ETH_NODE_HOST=127.0.0.1 ETH_NODE_PORT=8545 \
+    node ./modules_sources/ModuleRunner.js chain_settings_importer
+```
+
+and
+
+```shell
+cd server
+env DATABASE_HOST=127.0.0.1 DATABASE_PORT=5432 DATABASE_NAME=t721 \
+    DATABASE_USERNAME=admin DATABASE_PASSWORD=pass ETH_NODE_PROTOCOL=http \
+    ETH_NODE_HOST=127.0.0.1 ETH_NODE_PORT=8545 \
+    node ./modules_sources/ModuleRunner.js antenna
+```
+
+Now your server is fully functional, you can access the admin on localhost:1337/admin.
+The first thing you want to do is give permissions to roles. Go into `roles & permissions`
+
+For the `public` role:
+
+| Section | What to activate |
+| :---:   | :---:            |
+| Permissions - Approver | `count`, `find`, `findone` |
+| Permissions - Sale | `count`, `find`, `findone` |
+| Permissions - Queuedevent | `count`, `find`, `findone`, `create` |
+| Permissions - Height | `count`, `find`, `findone` |
+| Permissions - Marketer | `count`, `find`, `findone` |
+| Permissions - Eventcontract | `count`, `find`, `findone` |
+| Permissions - Ticket | `count`, `find`, `findone` |
+| Permissions - Network | `count`, `find`, `findone` |
+| Permissions - Minter | `count`, `find`, `findone` |
+| Permissions - Address | `count`, `find`, `findone`, `eventsoftickets`, `update` |
+| Permissions - Action | `count`, `find`, `findone` |
+| Permissions - Event | `count`, `find`, `findone` |
+| Upload - Upload | `upload` |
+
+For the `authenticated` role:
+
+| Section | What to activate |
+| :---:   | :---:            |
+| Permissions - Approver | `count`, `find`, `findone` |
+| Permissions - Sale | `count`, `find`, `findone` |
+| Permissions - Queuedevent | `count`, `find`, `findone`, `create` |
+| Permissions - Height | `count`, `find`, `findone` |
+| Permissions - Marketer | `count`, `find`, `findone` |
+| Permissions - Eventcontract | `count`, `find`, `findone` |
+| Permissions - Ticket | `count`, `find`, `findone` |
+| Permissions - Network | `count`, `find`, `findone` |
+| Permissions - Minter | `count`, `find`, `findone` |
+| Permissions - Address | `count`, `find`, `findone`, `eventsoftickets`, `update` |
+| Permissions - Action | `count`, `find`, `findone` |
+| Permissions - Event | `count`, `find`, `findone` |
+| Upload - Upload | `upload` |
+| User Permissions - User | `setwallet` |
+
+#### Running the web app
+
+First you need to setup the directory
+```shell
+cd web-app
+gulp webapp:setup
+```
+
+
+Create a .env file in the webapp directory
+```shell
+strapi_endpoint=http://localhost:1337
+google_api_token=THE_GOOGLE_API_TOKEN_FOR_THE_GOOGLE_MAPS_ETC
+```
+
+If you don't have the google api token, no issues, it will only disable the maps but the app will still work.
+
+Then you can start the development build
+```shell
+cd web-app
+env NODE_ENV=development npm start
+```
+
 
 ## Teardown development environment
 
