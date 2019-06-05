@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: "{{ .Release.Name }}-parity-internal-svc"
+    labels:
+        app: "{{ template "t721.fullname" . }}-parity"
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+spec:
+    type: ClusterIP
+    ports:
+        - port: {{ .Values.parity.service.rpcPort }}
+          targetPort: 8545
+          protocol: TCP
+          name: jsonrpc
+    selector:
+        app: "{{ template "t721.fullname" . }}-parity"

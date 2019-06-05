@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Service
+metadata:
+    name: "{{ .Release.Name }}-geth-svc"
+    labels:
+        app: "{{ template "t721.fullname" . }}-geth"
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+spec:
+    type: {{ .Values.geth.service.type }}
+    ports:
+        - port: {{ .Values.geth.service.rpcPort }}
+          targetPort: 8545
+          protocol: TCP
+          name: jsonrpc
+        - port: {{ .Values.geth.service.listenerPort }}
+          targetPort: 30303
+          protocol: TCP
+          name: listener
+        - port: {{ .Values.geth.service.discoveryPort }}
+          targetPort: 30303
+          protocol: UDP
+          name: discovery
+    selector:
+        app: "{{ template "t721.fullname" . }}-geth"

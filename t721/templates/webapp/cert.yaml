@@ -1,0 +1,23 @@
+---
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+    name: "{{ .Release.Name }}-webapp-cert"
+    namespace: default
+    labels:
+        app: "{{ template "t721.fullname" . }}-webapp"
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+spec:
+    secretName: "{{ .Release.Name }}-webapp-cert-secret"
+    issuerRef:
+        name: "{{ .Release.Name }}-letsencrypt"
+        kind: Issuer
+    commonName: {{ .Values.webapp.ingress.host }}
+    acme:
+        config:
+            - http01:
+                  ingress: "{{ .Release.Name }}-webapp-ing"
+              domains:
+                  - {{ .Values.webapp.ingress.host}}

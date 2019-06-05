@@ -1,0 +1,41 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+    name: "{{ .Release.Name }}-server"
+    labels:
+        app: "{{ template "t721.fullname" . }}-server"
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+spec:
+    replicas: 1
+    template:
+        metadata:
+            labels:
+                app: "{{ template "t721.fullname" . }}-server"
+                chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+                release: "{{ .Release.Name }}"
+                heritage: "{{ .Release.Service }}"
+        spec:
+            containers:
+                - name: "{{ .Release.Name }}-server"
+                  image: "{{ .Values.server.container.image }}:{{ .Values.server.container.version }}"
+                  imagePullPolicy: Always
+                  ports:
+                      - name: api
+                        containerPort: 1337
+                        protocol: TCP
+                  env:
+                      - name: DATABASE_HOST
+                        value: "{{ .Release.Name }}-pg-svc"
+                      - name: DATABASE_NAME
+                        value: {{ .Values.postgres.config.databaseName }}
+                      - name: DATABASE_USERNAME
+                        value: {{ .Values.postgres.config.databaseUser }}
+                      - name: DATABASE_PASSWORD
+                        value: {{ .Values.postgres.config.databasePassword }}
+                      - name: DATABASE_PORT
+                        value: "{{ .Values.postgres.config.databasePort }}"
+                      - name: NODE_ENV
+                        value: production

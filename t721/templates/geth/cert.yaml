@@ -1,0 +1,23 @@
+---
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+    name: "{{ .Release.Name }}-geth-cert"
+    namespace: default
+    labels:
+        app: "{{ template "t721.fullname" . }}-geth"
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+spec:
+    secretName: "{{ .Release.Name }}-geth-cert-secret"
+    issuerRef:
+        name: "{{ .Release.Name }}-letsencrypt"
+        kind: Issuer
+    commonName: {{ .Values.geth.ingress.host }}
+    acme:
+        config:
+            - http01:
+                  ingress: "{{ .Release.Name }}-geth-ing"
+              domains:
+                  - {{ .Values.geth.ingress.host}}

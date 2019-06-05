@@ -1,0 +1,89 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+    name: "{{ .Release.Name }}-geth"
+    labels:
+        app: "{{ template "t721.fullname" . }}-geth"
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+spec:
+    replicas: 1
+    template:
+        metadata:
+          labels:
+            app: "{{ template "t721.fullname" . }}-geth"
+            chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+            release: "{{ .Release.Name }}"
+            heritage: "{{ .Release.Service }}"
+        spec:
+            containers:
+                - name: "{{ .Release.Name }}-geth"
+                  image: "{{ .Values.geth.container.image }}:{{ .Values.geth.container.version }}"
+                  imagePullPolicy: IfNotPresent
+                  resources:
+                    limits:
+                        cpu: 0.5
+                    requests:
+                        cpu: 0.5
+                  ports:
+                      - name: jsonrpc
+                        containerPort: 8545
+                      - name: listener
+                        containerPort: 30303
+                        protocol: TCP
+                      - name: discovery
+                        containerPort: 30303
+                        protocol: UDP
+                  livenessProbe:
+                      exec:
+                          command:
+                              - wget
+                              - --header
+                              - 'Content-Type: application/json'
+                              - --post-data
+                              - '{"jsonrpc":"2.0","method":"net_version","params":[],"id":2702}'
+                              - -qO
+                              - '-'
+                              - http://127.0.0.1:8545/
+                      initialDelaySeconds: 30
+                      periodSeconds: 10
+                  readinessProbe:
+                      exec:
+                          command:
+                              - wget
+                              - --header
+                              - 'Content-Type: application/json'
+                              - --post-data
+                              - '{"jsonrpc":"2.0","method":"net_version","params":[],"id":2702}'
+                              - -qO
+                              - '-'
+                              - http://127.0.0.1:8545/
+                      initialDelaySeconds: 30
+                      periodSeconds: 10
+                  volumeMounts:
+                    - name: "{{ .Release.Name }}-geth-volume"
+                      mountPath: /root/.ethereum
+                  command:
+                      - geth
+                  args:
+                    - "--rpc"
+                    - "--rpcaddr"
+                    - "0.0.0.0"
+                    - "--rpcapi"
+                    - "eth,web3,net"
+                    - "--rpcvhosts"
+                    - "*"
+                    - "--cache"
+                    - "1024"
+                          {{ if .Values.geth.ropsten.enabled }}
+                    - "--testnet"
+                    - "--syncmode"
+                    - "fast"
+                          {{ end }}
+            volumes:
+                - name: "{{ .Release.Name }}-geth-volume"
+                  persistentVolumeClaim:
+                      claimName: "{{ .Release.Name }}-geth-pvc"
+

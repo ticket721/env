@@ -1,0 +1,96 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+    name: "{{ .Release.Name }}-parity"
+    labels:
+        app: "{{ template "t721.fullname" . }}-parity"
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+spec:
+    replicas: 1
+    template:
+        metadata:
+          labels:
+            app: "{{ template "t721.fullname" . }}-parity"
+            chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+            release: "{{ .Release.Name }}"
+            heritage: "{{ .Release.Service }}"
+        spec:
+            containers:
+                - name: "{{ .Release.Name }}-parity"
+                  image: "{{ .Values.parity.container.image }}:{{ .Values.parity.container.version }}"
+                  imagePullPolicy: IfNotPresent
+                  resources:
+                    limits:
+                        cpu: 0.4
+                    requests:
+                        cpu: 0.4
+                  ports:
+                      - name: jsonrpc
+                        containerPort: 8545
+                      - name: listener
+                        containerPort: 30303
+                        protocol: TCP
+                      - name: discovery
+                        containerPort: 30303
+                        protocol: UDP
+                  livenessProbe:
+                      exec:
+                          command:
+                              - wget
+                              - --header
+                              - 'Content-Type: application/json'
+                              - --post-data
+                              - '{"jsonrpc":"2.0","method":"net_version","params":[],"id":2702}'
+                              - -qO
+                              - '-'
+                              - http://127.0.0.1:8545/
+                      initialDelaySeconds: 30
+                      periodSeconds: 10
+                  readinessProbe:
+                      exec:
+                          command:
+                              - wget
+                              - --header
+                              - 'Content-Type: application/json'
+                              - --post-data
+                              - '{"jsonrpc":"2.0","method":"net_version","params":[],"id":2702}'
+                              - -qO
+                              - '-'
+                              - http://127.0.0.1:8545/
+                      initialDelaySeconds: 30
+                      periodSeconds: 10
+                  volumeMounts:
+                    - name: "{{ .Release.Name }}-parity-volume"
+                      mountPath: /home/parity/
+                  command:
+                      - parity
+                  args:
+                    - "--jsonrpc-interface"
+                    - "all"
+                    - "--jsonrpc-apis"
+                    - "eth,net"
+                    - "--jsonrpc-cors"
+                    - "all"
+                    - "--identity"
+                    - "Ticket721"
+                    - "--no-ws"
+                    - "--no-ipc"
+                    - "--logging"
+                    - "info"
+                    - "--nat"
+                    - {{ .Values.parity.ingress.host }}
+                          {{ if .Values.parity.ropsten.enabled }}
+                    - "--chain"
+                    - "ropsten"
+                          {{ end }}
+            volumes:
+                - name: "{{ .Release.Name }}-parity-volume"
+                  persistentVolumeClaim:
+                      claimName: "{{ .Release.Name }}-parity-pvc"
+            securityContext:
+              fsGroup: 1000
+              runAsUser: 1000
+

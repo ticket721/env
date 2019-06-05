@@ -1,0 +1,23 @@
+---
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+    name: "{{ .Release.Name }}-parity-cert"
+    namespace: default
+    labels:
+        app: "{{ template "t721.fullname" . }}-parity"
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+spec:
+    secretName: "{{ .Release.Name }}-parity-cert-secret"
+    issuerRef:
+        name: "{{ .Release.Name }}-letsencrypt"
+        kind: Issuer
+    commonName: {{ .Values.parity.ingress.host }}
+    acme:
+        config:
+            - http01:
+                  ingress: "{{ .Release.Name }}-parity-ing"
+              domains:
+                  - {{ .Values.parity.ingress.host}}

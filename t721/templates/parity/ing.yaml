@@ -1,0 +1,25 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: "{{ .Release.Name }}-parity-ing"
+    labels:
+        app: "{{ template "t721.fullname" . }}-parity"
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+    annotations:
+        kubernetes.io/ingress.global-static-ip-name: {{ .Values.parity.ingress.gceIpName }}
+spec:
+    tls:
+        - hosts:
+              - {{ .Values.parity.ingress.host }}
+          secretName: "{{ .Release.Name }}-parity-cert-secret"
+    rules:
+        - host: {{ .Values.parity.ingress.host }}
+          http:
+              paths:
+                  - backend:
+                        serviceName: "{{ .Release.Name }}-parity-svc"
+                        servicePort: {{ .Values.parity.service.rpcPort }}
+                    path: /*

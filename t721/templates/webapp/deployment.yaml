@@ -1,0 +1,33 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+    name: "{{ .Release.Name }}-webapp"
+    labels:
+        app: "{{ template "t721.fullname" . }}-webapp"
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+spec:
+    replicas: 1
+    template:
+        metadata:
+            labels:
+                app: "{{ template "t721.fullname" . }}-webapp"
+                chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+                release: "{{ .Release.Name }}"
+                heritage: "{{ .Release.Service }}"
+        spec:
+            containers:
+                - name: "{{ .Release.Name }}-webapp"
+                  image: "{{ .Values.webapp.container.image }}:{{ .Values.webapp.container.version }}"
+                  imagePullPolicy: Always
+                  ports:
+                      - name: app
+                        containerPort: 3000
+                        protocol: TCP
+                  env:
+                      - name: google_api_token
+                        value: {{ .Values.webapp.config.google_api_token }}
+                      - name: strapi_endpoint
+                        value: {{ .Values.webapp.config.strapi_endpoint }}

@@ -1,0 +1,25 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: "{{ .Release.Name }}-server-ing"
+    labels:
+        app: "{{ template "t721.fullname" . }}-server"
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+    annotations:
+        kubernetes.io/ingress.global-static-ip-name: {{ .Values.server.ingress.gceIpName }}
+spec:
+    tls:
+        - hosts:
+              - {{ .Values.server.ingress.host }}
+          secretName: "{{ .Release.Name }}-server-cert-secret"
+    rules:
+        - host: {{ .Values.server.ingress.host }}
+          http:
+              paths:
+                  - backend:
+                        serviceName: "{{ .Release.Name }}-server-svc"
+                        servicePort: {{ .Values.server.service.port }}
+                    path: /*
