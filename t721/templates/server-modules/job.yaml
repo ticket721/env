@@ -1,31 +1,27 @@
 ---
-apiVersion: extensions/v1beta1
-kind: Deployment
+apiVersion: batch/v1
+kind: Job
 metadata:
-    name: "{{ .Release.Name }}-server"
+    name: "{{ .Release.Name }}-server-modules"
     labels:
-        app: "{{ template "t721.fullname" . }}-server"
+        app: "{{ template "t721.fullname" . }}-server-modules"
         chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
         release: "{{ .Release.Name }}"
         heritage: "{{ .Release.Service }}"
 spec:
-    replicas: 1
     template:
         metadata:
             labels:
-                app: "{{ template "t721.fullname" . }}-server"
+                app: "{{ template "t721.fullname" . }}-server-modules"
                 chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
                 release: "{{ .Release.Name }}"
                 heritage: "{{ .Release.Service }}"
         spec:
             containers:
-                - name: "{{ .Release.Name }}-server"
-                  image: "{{ .Values.server.container.image }}:{{ .Values.server.container.version }}"
+                - name: "{{ .Release.Name }}-server-modules-chain-settings-importer"
+                  image: "{{ .Values.serverModules.container.image }}:{{ .Values.serverModules.container.version }}"
                   imagePullPolicy: Always
-                  ports:
-                      - name: api
-                        containerPort: 1337
-                        protocol: TCP
+                  command: ["node", "ModuleRunner.js", "chain_settings_importer"]
                   env:
                       - name: DATABASE_HOST
                         value: "{{ .Release.Name }}-pg-svc"
@@ -37,12 +33,17 @@ spec:
                         value: {{ .Values.postgres.config.databasePassword }}
                       - name: DATABASE_PORT
                         value: "{{ .Values.postgres.config.databasePort }}"
-                      - name: NODE_ENV
-                        value: production
                       - name: ETH_NODE_PROTOCOL
                         value: http
                       - name: ETH_NODE_HOST
                         value: "{{ .Release.Name }}-geth-internal-svc"
                       - name: ETH_NODE_PORT
                         value: "{{ .Values.geth.service.rpcPort }}"
+                      - name: PUBLIC_ETH_NODE_PROTOCOL
+                        value: https
+                      - name: PUBLIC_ETH_NODE_HOST
+                        value: {{ .Values.geth.ingress.host }}
+                      - name: PUBLIC_ETH_NODE_PORT
+                        value: "443"
 
+            restartPolicy: OnFailure

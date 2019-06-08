@@ -31,3 +31,5 @@ spec:
                         value: {{ .Values.webapp.config.google_api_token }}
                       - name: strapi_endpoint
                         value: {{ .Values.webapp.config.strapi_endpoint }}
+                      - name: tx_explorer
+                        value: {{ .Values.webapp.config.tx_explorer }}

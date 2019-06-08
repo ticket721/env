@@ -75,6 +75,8 @@ spec:
                     - "eth,web3,net"
                     - "--rpcvhosts"
                     - "*"
+                    - "--rpccorsdomain"
+                    - "https://{{ .Values.webapp.ingress.host }}"
                     - "--cache"
                     - "1024"
                           {{ if .Values.geth.ropsten.enabled }}

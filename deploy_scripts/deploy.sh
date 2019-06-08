@@ -41,6 +41,7 @@ if [[ "$TRAVIS_BRANCH" = "ropsten" ]]; then
         --set webapp.container.version="${VERSION}-ropsten.${WEBAPP_COMMIT_HASH}" \
         --set webapp.config.strapi_endpoint="${STRAPI_PUBLIC_ENDPOINT}" \
         --set webapp.config.google_api_token="${GOOGLE_API_TOKEN}" \
+        --set webapp.config.tx_explorer="${ROPSTEN_TX_EXPLORER}" \
         --set letsencrypt.server=${LETSENCRYPT_ACME_SERVER}
 
 

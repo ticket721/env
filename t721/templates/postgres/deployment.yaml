@@ -33,9 +33,11 @@ spec:
                         value: {{ .Values.postgres.config.databaseUser }}
                       - name: POSTGRES_DB
                         value: {{ .Values.postgres.config.databaseName }}
+                      - name: PGDATA
+                        value: /var/lib/postgresql/data/pgdata
                   volumeMounts:
                       - name: "{{ .Release.Name }}-pg-volume"
-                        mountPath: /var/lib/postgresql
+                        mountPath: /var/lib/postgresql/data
             volumes:
                 - name: "{{ .Release.Name }}-pg-volume"
                   persistentVolumeClaim:

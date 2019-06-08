@@ -48,6 +48,7 @@ webapp:
     config:
         google_api_token: ""
         strapi_endpoint: ""
+        tx_explorer: ""
     ingress:
         host: ropsten.ticket721.com
         gceIpName: webapp-public
