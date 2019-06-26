@@ -69,20 +69,13 @@ spec:
                       - geth
                   args:
                     - "--rpc"
-                    - "--rpcaddr"
-                    - "0.0.0.0"
-                    - "--rpcapi"
-                    - "eth,web3,net"
-                    - "--rpcvhosts"
-                    - "*"
-                    - "--rpccorsdomain"
-                    - "https://{{ .Values.webapp.ingress.host }}"
-                    - "--cache"
-                    - "1024"
+                    - "--rpcaddr=0.0.0.0"
+                    - "--rpcapi=eth,web3,net"
+                    - "--rpccorsdomain=https://{{ .Values.webapp.ingress.host }}"
+                    - "--cache=1024"
                           {{ if .Values.geth.ropsten.enabled }}
                     - "--testnet"
-                    - "--syncmode"
-                    - "fast"
+                    - "--syncmode=fast"
                           {{ end }}
             volumes:
                 - name: "{{ .Release.Name }}-geth-volume"

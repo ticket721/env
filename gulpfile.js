@@ -4,7 +4,7 @@ const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
 const signale = require('signale');
-const {execSync} = require('child_process');
+const {spawn} = require('child_process');
 
 const load_net_config = async () => {
 
@@ -50,11 +50,37 @@ const nexus_upload_archives = async () => {
             const url_two = `${nexus.endpoint}/repository/${nexus.repository}/artifacts/latest.tar.gz`;
 
             signale.info(`Uploading ${file} to ${url_one}`);
-            execSync(`curl -u '${nexus.username}:${nexus.password}' --upload-file ${file} ${url_one}`);
+            await new Promise((ok, ko) => {
+                const call = spawn('curl', ['-u', `'${nexus.username}:${nexus.password}'`, '-v', '--upload-file', `${file}`, `${url_one}`], {
+                    shell: true
+                });
+
+                call.stdout.on('data', (data) => {
+                    console.log(data.toString());
+                });
+                call.stderr.on('data', (data) => {
+                    console.error(data.toString());
+                });
+
+                call.on('close', ok);
+            });
             signale.success(`Uploaded ${file} to ${url_one}`);
 
             signale.info(`Uploading ${file} to ${url_two}`);
-            execSync(`curl -u '${nexus.username}:${nexus.password}' --upload-file ${file} ${url_two}`);
+            await new Promise((ok, ko) => {
+                const call = spawn('curl', ['-u', `'${nexus.username}:${nexus.password}'`, '-v', '--upload-file', `${file}`, `${url_two}`], {
+                    shell: true
+                });
+
+                call.stdout.on('data', (data) => {
+                    console.log(data.toString());
+                });
+                call.stderr.on('data', (data) => {
+                    console.error(data.toString());
+                });
+
+                call.on('close', ok);
+            });
             signale.success(`Uploaded ${file} to ${url_two}`);
         }
     }
