@@ -49,6 +49,7 @@ webapp:
         google_api_token: ""
         strapi_endpoint: ""
         tx_explorer: ""
+        google_analytics_token: ""
     ingress:
         host: ropsten.ticket721.com
         gceIpName: webapp-public
@@ -74,6 +75,13 @@ geth:
     ingress:
         host: geth.ropsten.ticket721.com
         gceIpName: geth-public
+    cpu:
+        limit: 2
+        requests: 1.3
+    memory:
+        limit: 6000Mi
+        requests: 4000Mi
+
 parity:
     ropsten:
         enabled: true
