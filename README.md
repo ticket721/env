@@ -226,3 +226,11 @@ Then run
 ```shell
 env T721_CONFIG_PATH=./deployment.ropsten.json  gulp deploy_ropsten
 ```
+
+## Cluster Requirement
+
+
+* Name => `ropsten`
+* Size => `[0 - 1] standard-2, [1 - 6] small`
+* IPS => `geth-public, api-public, webapp-public`
+* Disks => `geth-disk;ssd;200, pg-disk;hdd;50`
