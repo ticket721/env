@@ -29,6 +29,8 @@ spec:
                   env:
                       - name: google_api_token
                         value: {{ .Values.webapp.config.google_api_token }}
+                      - name: google_analytics_token
+                        value: {{ .Values.webapp.config.google_analytics_token }}
                       - name: strapi_endpoint
                         value: {{ .Values.webapp.config.strapi_endpoint }}
                       - name: tx_explorer
