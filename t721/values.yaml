@@ -37,6 +37,11 @@ server:
     ingress:
         host: api.ropsten.ticket721.com
         gceIpName: api-public
+    persistence:
+        gceVolume: strapi-disk
+        gceVolumeType: ext4
+        volumeSize: 25Gi
+        accessMode: ReadWriteOnce
 
 webapp:
     container:
