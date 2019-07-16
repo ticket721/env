@@ -1,0 +1,40 @@
+{
+    "sell_strategy": "Sell Strategy",
+    "sell_strategy_description": "Select how the tickets are going to be initially sold. You cannot change this after the event is deployed.",
+    "sell_strategy_placeholder": "Select a Sell Strategy",
+
+    "MinterPayableFixed_name": "Fixed price without categories",
+
+    "MinterPayableFixed_minter_price": "Ticket Price",
+    "MinterPayableFixed_minter_price_placeholder": "Enter ticket price in ether",
+    "MinterPayableFixed_minter_price_description": "This is the price at which the tickets are going to be sold",
+
+    "MinterPayableFixed_minter_cap": "Maximum Ticket Count",
+    "MinterPayableFixed_minter_cap_placeholder": "Enter maximum ticket count",
+    "MinterPayableFixed_minter_cap_description": "This is the total tickets that can be sold during the sale",
+
+    "MinterPayableFixed_minter_end": "Sale End",
+    "MinterPayableFixed_minter_end_placeholder": "Enter end date",
+    "MinterPayableFixed_minter_end_description": "This is the date at which the sale ends",
+
+    "MinterPayableFixed_concise_description": "The tickets are sold at //minter_price// Ξ each. The maximum number of tickets is //minter_cap//. The ticket sale will end on //minter_end//.",
+
+    "MinterPayableFixedCategories_name": "Fixed price with categories",
+    "MinterPayableFixedCategories_dynamic_categories": "Categories",
+    "MinterPayableFixedCategories_dynamic_categories_description": "Click to add a new ticket category",
+    "dynamic_categories_minter_names": "Category Name",
+    "dynamic_categories_minter_names_placeholder": "Enter ticket category name",
+    "dynamic_categories_minter_names_description": "This category will be visible on the tickets",
+    "dynamic_categories_minter_prices": "Ticket Category Price",
+    "dynamic_categories_minter_prices_placeholder": "Enter ticket price for this category",
+    "dynamic_categories_minter_prices_description": "This is the price at which tickets of this category will be sold",
+    "dynamic_categories_minter_caps": "Maximum Ticket Count",
+    "dynamic_categories_minter_caps_placeholder": "Enter maximum ticket count",
+    "dynamic_categories_minter_caps_description": "This is the total tickets of this category that can be sold during the sale",
+    "MinterPayableFixedCategories_minter_end": "Sale End",
+    "MinterPayableFixedCategories_minter_end_placeholder": "Enter end date",
+    "MinterPayableFixedCategories_minter_end_description": "This is the date at which the sale ends",
+
+    "MinterPayableFixedCategories_concise_description": "The ticket sale will end on //minter_end//. ",
+    "MinterPayableFixedCategories_category_concise_description": "Category \"//name//\" will be sold at //price// Ξ each, for a maximum count of //cap// tickets. "
+}

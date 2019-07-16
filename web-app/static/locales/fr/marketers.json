@@ -1,0 +1,22 @@
+{
+    "go_to_marketplace": "Visiter la Marketplace",
+    "marketplace_strategy": "Stratégie de Revente",
+    "marketplace_strategy_description": "Sélectionnez comment les tickets seront vendus sur la Marketplace",
+    "marketplace_strategy_placeholder": "Sélectionnez une Stratégie de Revente",
+
+    "MarketerDisabled_name": "Les utilisateurs ne peuvent pas vendre de tickets sur la Marketplace",
+
+    "MarketerDisabled_concise_description": "Les utilisateurs possédant vos tickets ne pourront pas les revendre sur la Marketplace",
+
+    "MarketerDirectSale_name": "Les utilisateurs peuvent vendre vos tickets sur la Marketplace, avec ventes directes",
+    "MarketerDirectSale_concise_description": "Les utilisateurs possédant vos tickets pourront les revendre sur la Marketplace. Les ventes se feront de façon directe; un prix fixe sera décider, et l'achat se fera directement.",
+
+    "MarketerDirectSale_marketer_price": "Prix de vente",
+    "MarketerDirectSale_marketer_price_description": "Sélectionnez le prix de vente souhaité",
+    "MarketerDirectSale_marketer_price_placeholder": "Veuillez entrer un prix",
+
+    "MarketerDirectSale_marketer_end": "Fin de la vente",
+    "MarketerDirectSale_marketer_end_description": "Sélectionnez une date de fin pour la vente",
+    "MarketerDirectSale_marketer_end_placeholder": "Veuillez entrer une date de fin"
+
+}

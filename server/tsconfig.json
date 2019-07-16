@@ -1,0 +1,28 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "sourceMap": false,
+        "outDir": "./hooks",
+        "rootDir": "./hooks_sources",
+        "types": [
+            "jest",
+            "node",
+            "bookshelf"
+        ],
+        "lib": [
+            "dom",
+            "es2015"
+        ],
+        "resolveJsonModule": true,
+        "downlevelIteration": true
+    },
+    "exclude": [
+        "node_modules",
+        "./hooks_sources/ethereum_utils/ethereum_utils.test.ts"
+    ],
+    "include": [
+        "./hooks_sources/typings.d.ts",
+        "./hooks_sources/**/index.ts"
+    ]
+}

@@ -1,0 +1,14 @@
+.idea
+node_modules
+portal
+build
+truffle-config.js
+.DS_Store
+/contracts/events/
+/contracts/events_utility.sol
+
+.zos.session
+zos.*.json
+coverage
+coverage.json
+package-lock.json

@@ -1,0 +1,22 @@
+{
+    "go_to_marketplace": "Visit Marketplace",
+    "marketplace_strategy": "Marketplace Strategy",
+    "marketplace_strategy_description": "Select how the tickets are going to be exchanged on the marketplace",
+    "marketplace_strategy_placeholder": "Select a Marketplace Strategy",
+
+    "MarketerDisabled_name": "Users cannot sell their tickets on the marketplace",
+
+    "MarketerDisabled_concise_description": "Users that own tickets for your event will not be able to use the T721 marketplace to exchange their tickets.",
+
+    "MarketerDirectSale_name": "Users can sell tickets on the marketplace with direct type sales",
+    "MarketerDirectSale_concise_description": "Users that own tickets for your event will be able to sell their tickets on the marketplace. The sell types are going to be direct sales, users ask for a fixed amount and after some time the ticket is removed from asle if no buyers are found",
+
+    "MarketerDirectSale_marketer_price": "Sell Price",
+    "MarketerDirectSale_marketer_price_description": "Set the price at which you want to sell your ticket",
+    "MarketerDirectSale_marketer_price_placeholder": "Input price",
+
+    "MarketerDirectSale_marketer_end": "Sale End",
+    "MarketerDirectSale_marketer_end_description": "Set the end date for your direct sale",
+    "MarketerDirectSale_marketer_end_placeholder": "Input End Date"
+
+}

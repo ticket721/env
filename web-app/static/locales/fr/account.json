@@ -1,0 +1,19 @@
+{
+    "account_tabs_tickets": "Tickets",
+    "account_tabs_settings": "Paramètres",
+
+    "list_filter": "Filtre",
+    "list_page": "page",
+    "list_results": "resultats",
+    "list_filter_event_title": "Événement",
+
+    "settings_username_title": "Nom d'utilisateur",
+    "settings_username_no_activity": "Votre compte n'a effectué aucune action sur la plateforme, et n'est donc pas enregistré. Effectuez n'importe quelle action pour obtenir un nom d'utilisateur.",
+    "settings_username_no_login_change": "Changer ce nom d'utilisateur ne changera pas le nom de compte que vous utilisez pour vous connecter.",
+    "settings_username_preview_no_username": "Vous n'avez jamais modifié votre nom d'utilisateur. C'est ainsi que vous apparaissez sur le site.",
+    "settings_username_preview": "C'est ainsi que vous apparaissez sur le site.",
+    "settings_username_set_new": "Sélectionnez un nouveau nom d'utilisateur",
+    "settings_username_set_new_placeholder": "Entrez un nom d'utilisateur",
+    "settings_username_upload_error": "Une erreur est survenue lors de la modification du nom d'utilisateur",
+    "settings_username_upload_success": "Succesfully updated username"
+}

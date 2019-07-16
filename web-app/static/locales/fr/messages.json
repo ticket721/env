@@ -1,0 +1,29 @@
+{
+    "app_loading": "Chargement de l'app",
+    "app_cannot_reach_server": "Impossible de joindre le serveur.",
+    "app_rxdb_error": "Une erreur de stockage est survenue.",
+    "app_invalid_remote_config": "Configuration serveur non valide.",
+    "app_missing_strapi_url": "URL de serveur manquante.",
+
+    "vtx_loading": "Chargement des Modules",
+    "vtx_idle": "Chargement des Modules",
+    "vtx_authorizing": "En attente d'authorisation",
+    "vtx_error": "Une erreur a eu lieu dans le Module VTX.",
+    "vtx_unauthorized": "Authorisation non fournie.",
+    "vtx_wrong_net": "Mauvaise réseau Ethereum.",
+
+    "account_loading": "Chargement des informations de compte",
+    "tickets_loading": "Chargement de la liste des tickets",
+    "event_loading": "Chargement des informations de l'événement",
+    "no_tickets": "Aucun ticket",
+    "no_tickets_for_filter": "Aucun ticket trouvé",
+
+    "error": "Erreur",
+    "invalid_address": "//address// est une adress non valide.",
+    "not_an_event": "L'adresse fournie n'est pas un événement.",
+    "event_management": "Gérez ou créez un événement",
+    "fetch_error": "Erreur de communication avec le serveur.",
+    "support_coming_soon": "Version mobile en cours de développement",
+    "ticket_page_loading": "Chargement des informations du ticket",
+    "no_ticket_id": "Ticket non trouvé"
+}

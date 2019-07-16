@@ -1,0 +1,9 @@
+{
+    "zosversion": "2",
+    "name": "t721",
+    "version": "0.1.0",
+    "contracts": {
+        "AdministrationBoard": "AdministrationBoardV0",
+        "T721": "T721V0"
+    }
+}

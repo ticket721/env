@@ -1,0 +1,10 @@
+.idea
+node_modules
+portal
+.DS_Store
+.next
+coverage
+.env
+package-lock.json
+/static/assets
+portal.tar.gz

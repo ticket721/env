@@ -1,0 +1,72 @@
+{
+  "connection": "default",
+  "collectionName": "event",
+  "info": {
+    "name": "event",
+    "description": "Event is an ethereum smart contract"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "address": {
+      "model": "address",
+      "via": "linked_event"
+    },
+    "tickets": {
+      "collection": "ticket",
+      "via": "event"
+    },
+    "name": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "owner": {
+      "model": "address",
+      "via": "events"
+    },
+    "eventcontract": {
+      "model": "eventcontract",
+      "via": "events"
+    },
+    "description": {
+      "default": "",
+      "type": "text"
+    },
+    "banners": {
+      "collection": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "start": {
+      "default": "",
+      "type": "date"
+    },
+    "end": {
+      "default": "",
+      "type": "date"
+    },
+    "location": {
+      "default": "",
+      "type": "json"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": false
+    },
+    "creation": {
+      "default": "",
+      "type": "date"
+    },
+    "sales": {
+      "collection": "sale",
+      "via": "event"
+    }
+  }
+}

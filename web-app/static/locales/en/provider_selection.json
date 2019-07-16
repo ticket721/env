@@ -1,0 +1,8 @@
+{
+    "injected_title": "Injected Wallet provider",
+    "injected_desc": "Use your own Wallet provider, injected inside your web page",
+    "injected_unavailable": "No Wallet provider detected",
+    "t721_title": "T721 Account",
+    "t721_desc": "Use your T721 Account to manage your transactions",
+    "title": "Select your wallet provider"
+}
