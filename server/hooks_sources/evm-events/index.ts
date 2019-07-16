@@ -1,4 +1,4 @@
-import * as network_config  from '@portal/network/network.json';
+import * as network_config  from '../../portal/network/network.json';
 import { EventBridge }      from './EventBridge';
 import Web3 = require('web3');
 import { subscriber }       from './subscriber';

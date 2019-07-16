@@ -310,10 +310,9 @@ module.exports = async (t721_ver, solidity_ver) => {
 
     check_plugs(t721_ver, solidity_ver);
     create_combinations();
-
     write_combinations(t721_ver, solidity_ver);
 
-    if (!process.env.TESTING) {
+    if (process.env.T721_NETWORK !== 'test') {
         Portalize.get.setPortal(from_current('./portal'));
         Portalize.get.setModuleName('contracts');
 

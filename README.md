@@ -8,6 +8,43 @@ Complete Environment for ticket721
 | `T721_NETWORK` | yes | `test`, `local` | This value will tell every task how it should behave / configure the tools |
 | `T721_SERVER` | yes | `development` | This value will tell the `server` module how it should behave, and where it should connect itself |
 
+## Travis Env
+
+Variables that should be available during the travis build
+
+| Variable | Description |
+| :---:    | :---:       |
+| `NEXUS_USERNAME` | Username to use to recover the portal |
+| `NEXUS_PASSWORD` | Password for given username |
+| `NEXUS_ENDPOINT` | Url of the nexus repo (no trailing `/`) |
+| `NEXUS_REPOSITORY` | Name of the repository |
+| `DOCKER_WEBAPP_REPOSITORY` | Repository to push built images |
+| `DOCKER_SERVER_MODULES_REPOSITORY` | Repository to push built server-modules images |
+| `DOCKER_SERVER_REPOSITORY` | Repository to push built server images |
+| `DOCKER_USERNAME` | Username for docker account |
+| `DOCKER_PASSWORD` | Password of docker account |
+| `CLOUDSDK_DISABLE_PROMPT` | Set it to `1` |
+| `GOOGLE_ANALYTICS_TOKEN` | Used when deploying k8s cluster |
+| `GOOGLE_API_TOKEN` | Used when deploying k8s cluster |
+| `GOOGLE_CLOUD_IP` | Used when deploying k8s cluster |
+| `GOOGLE_CLUSTER_NAME` | Used when deploying k8s cluster |
+| `GOOGLE_COMPUTE_ZONE` | Used when deploying k8s cluster (`europe-west1-b`) |
+| `GOOGLE_PROJECT_ID` | Used when deploying the k8s cluster |
+| `GOOGLE_SERVICE_KEY` | Used when deploying the k8s cluster (json format, surrounded with `'`) |
+| `HELM_RELEASE_NAME` | Name of release live on the cluster |
+| `HELM_VERSION` | Version to install for helm |
+| `LETSENCRYPT_ACME_SERVER` | Letsencrypt server to use |
+| `ROPSTEN_TX_EXPLORER` | Like this => `https://ropsten.etherscan.io/tx/TRANSACTION_HASH` (with the `TRANSACTION_HASH` ) |
+| `STRAPI_PUBLIC_ENDPOINT` | Public endpoint of the api |
+
+## Cluster Requirement
+
+* Name => `ropsten`
+* Size => `[0 - 1] standard-2, [1 - 6] small`
+* IPS => `3 IPS in same region`
+* Disks => `geth-disk;ssd;200, pg-disk;hdd;50, strapi-disk;hdd;25`
+
+
 ## Tasks
 
 | Name | Description |
@@ -227,10 +264,3 @@ Then run
 env T721_CONFIG_PATH=./deployment.ropsten.json  gulp deploy_ropsten
 ```
 
-## Cluster Requirement
-
-
-* Name => `ropsten`
-* Size => `[0 - 1] standard-2, [1 - 6] small`
-* IPS => `3 IPS in same region`
-* Disks => `geth-disk;ssd;200, pg-disk;hdd;50, strapi-disk;hdd;25`

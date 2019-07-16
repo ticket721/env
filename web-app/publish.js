@@ -19,13 +19,13 @@ const main = async () => {
                 signale.success(`Connected to docker hub`);
 
                 signale.info(`Tagging previously built image`);
-                execSync(`docker tag webapp ${process.env.DOCKER_REPOSITORY}:${tag_name}`);
-                execSync(`docker tag webapp ${process.env.DOCKER_REPOSITORY}:latest-ropsten`);
+                execSync(`docker tag webapp ${process.env.DOCKER_WEBAPP_REPOSITORY}:${tag_name}`);
+                execSync(`docker tag webapp ${process.env.DOCKER_WEBAPP_REPOSITORY}:latest-ropsten`);
                 signale.success(`Tagged previously built image`);
 
                 signale.info(`Pushing to docker hub`);
-                execSync(`docker push ${process.env.DOCKER_REPOSITORY}:${tag_name}`);
-                execSync(`docker push ${process.env.DOCKER_REPOSITORY}:latest-ropsten`);
+                execSync(`docker push ${process.env.DOCKER_WEBAPP_REPOSITORY}:${tag_name}`);
+                execSync(`docker push ${process.env.DOCKER_WEBAPP_REPOSITORY}:latest-ropsten`);
                 signale.success(`Pushed to docker hub`);
             } catch (e) {
                 console.error(e);

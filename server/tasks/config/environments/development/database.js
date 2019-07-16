@@ -8,7 +8,7 @@ module.exports.environments_development_database = async function environments_d
 
     switch (process.env.T721_SERVER) {
         case 'development':
-            const portal_config = require('@portal/server/postgres.json');
+            const portal_config = require('../../../../portal/server/postgres.json');
             config.connections.default.settings = {
                 ...config.connections.default.settings,
                 client: 'postgres',

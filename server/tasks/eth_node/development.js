@@ -5,7 +5,7 @@ const {from_current} = require('../misc');
 
 module.exports.eth_node_development = async function postgres_development() {
     signale.info(`Setting up server's own eth node`);
-    const net = require('@portal/network/network.json');
+    const net = require('../../portal/network/network.json');
 
     Portalize.get.setPortal(from_current('./portal'));
     Portalize.get.setModuleName('server');

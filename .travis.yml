@@ -1,38 +1,90 @@
 language: node_js
 node_js: "lts/*"
 
-git:
-    submodules: false
-
 cache:
     directories:
         # We cache the SDK so we don't have to download it again on subsequent builds.
         - $HOME/google-cloud-sdk
 
-before_install:
-    - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf "$HOME/google-cloud-sdk"; curl https://sdk.cloud.google.com | bash > /dev/null; fi
-    - source $HOME/google-cloud-sdk/path.bash.inc
-    - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-    - chmod +x ./kubectl
-    - sudo mv ./kubectl /usr/local/bin/kubectl
-    - curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
-    - chmod 700 get_helm.sh
-    - sudo ./get_helm.sh --version $HELM_VERSION
-    - echo "$GOOGLE_SERVICE_KEY" | gcloud auth activate-service-account --key-file=-
-    - gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
-    - gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
-    - gcloud components update kubectl
-    - gcloud version
-    - gcloud container clusters get-credentials $GOOGLE_CLUSTER_NAME
-    - kubectl config get-contexts
-
 stages:
+    - name: test
+    - name: build
+      if: branch = ropsten AND type IN (push)
     - name: deploy
       if: branch = ropsten AND type IN (push)
 
 jobs:
     include:
+        # Test the Ethereum Smart Contracts
+        - stage: test
+          name: "Test Contracts"
+          install: skip
+          node_js: "10"
+          script:
+              - cd contracts && npm install
+              - npm run test:editorconfig
+              - npm run test:configure
+              - npm run test:compile
+              - npm run test:solidity-coverage
+
+        # Test Server utilities
+        - name: "Test Server"
+          node_js: "10"
+          install: skip
+          script:
+              - cd server && npm install
+              - npm run test:editorconfig
+              - npm run test:lint
+              - npm run test:jest
+
+        # Test Web App Utilities
+        - name: "Test Web App"
+          node_js: "10"
+          install: skip
+          services:
+            - docker
+          script:
+              - cd web-app && npm install
+              - npm run test:editorconfig
+              - npm run test:lint
+              - npm run test:jest
+
+        # Build and deploy docker image for the Web App
+        - stage: build
+          name: "Build & Publish WebApp Docker Image"
+          install: skip
+          script:
+              - cd web-app
+              - ./build.sh
+              - npm install signale
+              - node publish.js
+
+        # Build and deploy docker image for the Server & Server Modules
+        - name: "Build & Publish Server & Server Modules Docker Image"
+          install: skip
+          script:
+              - cd server
+              - ./build.sh
+              - node publish.js
+
+        # Deploys current commit to ropsten infrastructure
         - stage: deploy
           name: "Deploying to GKE"
           script:
+              - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf "$HOME/google-cloud-sdk"; curl https://sdk.cloud.google.com | bash > /dev/null; fi
+              - source $HOME/google-cloud-sdk/path.bash.inc
+              - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+              - chmod +x ./kubectl
+              - sudo mv ./kubectl /usr/local/bin/kubectl
+              - curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
+              - chmod 700 get_helm.sh
+              - sudo ./get_helm.sh --version $HELM_VERSION
+              - echo "$GOOGLE_SERVICE_KEY" | gcloud auth activate-service-account --key-file=-
+              - gcloud --quiet config set project ${GOOGLE_PROJECT_ID}
+              - gcloud --quiet config set compute/zone ${GOOGLE_COMPUTE_ZONE}
+              - gcloud components update kubectl
+              - gcloud version
+              - gcloud container clusters get-credentials $GOOGLE_CLUSTER_NAME
+              - kubectl config get-contexts
               - ./deploy_scripts/deploy.sh
+

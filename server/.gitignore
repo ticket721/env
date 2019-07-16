@@ -106,7 +106,6 @@ coverage
 
 .idea
 node_modules
-package-lock.json
 portal
 .DS_Store
 hooks

@@ -1,8 +1,6 @@
 const { series } = require('gulp');
 const shell = require('gulp-shell');
-const axios = require('axios');
 const fs = require('fs');
-const FormData = require('form-data');
 const signale = require('signale');
 const {spawn} = require('child_process');
 

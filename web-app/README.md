@@ -49,7 +49,7 @@ When adding or editing a Minter module, the following files should be checked:
 | `NEXUS_PASSWORD` | Password for given username |
 | `NEXUS_ENDPOINT` | Url of the nexus repo (no trailing `/`) |
 | `NEXUS_REPOSITORY` | Name of the repository |
-| `DOCKER_REPOSITORY` | Repository to push built images |
+| `DOCKER_WEBAPP_REPOSITORY` | Repository to push built images |
 | `DOCKER_USERNAME` | Username for docker account |
 | `DOCKER_PASSWORD` | Password of docker account |
 

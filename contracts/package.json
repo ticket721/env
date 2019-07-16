@@ -6,12 +6,12 @@
     "main": "index.js",
     "scripts": {
         "test:editorconfig": "editorconfig-cli",
+        "editorconfig-cli": "editorconfig-cli",
         "test:configure": "env T721_NETWORK=test gulp contracts:configure",
         "test:compile": "env T721_NETWORK=test gulp contracts:compile",
         "test:mocha": "truffle test",
         "test:solidity-coverage": "env T721_COVERAGE=true solidity-coverage",
-        "coverage:upload": "cat ./coverage/lcov.info | coveralls",
-        "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
+        "coverage:upload": "cat ./coverage/lcov.info | coveralls"
     },
     "repository": {
         "type": "git",
@@ -35,7 +35,6 @@
         "gulp": "^4.0.0",
         "gulp-shell": "^0.6.5",
         "hdkey": "^1.1.1",
-        "husky": "^1.3.1",
         "keccak256": "^1.0.0",
         "portalize": "^1.0.4",
         "rimraf": "^2.6.3",
@@ -61,12 +60,6 @@
         "*.json",
         "*.js"
     ],
-    "husky": {
-        "hooks": {
-            "pre-commit": "editorconfig-cli",
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-        }
-    },
     "devDependencies": {
         "@commitlint/cli": "^7.5.2",
         "@commitlint/config-conventional": "^7.5.0",

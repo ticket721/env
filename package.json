@@ -7,8 +7,8 @@
     "scripts": {
         "postinstall": "npm run init",
         "init": "lerna bootstrap && gulp init",
-        "clean_portals": "gulp clean",
-        "clean": "npm run clean_portals && lerna clean",
+        "clean_portals": "gulp clean && gulp dismantle",
+        "clean": "npm run clean_portals && lerna clean --yes",
         "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
     },
     "repository": {
@@ -46,7 +46,7 @@
     ],
     "husky": {
         "hooks": {
-            "pre-commit": "editorconfig-cli",
+            "pre-commit": "editorconfig-cli && lerna run editorconfig-cli",
             "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
         }
     }
