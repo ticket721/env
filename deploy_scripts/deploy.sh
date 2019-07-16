@@ -42,7 +42,9 @@ if [[ "$TRAVIS_BRANCH" = "ropsten" ]]; then
         --set webapp.config.strapi_endpoint="${STRAPI_PUBLIC_ENDPOINT}" \
         --set webapp.config.google_api_token="${GOOGLE_API_TOKEN}" \
         --set webapp.config.tx_explorer="${ROPSTEN_TX_EXPLORER}" \
-        --set letsencrypt.server=${LETSENCRYPT_ACME_SERVER}
+        --set webapp.config.google_analytics_token=${GOOGLE_ANALYTICS_TOKEN} \
+        --set letsencrypt.server=${LETSENCRYPT_ACME_SERVER} \
+        --set nginx.controller.service.loadBalancerIP=${GOOGLE_CLOUD_IP}
 
 
 fi

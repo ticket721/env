@@ -24,9 +24,11 @@ spec:
                   imagePullPolicy: IfNotPresent
                   resources:
                     limits:
-                        cpu: 0.5
+                        cpu: {{ .Values.geth.cpu.limit }}
+                        memory: {{ .Values.geth.memory.limit }}
                     requests:
-                        cpu: 0.5
+                        cpu: {{ .Values.geth.cpu.requests }}
+                        memory: {{ .Values.geth.memory.requests }}
                   ports:
                       - name: jsonrpc
                         containerPort: 8545
@@ -71,9 +73,11 @@ spec:
                     - "--rpc"
                     - "--rpcaddr=0.0.0.0"
                     - "--rpcapi=eth,web3,net"
+                    - "--rpcvhosts=*"
                     - "--rpccorsdomain=https://{{ .Values.webapp.ingress.host }}"
                     - "--cache=1024"
                           {{ if .Values.geth.ropsten.enabled }}
+                    - "--bootnodes={{ .Values.geth.ropsten.bootnodes }}"
                     - "--testnet"
                     - "--syncmode=fast"
                           {{ end }}

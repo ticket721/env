@@ -45,4 +45,11 @@ spec:
                         value: "{{ .Release.Name }}-geth-internal-svc"
                       - name: ETH_NODE_PORT
                         value: "{{ .Values.geth.service.rpcPort }}"
+                  volumeMounts:
+                      - name: "{{ .Release.Name }}-server-volume"
+                        mountPath: /usr/src/server/public/uploads
+            volumes:
+                - name: "{{ .Release.Name }}-server-volume"
+                  persistentVolumeClaim:
+                      claimName: "{{ .Release.Name }}-server-pvc"
 

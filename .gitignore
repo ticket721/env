@@ -6,3 +6,4 @@ package-lock.json
 deployment.ropsten.json
 ropsten.portal*
 /OpenVPN
+/t721/charts

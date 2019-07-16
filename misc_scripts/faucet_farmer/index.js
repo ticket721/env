@@ -68,7 +68,7 @@ const main = async () => {
         const seed = bip39.mnemonicToSeedSync(mnemonic);
 
         const root = hdkey.fromMasterSeed(seed);
-        const derived = root.derive("m/44'/60'/0'/0/0");
+        const derived = root.derive("m/44'/60'/0'/0/0"); // ropsten index 0 path
 
         const address = '0x' + utils.privateToAddress(derived.privateKey).toString('hex');
         signale.info(`Generated ${address} (${mnemonic})`);
@@ -99,7 +99,7 @@ const main = async () => {
 
         if (ready) {
             try {
-                const web3 = new Web3(new HDWalletProvider(mnemonic, infura_endpoint));
+                const web3 = new Web3(new HDWalletProvider(mnemonic, infura_endpoint, 0, 1, "m/44'/60'/0'/0"));
                 while ((await web3.eth.getBalance(address)) === '0') {
                     signale.info('Waiting for balance update ...');
                     await new Promise((ok, ko) => setTimeout(ok, 5000));
@@ -108,7 +108,7 @@ const main = async () => {
                     web3.eth.sendTransaction({
                         from: address,
                         to: target,
-                        value: web3.utils.toWei('0.9999', 'ether')
+                        value: web3.utils.toWei('0.9', 'ether')
                     }).on('transactionHash', (hash) => {
                         signale.info(`Sent to target: ${hash}`);
                         ok();
