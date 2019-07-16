@@ -232,5 +232,5 @@ env T721_CONFIG_PATH=./deployment.ropsten.json  gulp deploy_ropsten
 
 * Name => `ropsten`
 * Size => `[0 - 1] standard-2, [1 - 6] small`
-* IPS => `geth-public, api-public, webapp-public`
+* IPS => `3 IPS in same region`
 * Disks => `geth-disk;ssd;200, pg-disk;hdd;50, strapi-disk;hdd;25`

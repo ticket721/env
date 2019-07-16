@@ -59,6 +59,14 @@ webapp:
         host: ropsten.ticket721.com
         gceIpName: webapp-public
 
+nginx:
+    rbac:
+        create: true
+    controller:
+        service:
+            loadBalancerIP: {}
+        ingressClass: "nginx"
+
 geth:
     ropsten:
         enabled: true

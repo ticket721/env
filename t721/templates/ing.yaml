@@ -1,0 +1,45 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+    name: "{{ .Release.Name }}-ing"
+    labels:
+        app: "{{ template "t721.fullname" . }}"
+        chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        release: "{{ .Release.Name }}"
+        heritage: "{{ .Release.Service }}"
+    annotations:
+        kubernetes.io/ingress.class: nginx
+        certmanager.k8s.io/cluster-issuer: "{{ .Release.Name }}-letsencrypt"
+spec:
+    tls:
+        - hosts:
+              - {{ .Values.webapp.ingress.host }}
+              - {{ .Values.server.ingress.host }}
+              - {{ .Values.geth.ingress.host }}
+          secretName: "{{ .Release.Name }}-cert-secret"
+    rules:
+        - host: {{ .Values.webapp.ingress.host }}
+          http:
+              paths:
+                  - backend:
+                        serviceName: "{{ .Release.Name }}-webapp-svc"
+                        servicePort: {{ .Values.webapp.service.port }}
+                    path: /
+
+        - host: {{ .Values.server.ingress.host }}
+          http:
+              paths:
+                  - backend:
+                        serviceName: "{{ .Release.Name }}-server-svc"
+                        servicePort: {{ .Values.server.service.port }}
+                    path: /
+
+        - host: {{ .Values.geth.ingress.host }}
+          http:
+              paths:
+                  - backend:
+                        serviceName: "{{ .Release.Name }}-geth-svc"
+                        servicePort: {{ .Values.geth.service.rpcPort }}
+                    path: /
+

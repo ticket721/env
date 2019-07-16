@@ -1,0 +1,13 @@
+dependencies:
+    - name: nginx-ingress
+      repository: https://kubernetes-charts.storage.googleapis.com/
+      version: 1.10.2
+      alias: nginx
+    #- name: nginx-ingress
+    #  repository: https://kubernetes-charts.storage.googleapis.com/
+    #  version: 1.10.2
+    #  alias: nginxwebapp
+    #- name: nginx-ingress
+    #  repository: https://kubernetes-charts.storage.googleapis.com/
+    #  version: 1.10.2
+    #  alias: nginxserver
