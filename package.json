@@ -1,7 +1,7 @@
 {
     "name": "@ticket721/env",
     "private": true,
-    "version": "1.0.0",
+    "version": "0.1.0",
     "description": "env - Complete Environment for ticket721",
     "main": "index.js",
     "scripts": {
