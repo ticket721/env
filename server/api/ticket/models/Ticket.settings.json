@@ -1,0 +1,59 @@
+{
+  "connection": "default",
+  "collectionName": "ticket",
+  "info": {
+    "name": "ticket",
+    "description": "An ERC721 asset"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "ticket_id": {
+      "default": "",
+      "unique": true,
+      "min": 1,
+      "type": "integer",
+      "required": true
+    },
+    "owner": {
+      "model": "address",
+      "via": "tickets"
+    },
+    "event": {
+      "model": "event",
+      "via": "tickets"
+    },
+    "actions": {
+      "collection": "action",
+      "via": "on_ticket"
+    },
+    "mint_block": {
+      "default": "",
+      "type": "integer"
+    },
+    "sale": {
+      "collection": "sale",
+      "via": "ticket"
+    },
+    "issuer": {
+      "model": "address",
+      "via": "issued"
+    },
+    "current_sale": {
+      "model": "sale",
+      "via": "live"
+    },
+    "creation": {
+      "type": "date"
+    },
+    "mint_price": {
+      "type": "string"
+    },
+    "mint_currency": {
+      "type": "string"
+    }
+  }
+}

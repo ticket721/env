@@ -1,0 +1,31 @@
+{
+    "name": "@ticket721/companion-app",
+    "private": true,
+    "version": "0.1.0",
+    "description": "companion-app - Mobile companion app for offline ticket access",
+    "main": "index.js",
+    "scripts": {
+        "editorconfig-cli": "editorconfig-cli"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ticket721/companion-app.git"
+    },
+    "author": "Iulian Rotaru",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ticket721/companion-app/issues"
+    },
+    "homepage": "https://github.com/ticket721/companion-app#readme",
+    "dependencies": {
+        "@htmlacademy/editorconfig-cli": "^1.0.0",
+        "portalize": "^1.0.4"
+    },
+    "editorconfig-cli": [
+        "./package.json"
+    ],
+    "devDependencies": {
+        "deep-extend": ">=0.5.1",
+        "merge": ">=1.2.1"
+    }
+}

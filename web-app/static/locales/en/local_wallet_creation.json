@@ -1,0 +1,25 @@
+{
+    "title": "Create your T721 wallet",
+    "desc": "You have chosen the T721 Wallet Provider. A Wallet is required if you want to use the Ethereum Blockchain, and is composed of a private and public key. Don't worry, we'll handle everything for you. You will chose a password and we'll store your encrypted wallet. We cannot use it as we are not storing your password. You must understand that as we're not storing your password, if you lose it, we won't be able to recover your wallet for you. It is very important that you note that password down.",
+
+    "input_error_not_same": "Passwords do not match",
+    "input_error_min": "Password minimum length is 8",
+    "input_error_max": "Password maximum length is 100",
+    "input_error_lowercase": "Password should contain at least one lowercase letter",
+    "input_error_uppercase": "Password should contain at least one uppercase letter",
+    "input_error_digits": "Password should contain at least one digit",
+    "input_error_symbols": "Password should contain at least one special character",
+    "input_error_spaces": "Password cannot contain spaces",
+
+    "password_please_input": "Please input your password",
+    "password_placeholder": "Password",
+
+    "password_verify_please_input": "Please verify your password",
+    "password_verify_placeholder": "Verify Password",
+
+    "lock_it": "Lock It",
+
+    "secure_wallet": "Secure your wallet with a strong password",
+    "click_to_gen": "This is your new wallet. Click for a new one"
+
+}

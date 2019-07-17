@@ -1,0 +1,29 @@
+{
+    "app_loading": "Application Loading",
+    "app_cannot_reach_server": "Cannot reach server.",
+    "app_rxdb_error": "An internal storage error occured.",
+    "app_invalid_remote_config": "Invalid server configuration.",
+    "app_missing_strapi_url": "Missing server url.",
+
+    "vtx_loading": "Loading Modules",
+    "vtx_idle": "Loading Modules",
+    "vtx_authorizing": "Waiting for authorization",
+    "vtx_error": "An error occured in the VTX module",
+    "vtx_unauthorized": "Authorization has not been granted.",
+    "vtx_wrong_net": "You are on an invalid Ethereum network.",
+
+    "account_loading": "Loading Account Informations",
+    "tickets_loading": "Loading Ticket List",
+    "event_loading": "Loading Event Informations",
+    "no_tickets": "No Tickets Owned.",
+    "no_tickets_for_filter": "No Tickets Found",
+
+    "error": "Error",
+    "invalid_address": "//address// is an invalid address.",
+    "not_an_event": "Address is not an event.",
+    "event_management": "Manage or Create Events",
+    "fetch_error": "An error occured while fetching from server.",
+    "support_coming_soon": "Mobile version is on its way",
+    "ticket_page_loading": "Loading Ticket Details",
+    "no_ticket_id": "No Such Ticket"
+}

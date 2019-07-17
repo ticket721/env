@@ -1,0 +1,33 @@
+{
+    "name": "@ticket721/identity",
+    "private": true,
+    "version": "0.1.0",
+    "description": "identity - Logo and Images representing ticket721",
+    "main": "index.js",
+    "scripts": {
+        "editorconfig-cli": "editorconfig-cli"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ticket721/identity.git"
+    },
+    "author": "Iulian Rotaru",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ticket721/identity/issues"
+    },
+    "homepage": "https://github.com/ticket721/identity#readme",
+    "dependencies": {
+        "@htmlacademy/editorconfig-cli": "^1.0.0",
+        "gulp": "^4.0.2",
+        "ncp": "^2.0.0",
+        "portalize": "^1.0.4",
+        "rimraf": "^2.6.3",
+        "signale": "^1.4.0"
+    },
+    "editorconfig-cli": [
+        "./package.json"
+    ],
+    "devDependencies": {
+    }
+}

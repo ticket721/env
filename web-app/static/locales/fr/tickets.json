@@ -1,0 +1,96 @@
+{
+    "ticket_page_event_title": "Événement",
+    "ticket_page_info_title": "Informations",
+    "ticket_page_activity_title": "Activité du ticket",
+    "ticket_page_info_owner": "Propriétaire",
+    "ticket_page_info_creation": "Créé le",
+    "ticket_page_info_initial_price": "Prix initial",
+    "ticket_page_info_identifier": "Identifiant",
+    "top_popover_event_title": "Événement",
+
+    "top_popover_marketplace_warning": "La Marketplace n'est pas disponible pour cet événement",
+    "top_popover_marketplace_title": "Marketplace",
+
+    "top_popover_details_title": "Détails",
+
+    "bottom_popover_sell_title": "Vendez votre ticket",
+    "bottom_popover_close_sale_title": "Fermez la vente",
+    "bottom_popover_buy_title": "Acheter ce ticket",
+
+    "sale_modal_title": "Vendez votre ticket",
+    "sale_modal_loading_marketer": "Chargement des Modules de Vente",
+    "no_marketer_controller": "Impossible de récupérer les Module de Vente",
+
+    "sale_modal_cancel_button": "Annuler",
+    "sale_modal_first_title": "Vendre ce ticket ?",
+    "sale_modal_sell_form_title": "Remplissez le formulaire de vente",
+
+    "sale_modal_waiting_button": "En attente de la transaction ...",
+    "sale_modal_final_button": "Visiter la Marketplace",
+    "sale_modal_tx_pending_button": "Transaction en cours ...",
+    "sale_modal_tx_confirmed_button": "Transaction confirmée",
+    "sale_modal_tx_progress_wait_for_confirmations": "En attente de confirmations ...",
+    "sale_modal_tx_progress_confirmed": "Transaction confirmée",
+    "sale_modal_tx_progress_error": "Une erreur a eu lieu avec votre transaction",
+    "sale_modal_tx_progress_wait_for_broadcast": "En attente de l'envoi de la transaction ...",
+
+    "close_sale_modal_title": "Fermeture de la vente",
+    "close_sale_modal_loading_marketer": "Chargement des Modules de Vente",
+
+    "close_sale_modal_cancel_button": "Annuler",
+    "close_sale_modal_close_button": "Je veux fermer cette vente",
+    "close_sale_modal_first_title": "Fermer cette vente ?",
+    "close_sale_modal_warning": "En fermant cette vente, vous enlevez ce ticket de la Marketplace. Les utilisateurs ne pourront plus vous l'acheter tant que vous ne l'aurez pas mis en vente à nouveau.",
+
+    "close_sale_modal_waiting_button": "En attente de la transaction ...",
+    "close_sale_modal_final_button": "Consulter votre compte",
+    "close_sale_modal_tx_pending_button": "Transaction en cours ...",
+    "close_sale_modal_tx_confirmed_button": "Transaction confirmée",
+    "close_sale_modal_tx_progress_wait_for_confirmations": "En attente de confirmations ...",
+    "close_sale_modal_tx_progress_confirmed": "Transaction confirmée",
+    "close_sale_modal_tx_progress_error": "Une erreur a eu lieu avec votre transaction",
+    "close_sale_modal_tx_progress_wait_for_broadcast": "En attente de l'envoi de la transaction ...",
+
+    "buy_modal_title": "Acheter ce ticket",
+    "buy_modal_loading_marketer": "Chargement des Modules de Vente",
+
+    "buy_modal_cancel_button": "Annuler",
+    "buy_modal_first_title": "Acheter ce ticket ?",
+    "buy_modal_buy_title": "Informations",
+    "buy_modal_buy_button": "Acheter",
+    "buy_modal_seller": "Vendeur",
+    "buy_modal_event": "Événement",
+    "buy_modal_payment_method": "Sélectionnez une méthode de paiement",
+
+    "buy_modal_waiting_button": "En attente de la transaction ...",
+    "buy_modal_final_button": "Consulter votre compte",
+    "buy_modal_tx_pending_button": "Transaction en cours ...",
+    "buy_modal_tx_confirmed_button": "Transaction confirmée",
+    "buy_modal_tx_progress_wait_for_confirmations": "En attente de confirmations ...",
+    "buy_modal_tx_progress_confirmed": "Transaction confirmée",
+    "buy_modal_tx_progress_error": "Une erreur a eu lieu avec votre transaction",
+    "buy_modal_tx_progress_wait_for_broadcast": "En attente de l'envoi de la transaction ...",
+
+    "sale_tag_title": "Ce ticket est actuellement en vente",
+    "sale_tag_body": "Cliquez pour consulter la Marketplace",
+
+    "sale_controller_invalid_arguments": "Les paramètres fournis sont invalides",
+
+    "ticket_activity_card_owner": "Propriétaire",
+    "ticket_activity_card_price": "Prix",
+    "ticket_activity_card_date": "Date",
+    "ticket_activity_card_event": "Événement",
+    "ticket_activity_card_sale_start": "Début de la Vente",
+    "ticket_activity_card_sale_end": "Fin de la Vente",
+    "ticket_activity_card_creator": "Créé par",
+    "ticket_activity_card_closed_by": "Fermé par",
+    "ticket_activity_card_new_owner": "Nouveau propriétaire",
+    "ticket_activity_card_previous_owner": "Propriétaire précédent",
+    "ticket_activity_card_more_infos": "Plus d'informations ...",
+
+    "ticket_activity_card_buy_title": "Achat sur Marketplace",
+    "ticket_activity_card_mint_title": "Création du Ticket",
+    "ticket_activity_card_sale_title": "Ouverture de Vente",
+    "ticket_activity_card_sale_close_title": "Fermeture de Vente",
+    "ticket_activity_card_transfer_title": "Transfert du Ticket"
+}

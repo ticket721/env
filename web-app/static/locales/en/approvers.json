@@ -1,0 +1,12 @@
+{
+    "transfer_strategy": "Transfer Strategy",
+    "transfer_strategy_description": "Select the rules needed to exchange tickets between users",
+    "transfer_strategy_placeholder": "Select a Transfer Strategy",
+
+    "ApproverDisabled_name": "All exchanges are allowed",
+
+    "ApproverDisabled_concise_description": "No checks will be performed on transfers and ownerships. Users would be able to buy unlimited amounts of tickets, and will be able to echange the tickets outside ou the Ticket721 marketplace, using third-party marketplaces or with direct exchanges.",
+
+    "ApproverBlockOutside_name": "Exchanges outside of the marketplace are disabled",
+    "ApproverBlockOutside_concise_description": "No checks will be performed on ownerships, but users will not be able to transfer the tickets outside of the marketplace."
+}

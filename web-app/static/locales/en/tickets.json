@@ -1,0 +1,96 @@
+{
+    "ticket_page_event_title": "Event",
+    "ticket_page_info_title": "Informations",
+    "ticket_page_activity_title": "Ticket Activity",
+    "ticket_page_info_owner": "Owner",
+    "ticket_page_info_creation": "Created on",
+    "ticket_page_info_initial_price": "Initial Price",
+    "ticket_page_info_identifier": "Identifier",
+    "top_popover_event_title": "Event",
+
+    "top_popover_marketplace_warning": "Marketplace is not available for this event",
+    "top_popover_marketplace_title": "Marketplace",
+
+    "top_popover_details_title": "Details",
+
+    "bottom_popover_sell_title": "Sell your ticket",
+    "bottom_popover_close_sale_title": "Close sale",
+    "bottom_popover_buy_title": "Buy this ticket",
+
+    "sale_modal_title": "Sell your ticket",
+    "sale_modal_loading_marketer": "Loading Sell Modules",
+    "no_marketer_controller": "Could not find sell module",
+
+    "sale_modal_cancel_button": "Cancel",
+    "sale_modal_first_title": "Sell this ticket ?",
+    "sale_modal_sell_form_title": "Fill the sale form",
+
+    "sale_modal_waiting_button": "Waiting for transaction ...",
+    "sale_modal_final_button": "Go to marketplace",
+    "sale_modal_tx_pending_button": "Transaction in progress ...",
+    "sale_modal_tx_confirmed_button": "Transaction Confirmed",
+    "sale_modal_tx_progress_wait_for_confirmations": "Waiting for confirmations ...",
+    "sale_modal_tx_progress_confirmed": "Transaction confirmed",
+    "sale_modal_tx_progress_error": "An error occured with your transaction",
+    "sale_modal_tx_progress_wait_for_broadcast": "Waiting for the transaction to be broadcasted ...",
+
+    "close_sale_modal_title": "Closing ticket sale",
+    "close_sale_modal_loading_marketer": "Loading Sell Modules",
+
+    "close_sale_modal_cancel_button": "Cancel",
+    "close_sale_modal_close_button": "I want to close this sale",
+    "close_sale_modal_first_title": "Close this sale ?",
+    "close_sale_modal_warning": "By closing this sale, you remove this ticket from the marketplace, and users won't be able to buy it until you start selling it again.",
+
+    "close_sale_modal_waiting_button": "Waiting for transaction ...",
+    "close_sale_modal_final_button": "Go to your account",
+    "close_sale_modal_tx_pending_button": "Transaction in progress ...",
+    "close_sale_modal_tx_confirmed_button": "Transaction Confirmed",
+    "close_sale_modal_tx_progress_wait_for_confirmations": "Waiting for confirmations ...",
+    "close_sale_modal_tx_progress_confirmed": "Transaction confirmed",
+    "close_sale_modal_tx_progress_error": "An error occured with your transaction",
+    "close_sale_modal_tx_progress_wait_for_broadcast": "Waiting for the transaction to be broadcasted ...",
+
+    "buy_modal_title": "Buying this ticket",
+    "buy_modal_loading_marketer": "Loading Buy Modules",
+
+    "buy_modal_cancel_button": "Cancel",
+    "buy_modal_first_title": "Buy this ticket ?",
+    "buy_modal_buy_title": "Informations",
+    "buy_modal_buy_button": "Buy",
+    "buy_modal_seller": "Seller",
+    "buy_modal_event": "Event",
+    "buy_modal_payment_method": "Select Payment Method",
+
+    "buy_modal_waiting_button": "Waiting for transaction ...",
+    "buy_modal_final_button": "Go to account",
+    "buy_modal_tx_pending_button": "Transaction in progress ...",
+    "buy_modal_tx_confirmed_button": "Transaction Confirmed",
+    "buy_modal_tx_progress_wait_for_confirmations": "Waiting for confirmations ...",
+    "buy_modal_tx_progress_confirmed": "Transaction confirmed",
+    "buy_modal_tx_progress_error": "An error occured with your transaction",
+    "buy_modal_tx_progress_wait_for_broadcast": "Waiting for the transaction to be broadcasted ...",
+
+    "sale_tag_title": "This ticket is currently on sale",
+    "sale_tag_body": "Click to see the marketplace",
+
+    "sale_controller_invalid_arguments": "Provided parameters are invalid",
+
+    "ticket_activity_card_owner": "Owner",
+    "ticket_activity_card_price": "Price",
+    "ticket_activity_card_date": "Date",
+    "ticket_activity_card_event": "Event",
+    "ticket_activity_card_sale_start": "Sale Start",
+    "ticket_activity_card_sale_end": "Sale End",
+    "ticket_activity_card_creator": "Created by",
+    "ticket_activity_card_closed_by": "Closed by",
+    "ticket_activity_card_new_owner": "New Owner",
+    "ticket_activity_card_previous_owner": "Previous Owner",
+    "ticket_activity_card_more_infos": "More infos ...",
+
+    "ticket_activity_card_buy_title": "Marketplace Purchase",
+    "ticket_activity_card_mint_title": "Ticket Creation",
+    "ticket_activity_card_sale_title": "Sale Opened",
+    "ticket_activity_card_sale_close_title": "Sale Closed",
+    "ticket_activity_card_transfer_title": "Ownership Transfer"
+}
