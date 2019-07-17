@@ -1,0 +1,12 @@
+{
+    "transfer_strategy": "Stratégie de Transfert",
+    "transfer_strategy_description": "Sélectionnez les règles d'échange de tickets entre utilisateurs",
+    "transfer_strategy_placeholder": "Sélectionnez une Stratégie de Transfert",
+
+    "ApproverDisabled_name": "Tous les échanges sont autorisés",
+
+    "ApproverDisabled_concise_description": "Aucune vérification ne sera effectuée lors des transferts de propriété des tickets. Les utilisateurs peuvent acheter un nombre illimité de tickets et peuvent les échanger en dehors de la Marketplace Ticket721, via des services tierces.",
+
+    "ApproverBlockOutside_name": "Les échanges en dehors de la Marketplace sont désactivés",
+    "ApproverBlockOutside_concise_description": "Aucune vérification ne sera effectuée lors des transferts de propriété des tickets. Les utilisateurs ne seront pas capables de transferer les tickets en dehors de la Marketplace Ticket721."
+}

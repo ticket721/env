@@ -1,0 +1,12 @@
+{
+    "homepage_title": "Trouvez votre prochain événement",
+    "homepage_search_events_button": "Chercher un événement",
+    "homepage_clear_search_button": "Annuler la recherche",
+    "homepage_more_filters_button": "Plus de filtres",
+
+    "homepage_drawer_sort_title": "Trier",
+    "homepage_drawer_filter_title": "Filtrer",
+    "homepage_marketplace_filter_title": "Marketplace active seulement",
+    "homepage_drawer_apply_filter_button": "Appliquer",
+    "homepage_results": "Résultats trouvés"
+}

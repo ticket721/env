@@ -1,0 +1,31 @@
+{
+    "name": "@ticket721/scanner-app",
+    "private": true,
+    "version": "0.1.0",
+    "description": "scanner-app - Mobile app to scan tickets",
+    "main": "index.js",
+    "scripts": {
+        "editorconfig-cli": "editorconfig-cli"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/ticket721/scanner-app.git"
+    },
+    "author": "Iulian Rotaru",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/ticket721/scanner-app/issues"
+    },
+    "homepage": "https://github.com/ticket721/scanner-app#readme",
+    "dependencies": {
+        "@htmlacademy/editorconfig-cli": "^1.0.0",
+        "portalize": "^1.0.4"
+    },
+    "devDependencies": {
+        "deep-extend": ">=0.5.1",
+        "merge": ">=1.2.1"
+    },
+    "editorconfig-cli": [
+        "./package.json"
+    ]
+}

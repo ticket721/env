@@ -1,0 +1,27 @@
+{
+    "lwunlock_title": "Unlock your wallet",
+    "lwunlock_password": "Password",
+    "lwunlock_password_placeholder": "Input Wallet Password",
+    "lwunlock_password_warning": "Please input the password to unlock your wallet",
+    "lwunlock_ok_button": "Unlock",
+    "lwunlock_cancel_button": "Cancel",
+    "lwunlock_invalid_password": "Invalid Password",
+
+    "lwattempts_from": "from",
+    "lwattempts_to": "to",
+    "lwattempts_nonce": "nonce",
+    "lwattempts_value": "value",
+    "lwattempts_gas_price": "gas price",
+    "lwattempts_gas_limit": "gas limit",
+    "lwattempts_data": "data",
+    "lwattempts_Tx": "Transaction",
+    "lwattempts_Sign": "Signature",
+    "lwattempts_sign_title": "You are about to sign the following data",
+    "lwattempts_sign_timeout": "Signature Timed Out",
+    "lwattempts_sign_deadline": "Time left to sign data",
+    "lwattempts_ok_button_Tx": "Send Transaction",
+    "lwattempts_ok_button_Sign": "Sign Data",
+    "lwattempts_cancel_button_Tx": "Cancel Transaction",
+    "lwattempts_cancel_button_Sign": "Cancel Signature",
+    "lwattempts_contract": "This transaction will create a new smart contract"
+}

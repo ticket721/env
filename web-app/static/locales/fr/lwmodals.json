@@ -1,0 +1,27 @@
+{
+    "lwunlock_title": "Dévérouillez votre Wallet",
+    "lwunlock_password": "Mot de passe",
+    "lwunlock_password_placeholder": "Entrez le mot de passe",
+    "lwunlock_password_warning": "Veuillez entrer le mot de passe pour dévérouiller votre Wallet",
+    "lwunlock_ok_button": "Déverrouiller",
+    "lwunlock_cancel_button": "Annuler",
+    "lwunlock_invalid_password": "Mot de passe non valide",
+
+    "lwattempts_from": "émetteur",
+    "lwattempts_to": "déstinataire",
+    "lwattempts_nonce": "numéro de transaction",
+    "lwattempts_value": "valeur",
+    "lwattempts_gas_price": "prix de gas",
+    "lwattempts_gas_limit": "limite de gas",
+    "lwattempts_data": "données",
+    "lwattempts_Tx": "Transaction",
+    "lwattempts_Sign": "Signature",
+    "lwattempts_sign_title": "Vous allez signer la donnée suivante",
+    "lwattempts_sign_timeout": "La signature a expiré",
+    "lwattempts_sign_deadline": "Temps restant pour signer la donnée",
+    "lwattempts_ok_button_Tx": "Envoyer la transaction",
+    "lwattempts_ok_button_Sign": "Signer la donnée",
+    "lwattempts_cancel_button_Tx": "Annuler la transaction",
+    "lwattempts_cancel_button_Sign": "Annuler la signature",
+    "lwattempts_contract": "Cette transaction va créer un nouveau Contrat Ethereum"
+}
