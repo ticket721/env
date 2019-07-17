@@ -69,6 +69,7 @@ jobs:
 
         # Deploys current commit to ropsten infrastructure
         - stage: deploy
+          install: skip
           name: "Deploying to GKE"
           script:
               - if [ ! -d "$HOME/google-cloud-sdk/bin" ]; then rm -rf "$HOME/google-cloud-sdk"; curl https://sdk.cloud.google.com | bash > /dev/null; fi
