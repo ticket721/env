@@ -1,0 +1,8 @@
+{
+    "injected_title": "Wallet Injecté",
+    "injected_desc": "Utilisez votre propre gestionnaire de Wallet",
+    "injected_unavailable": "Aucun Wallet externe détecté",
+    "t721_title": "Wallet Ticket721",
+    "t721_desc": "Utilisez un compte Ticket721 pour gérer votre Wallet",
+    "title": "Sélectionnez un Wallet"
+}

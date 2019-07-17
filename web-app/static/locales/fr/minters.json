@@ -1,0 +1,40 @@
+{
+    "sell_strategy": "Stratégie de Vente",
+    "sell_strategy_description": "Sélectionnez la méthode de vente de votre événement",
+    "sell_strategy_placeholder": "Sélectionnez une Stratégie de Vente",
+
+    "MinterPayableFixed_name": "Prix fixe sans catégories",
+
+    "MinterPayableFixed_minter_price": "Prix du ticket",
+    "MinterPayableFixed_minter_price_placeholder": "Veuillez entrer le prix du ticket",
+    "MinterPayableFixed_minter_price_description": "Ceci est le prix auquel les tickets seront vendus",
+
+    "MinterPayableFixed_minter_cap": "Quantité maximale de tickets",
+    "MinterPayableFixed_minter_cap_placeholder": "Veuillez entrer la quantité maximale",
+    "MinterPayableFixed_minter_cap_description": "Ceci est la quantité maximale de tickets vendus par l'événement",
+
+    "MinterPayableFixed_minter_end": "Fin de la vente",
+    "MinterPayableFixed_minter_end_placeholder": "Veuillez entrer une date de fin",
+    "MinterPayableFixed_minter_end_description": "Ceci est la date de fin de votre vente de tickets",
+
+    "MinterPayableFixed_concise_description": "Les tickets seront vendu //minter_price// Ξ chacun. La quantité maximale de tickets vendus est //minter_cap//. La vente de tickets prendra fin le //minter_end//.",
+
+    "MinterPayableFixedCategories_name": "Prix fixe avec catégories",
+    "MinterPayableFixedCategories_dynamic_categories": "Catégories",
+    "MinterPayableFixedCategories_dynamic_categories_description": "Cliquez pour ajouter une catégorie",
+    "dynamic_categories_minter_names": "Nom de la catégorie",
+    "dynamic_categories_minter_names_placeholder": "Veuillez entrer le nom de la catégorie",
+    "dynamic_categories_minter_names_description": "Cette catégorie sera visible sur les tickets",
+    "dynamic_categories_minter_prices": "Prix de la catégorie",
+    "dynamic_categories_minter_prices_placeholder": "Veuillez entrer le prix pour cette catégorie",
+    "dynamic_categories_minter_prices_description": "Ceci est le prix auquel les tickets de cette catégorie seront vendus",
+    "dynamic_categories_minter_caps": "Quantité maximale de tickets",
+    "dynamic_categories_minter_caps_placeholder": "Veuillez entrer la quantité maximale",
+    "dynamic_categories_minter_caps_description": "Ceci est la quantité maximale de tickets de cette catégorie vendus par l'événement",
+    "MinterPayableFixedCategories_minter_end": "Fin de la vente",
+    "MinterPayableFixedCategories_minter_end_placeholder": "Veuillez entrer un date de fin",
+    "MinterPayableFixedCategories_minter_end_description": "Ceci est la date de fin de votre vente de tickets",
+
+    "MinterPayableFixedCategories_concise_description": "La vente des tickets prendra fin le //minter_end//. ",
+    "MinterPayableFixedCategories_category_concise_description": "Les tickets de la catégorie \"//name//\" seront vendus à //price// Ξ chacun, pour une quantité maximale de //cap// tickets. "
+}

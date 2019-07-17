@@ -1,0 +1,54 @@
+{
+    "sell_strategy_title": "Stratégie de Vente",
+    "marketplace_strategy_title": "Stratégie de Revente",
+    "transfer_strategy_title": "Stratégie de Transfert",
+    "informations_title": "Informations",
+
+    "namedesc_title": "Nom & Description",
+    "name_title": "Nom",
+    "description_title": "Description",
+    "name_description": "Le nom de votre événement",
+    "name_placeholder": "Veuillez entrer le nom désiré",
+    "name_length_limit": "Limite de 50 caractères atteinte",
+    "description_description": "Description de votre événement",
+    "description_placeholder": "Veuillez entrer la description de votre événement",
+    "description_length_limit": "Limite de 1000 caractères atteinte",
+
+    "location_dates_title": "Lieu & Dates",
+    "location_title": "Lieu",
+    "location_description": "L'adresse physique de votre événement",
+    "dates_title": "Dates",
+    "dates_description": "Dates de votre événement",
+
+    "images_title": "Images & Bannières",
+    "banners_title": "Bannières",
+    "banners_description": "Les bannières seront sur la page de votre événement. Utilisez une résolution de 1200x400 pour de meilleurs résultats",
+    "image_title": "Image",
+    "image_description": "L'image représentant votre événement. Utilisez une image carrée.",
+
+    "button_next": "Suivant",
+    "button_done": "Valider",
+    "button_previous": "Précédent",
+
+    "summary_title": "Récapitulatif",
+
+    "explications_title": "Prochaine étapes",
+    "explications_description": "Une transaction va avoir lieu sur la Blockchain Ethereum. Cettre transaction va contenir toutes les informations sur la vente et la revente de vos tickets. Veuillez attendre la validation finale pour quitter la page.",
+    "explications_agree": "J'ai bien compris",
+
+    "transaction_title": "Transaction - Déploiement sur Ξthereum",
+    "start_deploy": "Cliquez pour déployer l'événement sur Ξthereum",
+    "started_deploying": "Déploiement en cours ...",
+    "transaction_sent_waiting_confirmations": "Transaction envoyée, en attente de confirmations ...",
+    "transaction_confirmed_waiting_upload": "Transaction confirmée, envoi des informations ...",
+    "upload_done_waiting_response": "Envoi fini, attente de réponse ...",
+    "upload_error": "Une erreur a eu lieu lors du déploiement",
+    "process_done": "Fini",
+    "transaction_failed": "Transaction échouée",
+    "waiting_transaction": "En attente de l'envoi de la transaction ...",
+    "deploy_success": "Vous avez réussi le déploiement",
+    "see_event": "Voir votre événement",
+    "waiting_for_fetch": "Événement en cours de récupération ...",
+    "button_deploy": "Déployer"
+
+}

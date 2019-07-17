@@ -1,0 +1,9 @@
+{
+    "filter_event_title": "Event",
+    "filter_event_name": "Event Name",
+    "filter_event_desc": "Select desired events",
+    "filter_event_selec_desc": "Active filters",
+    "filter_event_no_result": "No results",
+    "price_widget_sale_ender": "Sale Ended",
+    "marketplace_loading": "Loading Marketplace"
+}

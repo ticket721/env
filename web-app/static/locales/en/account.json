@@ -1,0 +1,19 @@
+{
+    "account_tabs_tickets": "Tickets",
+    "account_tabs_settings": "Settings",
+
+    "list_filter": "Filter",
+    "list_page": "page",
+    "list_results": "results",
+    "list_filter_event_title": "Event",
+
+    "settings_username_title": "Username",
+    "settings_username_no_activity": "Your account has not made any action on the platform, and is not registered in our store. Doing any type of interaction with the palteform will grant you the right to set a username.",
+    "settings_username_no_login_change": "Changing this username will not change the username you use to login.",
+    "settings_username_preview_no_username": "You have never changed your username. This is how other users see you.",
+    "settings_username_preview": "This is how other users see you",
+    "settings_username_set_new": "Select a new username",
+    "settings_username_set_new_placeholder": "Input username",
+    "settings_username_upload_error": "An error occured while trying to upload new username",
+    "settings_username_upload_success": "Succesfully updated username"
+}

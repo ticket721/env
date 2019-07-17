@@ -1,10 +1,5 @@
 const { series } = require('gulp');
 const shell = require('gulp-shell');
-const axios = require('axios');
-const fs = require('fs');
-const FormData = require('form-data');
-const signale = require('signale');
-const {spawn} = require('child_process');
 
 const load_net_config = async () => {
 
@@ -31,61 +26,6 @@ const load_net_config = async () => {
 
 };
 
-const nexus_upload_archives = async () => {
-
-    if (!process.env.T721_CONFIG_PATH) {
-        console.error(`Define T721_CONFIG_PATH env var`);
-        process.exit(1);
-    }
-
-    const config = require(process.env.T721_CONFIG_PATH);
-
-    const nexus = config.nexus;
-
-    const current_files = fs.readdirSync('.');
-
-    for (const file of current_files) {
-        if (file.match(/.+\..+\.tar\.gz/)) {
-            const url_one = `${nexus.endpoint}/repository/${nexus.repository}/artifacts/${file}`;
-            const url_two = `${nexus.endpoint}/repository/${nexus.repository}/artifacts/latest.tar.gz`;
-
-            signale.info(`Uploading ${file} to ${url_one}`);
-            await new Promise((ok, ko) => {
-                const call = spawn('curl', ['-u', `'${nexus.username}:${nexus.password}'`, '-v', '--upload-file', `${file}`, `${url_one}`], {
-                    shell: true
-                });
-
-                call.stdout.on('data', (data) => {
-                    console.log(data.toString());
-                });
-                call.stderr.on('data', (data) => {
-                    console.error(data.toString());
-                });
-
-                call.on('close', ok);
-            });
-            signale.success(`Uploaded ${file} to ${url_one}`);
-
-            signale.info(`Uploading ${file} to ${url_two}`);
-            await new Promise((ok, ko) => {
-                const call = spawn('curl', ['-u', `'${nexus.username}:${nexus.password}'`, '-v', '--upload-file', `${file}`, `${url_two}`], {
-                    shell: true
-                });
-
-                call.stdout.on('data', (data) => {
-                    console.log(data.toString());
-                });
-                call.stderr.on('data', (data) => {
-                    console.error(data.toString());
-                });
-
-                call.on('close', ok);
-            });
-            signale.success(`Uploaded ${file} to ${url_two}`);
-        }
-    }
-
-};
 
 const network = require('./network/gulpfile');
 const contracts = require('./contracts/gulpfile');
@@ -120,8 +60,7 @@ exports.clean = series(server['server:clean'], contracts['contracts:clean'], net
 
 // Deploys contracts and get portal ready for api and web-app
 exports.deploy = series(identity['identity:inject'], network['network:start'], contracts['contracts:configure'], contracts['contracts:deploy']);
-exports.deploy_ropsten = series(load_net_config, exports.deploy, portalize_freeze, nexus_upload_archives);
-exports.upload_tars = series(nexus_upload_archives);
+exports.deploy_ropsten = series(load_net_config, exports.deploy, portalize_freeze);
 
 // Generate fake events and tickets
 exports.simulation = series(contracts['contracts:simulation']);

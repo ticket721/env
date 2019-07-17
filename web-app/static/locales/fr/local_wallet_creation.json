@@ -1,0 +1,24 @@
+{
+    "title": "Créez votre Wallet T721",
+    "desc": "Vous avez choisi d'utiliser le Wallet T721. Un Wallet est requis si vous voulez utiliser nos services. Il s'agit d'une clé qui va gérer votre identité sur notre plateforme. Ne vous en faites pas, nous nous occupons de tout. Cependant, vous devez comprendre que pour des raisons de sécurité, nous n'accédons jamais à vos clés, ce qui signifie que vous devez vous souvenir de votre mot de passe car nous ne pourrons jamais le retrouver pour vous.",
+
+    "input_error_not_same": "Les mots de passes ne sont pas identiques",
+    "input_error_min": "Mot de passe trop court (minimum 8)",
+    "input_error_max": "Mot de passe trop long (maximum 100)",
+    "input_error_lowercase": "Le mot de passe doit contenir un caractère en minuscule",
+    "input_error_uppercase": "Le mot de passe doit contenir un caractère en majuscule",
+    "input_error_digits": "Le mot de passe doit contenir un chiffre",
+    "input_error_symbols": "Le mot de passe doit contenir un caractère spécial",
+    "input_error_spaces": "Le mot de passe ne peut pas contenir d'espaces",
+
+    "password_please_input": "Veuillez entrer votre mot de passe",
+    "password_placeholder": "Mot de passe",
+
+    "password_verify_please_input": "Veuillez vérifier votre mot de passe",
+    "password_verify_placeholder": "Vérifiez votre mot de passe",
+    "lock_it": "Verrouiller",
+
+    "secure_wallet": "Sécurisez votre Wallet avec un mot de passe puissant",
+    "click_to_gen": "Ceci est votre nouveau wallet, cliquez pour un nouveau motif"
+
+}

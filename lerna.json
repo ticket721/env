@@ -1,0 +1,13 @@
+{
+  "packages": [
+      "companion-app",
+      "contracts",
+      "identity",
+      "network",
+      "scanner-app",
+      "server",
+      "server/modules_sources",
+      "web-app"
+  ],
+  "version": "0.1.0"
+}

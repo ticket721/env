@@ -1,0 +1,21 @@
+{
+    "timeout": 10000,
+    "load": {
+        "before": [
+            "knex"
+        ],
+        "order": [
+        ],
+        "after": [
+            "bookshelf",
+            "ethereum_utils",
+            "knex_utils"
+        ]
+    },
+    "ethereum_utils": {
+        "enabled": true
+    },
+    "knex_utils": {
+        "enabled": true
+    }
+}

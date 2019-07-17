@@ -1,0 +1,54 @@
+{
+    "sell_strategy_title": "Sell Strategy",
+    "marketplace_strategy_title": "Marketplace Strategy",
+    "transfer_strategy_title": "Transfer Strategy",
+    "informations_title": "Informations",
+
+    "namedesc_title": "Name & Description",
+    "name_title": "Name",
+    "description_title": "Description",
+    "name_description": "This is the name you give to your event",
+    "name_placeholder": "Input desired name",
+    "name_length_limit": "Limit of 50 characters reached",
+    "description_description": "Describe the event. Will be shown in the event page",
+    "description_placeholder": "Input your event's description",
+    "description_length_limit": "Limit of 1000 characters reached",
+
+    "location_dates_title": "Location & Dates",
+    "location_title": "Location",
+    "location_description": "This is the physical address where your event will take place",
+    "dates_title": "Dates",
+    "dates_description": "The time range when your event is happening. Try behing consistent with your sale end.",
+
+    "images_title": "Images & Banners",
+    "banners_title": "Banners",
+    "banners_description": "Banners are going to be shown in a carousel on the event page. You can add up to 10 banner images for one event. use 1200x400 images for best result",
+    "image_title": "Image",
+    "image_description": "This image is your event's image, that will be used to identify the event and the tickets. Use a square image",
+
+    "button_next": "Next",
+    "button_done": "Done",
+    "button_previous": "Previous",
+
+    "summary_title": "Summary",
+
+    "explications_title": "What is happening next ?",
+    "explications_description": "A transaction will be sent on the Ethereum blockchain. This transaction will contain what is called a smart contract, and will handle the tickets of your event. After the contract is deployed you will see it in the left tab, but users will not be able to buy tickets. You will need to manually start your event from the event interface.",
+    "explications_agree": "I understand what I have to do",
+
+    "transaction_title": "Transaction - Deploying on Ξthereum",
+    "start_deploy": "Click to deploy your event on Ξthereum",
+    "started_deploying": "Deploying on Ξthereum ...",
+    "transaction_sent_waiting_confirmations": "Transaction sent, waiting for confirmations ...",
+    "transaction_confirmed_waiting_upload": "Transaction confirmed, uploading informations ...",
+    "upload_done_waiting_response": "Upload done, waiting for response ...",
+    "upload_error": "An error occured while deploying",
+    "process_done": "Done",
+    "transaction_failed": "Transaction failed",
+    "waiting_transaction": "Waiting for transaction to be sent ...",
+    "deploy_success": "You succesfully deployed your event",
+    "see_event": "See your event",
+    "waiting_for_fetch": "Waiting for event to be fetched ...",
+    "button_deploy": "Deploy"
+
+}
