@@ -53,28 +53,14 @@ Variables that should be available during the travis build
 
 ## Setup process
 
-#### Fetch submodules
-
-Use the following command to fetch the submodules
-```shell
-npm run t721:fetch
-```
-
 #### Install dependencies
 
 ```shell
 npm install
-npm run t721:init
 ```
 
-#### Initialize Portalize
-
-You need gulp installed globally
-`npm install -g gulp`
-
-```shell
-gulp init
-```
+This command will install all the required dependencies on all the modules.
+It will also initialize the Portalize module.
 
 ## Start development environment
 
