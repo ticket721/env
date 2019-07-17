@@ -8,8 +8,7 @@
         "postinstall": "npm run init",
         "init": "lerna bootstrap && gulp init",
         "clean_portals": "gulp clean && gulp dismantle",
-        "clean": "npm run clean_portals && lerna clean --yes",
-        "version": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 && git add CHANGELOG.md"
+        "clean": "npm run clean_portals && lerna clean --yes"
     },
     "repository": {
         "type": "git",

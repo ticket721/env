@@ -3,27 +3,25 @@
 
 if [[ "$TRAVIS_BRANCH" = "ropsten" ]]; then
 
-    git submodule status
+    HASH=$(git rev-parse HEAD | cut -c1-7)
+    WEBAPP_VERSION=$(node ./deploy_scripts/version_extractor.js web-app)
+    SERVER_VERSION=$(node ./deploy_scripts/version_extractor.js server)
 
-    WEBAPP_COMMIT_HASH=$(node ./deploy_scripts/commit_hash_extractor.js "$(git submodule status | grep 'web-app')")
-    SERVER_COMMIT_HASH=$(node ./deploy_scripts/commit_hash_extractor.js "$(git submodule status | grep 'server')")
-    VERSION=$(node ./deploy_scripts/version_extractor.js)
-
-    ./deploy_scripts/tag_exist_check.sh ticket721/server "${VERSION}-ropsten.${SERVER_COMMIT_HASH}"
+    ./deploy_scripts/tag_exist_check.sh ticket721/server "${SERVER_VERSION}-ropsten.${HASH}"
 
     if [[ "$?" = "1" ]]; then
         echo "Cannot find image for server"
         exit 1
     fi
 
-    ./deploy_scripts/tag_exist_check.sh ticket721/server-modules "${VERSION}-ropsten.${SERVER_COMMIT_HASH}"
+    ./deploy_scripts/tag_exist_check.sh ticket721/server-modules "${SERVER_VERSION}-ropsten.${HASH}"
 
     if [[ "$?" = "1" ]]; then
         echo "Cannot find image for server-modules"
         exit 1
     fi
 
-    ./deploy_scripts/tag_exist_check.sh ticket721/webapp "${VERSION}-ropsten.${WEBAPP_COMMIT_HASH}"
+    ./deploy_scripts/tag_exist_check.sh ticket721/webapp "${WEBAPP_VERSION}-ropsten.${HASH}"
 
     if [[ "$?" = "1" ]]; then
         echo "Cannot find image for web-app"
