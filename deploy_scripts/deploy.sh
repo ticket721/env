@@ -34,9 +34,9 @@ if [[ "$TRAVIS_BRANCH" = "ropsten" ]]; then
     helm upgrade ${HELM_RELEASE_NAME} . \
         --set ropsten.enabled=true \
         --set env.gcp=true \
-        --set serverModules.container.version="${VERSION}-ropsten.${SERVER_COMMIT_HASH}" \
-        --set server.container.version="${VERSION}-ropsten.${SERVER_COMMIT_HASH}" \
-        --set webapp.container.version="${VERSION}-ropsten.${WEBAPP_COMMIT_HASH}" \
+        --set serverModules.container.version="${SERVER_VERSION}-ropsten.${HASH}" \
+        --set server.container.version="${SERVER_VERSION}-ropsten.${HASH}" \
+        --set webapp.container.version="${WEBAPP_VERSION}-ropsten.${HASH}" \
         --set webapp.config.strapi_endpoint="${STRAPI_PUBLIC_ENDPOINT}" \
         --set webapp.config.google_api_token="${GOOGLE_API_TOKEN}" \
         --set webapp.config.tx_explorer="${ROPSTEN_TX_EXPLORER}" \
