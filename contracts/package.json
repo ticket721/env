@@ -5,8 +5,8 @@
     "description": "contracts - Ethereum Smart Contracts for ticket721",
     "main": "index.js",
     "scripts": {
-        "test:editorconfig": "editorconfig-cli",
-        "editorconfig-cli": "editorconfig-cli",
+        "test:editorconfig": "editorconfig-cli -x zos.*.json",
+        "editorconfig-cli": "editorconfig-cli -x zos.*.json",
         "test:configure": "env T721_NETWORK=test gulp contracts:configure",
         "test:compile": "env T721_NETWORK=test gulp contracts:compile",
         "test:mocha": "truffle test",

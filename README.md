@@ -14,10 +14,6 @@ Variables that should be available during the travis build
 
 | Variable | Description |
 | :---:    | :---:       |
-| `NEXUS_USERNAME` | Username to use to recover the portal |
-| `NEXUS_PASSWORD` | Password for given username |
-| `NEXUS_ENDPOINT` | Url of the nexus repo (no trailing `/`) |
-| `NEXUS_REPOSITORY` | Name of the repository |
 | `DOCKER_WEBAPP_REPOSITORY` | Repository to push built images |
 | `DOCKER_SERVER_MODULES_REPOSITORY` | Repository to push built server-modules images |
 | `DOCKER_SERVER_REPOSITORY` | Repository to push built server images |
@@ -239,12 +235,6 @@ Start by writing a configuration file:
         "project_id": "INFURA_PROJECT_ID",
         "project_secret": "INFURA_PROJECT_SECRET",
         "node_endpoint": "https://ropsten.infura.io/v3"
-    },
-    "nexus": {
-        "user": "NEXUS_USER",
-        "password": "NEXUS_PASS",
-        "endpoint": "https://nexus.ticket721.com",
-        "repository": "ropsten.raw"
     },
     "server": {
         "url": "https://api.ropsten.ticket721.com"
