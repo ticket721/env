@@ -117,7 +117,7 @@
         "next-videos": "^1.1.0",
         "password-validator": "^4.1.1",
         "portalize": "^1.0.4",
-        "pouchdb-adapter-idb": "^7.0.0",
+        "pouchdb-adapter-idb": "^7.1.1",
         "react": "^16.8.2",
         "react-css-blur": "^1.1.1",
         "react-date-range": "^1.0.0-beta",
