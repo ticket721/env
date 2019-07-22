@@ -83,7 +83,7 @@
         "@zeit/next-typescript": "^1.1.1",
         "antd": "^3.18.1",
         "babel-plugin-import": "^1.11.0",
-        "bignumber.js": "^8.1.1",
+        "bignumber.js": "^9.0.0",
         "deep-extend": ">=0.5.1",
         "device-detect": "^1.0.7",
         "dotenv": "^8.0.0",
