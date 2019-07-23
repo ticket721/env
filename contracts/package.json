@@ -25,7 +25,7 @@
     "homepage": "https://github.com/ticket721/contracts#readme",
     "dependencies": {
         "@htmlacademy/editorconfig-cli": "^1.0.0",
-        "bignumber.js": "^8.0.2",
+        "bignumber.js": "^9.0.0",
         "bip39": "^3.0.2",
         "chai": "^4.2.0",
         "chai-as-promised": "^7.1.1",
