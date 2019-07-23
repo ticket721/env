@@ -44,6 +44,19 @@
       8. [Design constraints](#3_2_8_design_constraints)
    3. [External interfaces](#3_3_external_interfaces)
 4. [Analysis models](#4_analysis_model)
+   1. [Critical Scenarios](#4_1_critical_scenarios)
+      1. [Create a T721 Account](#4_1_1_create_t721_account)
+      2. [Unlock T721 Wallet](#4_1_2_unlock_t721_wallet)
+      3. [Sign Transaction with T721 Wallet](#4_1_3_sign_transaction_with_t721_wallet)
+      4. [Sign Data with T721 Wallet](#4_1_4_sign_data_with_t721_wallet)
+      5. [Buy Ticket From Event](#4_1_5_buy_ticket_from_event)
+      6. [Buy Ticket Sale](#4_1_6_buy_ticket_sale)
+      7. [Open Ticket Sale](#4_1_7_open_ticket_sale)
+      8. [Close Ticket Sale](#4_1_8_open_ticket_sale)
+      9. [Deploy Event](#4_1_9_deploy_event)
+      10. [Start Event](#4_1_10_start_event)
+      11. [Withdraw Event Funds](#4_1_11_withdraw_event_funds)
+   2. [Domain Model](#4_2_domain_model)
 
 # 1. Introduction
 <a name="1_introduction"></a>
@@ -71,6 +84,8 @@ This document is accessible by all the T721 team. Only technical and product tea
 | `T721 User` | User owning a Wallet and using User functions of the platform |
 | `T721 Organizer` | User owning a Wallet and using Organizer functions of the platform (there are technically no differences between `T721 User` and `T721 Organizer`, we separate them by their Use Cases` |
 | `Dapp` | Decentralized Application (in our case, using the Ethereum Virtual Machine) |
+| `SSD` | System Sequence Diagram |
+| `SOC` | System Operation Contract |
 
 # 2. Overall description
 <a name="2_overall_description"></a>
@@ -165,6 +180,9 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | `Unauthenticated User` | Create T721 Account |
 | `Unauthenticated User` | Log In & Use T721 Wallet |
 | `Unauthenticated User` | Allow T721 WebApplication & Use Custom Wallet |
+| `T721 User` / `T721 Organizer` | Unlock T721 Wallet |
+| `T721 User` / `T721 Organizer` | Sign Data with T721 Wallet |
+| `T721 User` / `T721 Organizer` | Sign Transaction with T721 Wallet |
 | `T721 User` / `T721 Organizer` | Log Out |
 | `T721 User` | Search Events |
 | `T721 User` | Get Event Details |
@@ -211,7 +229,7 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | :---: | :---: |
 | Name | Log In and use T721 Wallet |
 | Code | `T721AUC2` |
-| Importance | Critical |
+| Importance | Non-Critical |
 | Primary Actor | Unauthenticated User |
 | Preconditions | Unauthenticated User provides valid credentials |
 | Postconditions | A Token and its encrypted Wallet is sent to the Unauthenticated User |
@@ -220,16 +238,43 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | :---: | :---: |
 | Name | Allow T721 WebApp and Use Custom Wallet |
 | Code | `T721AUC3` |
-| Importance | Critical |
+| Importance | Non-Critical |
 | Primary Actor | Unauthenticated User |
 | Preconditions | Unauthenticated User uses a custom Wallet |
 | Postconditions | When authorization is given, app uses provided Wallet to connect to Ethereum |
 
 | []() | |
 | :---: | :---: |
-| Name | Log Out |
+| Name | Unlock T721 Wallet |
 | Code | `T721AUC3` |
 | Importance | Critical |
+| Primary Actor | T721 User, T721 Organizer |
+| Preconditions | T721 User / Organizer is logged in a T721 Account, T721 User / Organizer provides the correct password |
+| Postconditions | T721 Wallet is unlocked |
+
+| []() | |
+| :---: | :---: |
+| Name | Sign Transaction with T721 Wallet |
+| Code | `T721AUC4` |
+| Importance | Critical |
+| Primary Actor | T721 User, T721 Organizer |
+| Preconditions | T721 User / Organizer is logged in a T721 Account, T721 Wallet is unlocked, transaction arguments are provided |
+| Postconditions | A signed transaction is provided |
+
+| []() | |
+| :---: | :---: |
+| Name | Sign Data with T721 Wallet |
+| Code | `T721AUC5` |
+| Importance | Critical |
+| Primary Actor | T721 User, T721 Organizer |
+| Preconditions | T721 User / Organizer is logged in a T721 Account, T721 Wallet is unlocked, valid signable data is provided |
+| Postconditions | A signature is provided |
+
+| []() | |
+| :---: | :---: |
+| Name | Log Out |
+| Code | `T721AUC6` |
+| Importance | Non-Critical |
 | Primary Actor | T721 User, T721 Organizer |
 | Preconditions | T721 User / Organizer is logged in a T721 Account |
 | Postconditions | Previously provided token is unvalidated |
@@ -240,7 +285,7 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | :---: | :---: |
 | Name | Search Events |
 | Code | `T721EUC1` |
-| Importance | Critical |
+| Importance | Non-Critical |
 | Primary Actor | T721 User |
 | Preconditions | T721 User has provided a valid Wallet to the app, valid query parameters are provided |
 | Postconditions | A List of Events is sent back to the T721 User, depending on the provided query parameters |
@@ -249,7 +294,7 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | :---: | :---: |
 | Name | Get Event Details |
 | Code | `T721EUC2` |
-| Importance | Critical |
+| Importance | Non-Critical |
 | Primary Actor | T721 User |
 | Preconditions | T721 User has provided a valid Wallet to the app, Event exists |
 | Postconditions | All informations about the Event are sent to the T721 User |
@@ -258,7 +303,7 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | :---: | :---: |
 | Name | List Ticket Details of Event |
 | Code | `T721EUC3` |
-| Importance | Critical |
+| Importance | Non-Critical |
 | Primary Actor | T721 User |
 | Preconditions | T721 User has provided a valid Wallet to the app, Event exists |
 | Postconditions | All Ticket types information are sent to the T721 User |
@@ -278,7 +323,7 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | :---: | :---: |
 | Name | Search Owned Tickets |
 | Code | `T721TUC2` |
-| Importance | Critical |
+| Importance | Non-Critical |
 | Primary Actor | T721 User |
 | Preconditions | T721 User has provided a valid Wallet to the app, valid query parameters are provided |
 | Postconditions | A list of owned Tickets is sent to the T721 User, depending on the provided query parameters |
@@ -287,7 +332,7 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | :---: | :---: |
 | Name | Get Ticket Details |
 | Code | `T721TUC3` |
-| Importance | Critical |
+| Importance | Non-Critical |
 | Primary Actor | T721 User |
 | Preconditions | T721 User has provided a valid Wallet to the app, valid Ticket is provided |
 | Postconditions | All information about the Ticket are sent to the T721 User |
@@ -298,7 +343,7 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | :---: | :---: |
 | Name | Search Ticket Sale |
 | Code | `T721MUC1` |
-| Importance | Critical |
+| Importance | Non-Critical |
 | Primary Actor | T721 User |
 | Preconditions | T721 User has provided a valid Wallet to the app, valid query parameters are provided |
 | Postconditions | A list of Ticket Sales is sent to the T721 User, depending on the provided query parameters |
@@ -336,7 +381,7 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | :---: | :---: |
 | Name | Set Event Information |
 | Code | `T721ECUC1` |
-| Importance | Critical |
+| Importance | Non-Critical |
 | Primary Actor | T721 Organizer |
 | Preconditions | T721 Organizer has provided a valid Wallet to the app, valid information is provided by the T721 Organizer |
 | Postconditions | Given information is stored in the Event Creation Process |
@@ -345,7 +390,7 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | :---: | :---: |
 | Name | Set Event Minter |
 | Code | `T721ECUC2` |
-| Importance | Critical |
+| Importance | Non-Critical |
 | Primary Actor | T721 Organizer |
 | Preconditions | T721 Organizer has provided a valid Wallet to the app, valid Minter is selected, valid Minter parameters are provided |
 | Postconditions | Given Minter and parameters are stored in the Event Creation Process |
@@ -354,7 +399,7 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | :---: | :---: |
 | Name | Set Event Marketer |
 | Code | `T721ECUC3` |
-| Importance | Critical |
+| Importance | Non-Critical |
 | Primary Actor | T721 Organizer |
 | Preconditions | T721 Organizer has provided a valid Wallet to the app, valid Marketer is selected, valid Marketer parameters are provided |
 | Postconditions | Given Marketer and parameters are stored in the Event Creation Process |
@@ -363,7 +408,7 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | :---: | :---: |
 | Name | Set Event Approver |
 | Code | `T721ECUC4` |
-| Importance | Critical |
+| Importance | Non-Critical |
 | Primary Actor | T721 Organizer |
 | Preconditions | T721 Organizer has provided a valid Wallet to the app, valid Approver is selected, valid Approver parameters are provided |
 | Postconditions | Given Approver and parameters are stored in the Event Creation Process |
@@ -392,7 +437,7 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | :---: | :---: |
 | Name | Edit Event Information |
 | Code | `T721EMUC1` |
-| Importance | Critical |
+| Importance | Non-Critical |
 | Primary Actor | T721 Organizer |
 | Preconditions | T721 Organizer has provided a valid Wallet to the app, valid information is provided, T721 Organizer is owner of Event, valid Wallet signature is provided |
 | Postconditions | Event information is modified |
@@ -401,7 +446,7 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | :---: | :---: |
 | Name | Get Event Funds |
 | Code | `T721EMUC2` |
-| Importance | Critical |
+| Importance | Non-Critical |
 | Primary Actor | T721 Organizer |
 | Preconditions | T721 Organizer has provided a valid Wallet to the app, valid information is provided |
 | Postconditions | Current Event balance value is sent to the T721 Organizer |
@@ -421,7 +466,7 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | :---: | :---: |
 | Name | Edit Username |
 | Code | `T721SUC1` |
-| Importance | Critical |
+| Importance | Non-Critical |
 | Primary Actor | T721 User, T721 Organizer |
 | Preconditions | T721 User / Organizer has provided a valid Wallet to the app, T721 User / Organizer has provided a valid signature of the new username |
 | Postconditions | The username is modified |
@@ -484,9 +529,309 @@ The main goal of the T721 Platform is to think UX before anything else and provi
 # 4. Analysis Model
 <a name="4_analysis_model"></a>
 
+## 4.1. Critical Scenarios
+<a name="4_1_critical_scenarios"></a>
+
+Critical Scenarios are sets of actions between the various types of Users and the System. They are defined in details with the help of the SSD and the SOC.
+
+### 4.1.1 Create a T721 Account
+<a name="4_1_1_create_t721_account"></a>
+
+In the case where our User is not using a custom Wallet like Tokenary, Coinbase Wallet, Status ..., he will need to setup its T721 Account to create and manage transactions. After creating the account on the server, the User will be able to generate a Wallet on the WebApp, encrypt it and send it encrypted to the server. Upon any login, this encrypted Wallet will be fetched for the User.
+When the User has the `token` and the `encrypted_wallet` entities, he is considered as a `T721 User` or `T721 Organizer`.
+
+#### System Sequence Diagram
+
 <div style="text-align:center;">
-    <img src="resources/t721-4_1_domain_model.svg" style="width: 80%;max-width: 1000px;"/>
+    <img src="resources/t721-4_1_1_1_create_account_scenario.svg" style="width: 80%;max-width: 1000px;"/>
 </div>
+
+#### System Operation Contract
+
+| []() | |
+| :---: | :---: |
+| Name | register(username, email, password) |
+| Location | WebbApp, Server |
+| Code | `CO1` |
+| Preconditions | none |
+| Postconditions | User instance `user` is created |
+| | `user` email and username attributes are modified given `email`, `username` |
+| | `user` password attribute is modified with hash of given `password` |
+| | Token instance `token` is created |
+| | `token` is associated to `user` |
+| | `token` is returned |
+
+| []() | |
+| :---: | :---: |
+| Name | generateWallet() |
+| Location | WebbApp |
+| Code | `CO2` |
+| Preconditions | none |
+| Postconditions | Wallet instance `wallet` is created |
+| | `wallet` is returned |
+
+| []() | |
+| :---: | :---: |
+| Name | encryptWallet(wallet, password) |
+| Location | WebbApp |
+| Code | `CO3` |
+| Preconditions | Valid `wallet` is provided |
+| Postconditions  | Buffer instance `encrypted_wallet` is created |
+| | `encrypted_wallet` is set to the encryption result of `wallet` with `password` |
+| | `encrypted_wallet` is returned |
+
+| []() | |
+| :---: | :---: |
+| Name | setWallet(encrypted_wallet) |
+| Location | WebbApp, Server |
+| Code | `CO4` |
+| Preconditions | Valid `token` is provided | 
+| | Valid `encrypted_wallet` is provided |
+| Postconditions  | User instance `user` is recovered|
+| | `user` attribute `encrypted_wallet` is modified to given `encrypted_wallet` |
+
+### 4.1.2 Unlock T721 Wallet 
+<a name="4_1_2_unlock_t721_wallet"></a>
+
+Upon any login, the encrypted wallet that was previously created will be fetched from the server and stored in an encrypted manner. As soon as an action requiring the wallet to make signatures or encryptions is required, the encrypted wallet should be decrypted.
+
+#### System Sequence Diagram
+
+<div style="text-align:center;">
+    <img src="resources/t721-4_1_2_1_unlock_t721_wallet_scenario.svg" style="width: 80%;max-width: 1000px;"/>
+</div>
+
+#### System Operation Contract
+
+| []() | |
+| :---: | :---: |
+| Name | unlockWallet(encrypted_wallet, password) |
+| Location | WebbApp |
+| Code | `CO5` |
+| Preconditions | Valid `encrypted_wallet` is provided |
+| | Valid `password` is provided|
+| Postconditions | Wallet instance `wallet` is created |
+| | `wallet` is set to the decryption result of `encrypted_wallet` with `password` |
+| | `wallet` is returned |
+
+### 4.1.3 Sign Transaction with T721 Wallet 
+<a name="4_1_3_sign_transaction_with_t721_wallet"></a>
+
+When using the T721 Wallet, there is no outside Wallet like Metamask to provide the signatures. In order to keep a similar flow of action between T721 Users with a T721 Wallet and a Custom Wallet, the T721 Wallet will provide the exact same signed output as the Custom Wallets. When requesting a new transaction, the app should use the wallet to sign it and prove the T721 User consent.
+
+#### System Sequence Diagram
+
+<div style="text-align:center;">
+    <img src="resources/t721-4_1_3_1_sign_transaction_with_t721_wallet_scenario.svg" style="width: 80%;max-width: 1000px;"/>
+</div>
+
+#### System Operation Contract
+
+| []() | |
+| :---: | :---: |
+| Name | signTx(transaction_arguments, wallet) |
+| Location | WebbApp |
+| Code | `CO6` |
+| Preconditions | Valid `transaction_arguments` is provided. Valid `wallet` is provided|
+| Postconditions | Signature instance `tx_signature` is created |
+| | `tx_signature` is set to the signature of the `transaction_arguments` |
+
+### 4.1.4 Sign Data with T721 Wallet 
+<a name="4_1_4_sign_data_with_t721_wallet"></a>
+
+When requesting a new data signature, the app should use the wallet to sign it and prove the T721 User consent.
+
+#### System Sequence Diagram
+
+<div style="text-align:center;">
+    <img src="resources/t721-4_1_4_1_sign_data_with_t721_wallet_scenario.svg" style="width: 80%;max-width: 1000px;"/>
+</div>
+
+#### System Operation Contract
+
+| []() | |
+| :---: | :---: |
+| Name | sign(data, wallet) |
+| Location | WebbApp |
+| Code | `CO7` |
+| Preconditions | Valid `data` is provided. Valid `wallet` is provided|
+| Postconditions | Signature instance `data_signature` is created |
+| | `data_signature` is set to the signature of the `data` |
+
+### 4.1.5 Buy Ticket from Event 
+<a name="4_1_5_buy_ticket_from_event"></a>
+
+Buying a Ticket starts by signing a transaction, this signed payload is then broadcasted to the Ethereum Blockchain and enters the EVM context. Finally, the transaction hits the Event Smart Contract and triggers the creation of a ticket.
+
+#### System Sequence Diagram
+
+<div style="text-align:center;">
+    <img src="resources/t721-4_1_5_1_buy_ticket_from_event_scenario.svg" style="width: 80%;max-width: 1000px;"/>
+</div>
+
+#### System Operation Contract
+
+| []() | |
+| :---: | :---: |
+| Name | mint(...arguments) |
+| Location | Event Ethereum Smart Contract |
+| Code | `CO8` |
+| Preconditions | Valid `...arguments` are provided |
+| | Maximum number of tickets is not reached |
+| | Enough funds are provided |
+| Postconditions | Ticket instance `ticket` is created |
+| | `ticket` attribute `owner` is modified |
+
+### 4.1.6 Buy Ticket Sale
+<a name="4_1_6_buy_ticket_sale"></a>
+
+Buying a Ticket Sale starts by signing a transaction, this signed payload is then broadcasted to the Ethereum Blockchain and enters the EVM context. Finally, the transaction hits the Event Smart Contract and resolve the Ticket Sale.
+
+#### System Sequence Diagram
+
+<div style="text-align:center;">
+    <img src="resources/t721-4_1_6_1_buy_ticket_sale_scenario.svg" style="width: 80%;max-width: 1000px;"/>
+</div>
+
+#### System Operation Contract
+
+| []() | |
+| :---: | :---: |
+| Name | buy(ticket_id, ...arguments) |
+| Location | Event Ethereum Smart Contract |
+| Code | `CO9` |
+| Preconditions | Valid `...arguments` are provided |
+| | T721 User is not owner of `ticket_id` |
+| Postconditions | T721 Contract `sale_by_ticket` attribute is modified |
+| | Ticket instance with id `ticket_id` has `owner` attribute modified |
+
+### 4.1.7 Open Ticket Sale
+<a name="4_1_7_open_ticket_sale"></a>
+
+Opening a Ticket Sale starts by signing a transaction, this signed payload is then broadcasted to the Ethereum Blockchain and enters the EVM context. Finally, the transaction hits the Event Smart Contract and starts a new Ticket Sale.
+
+#### System Sequence Diagram
+
+<div style="text-align:center;">
+    <img src="resources/t721-4_1_7_1_open_ticket_sale_scenario.svg" style="width: 80%;max-width: 1000px;"/>
+</div>
+
+#### System Operation Contract
+
+| []() | |
+| :---: | :---: |
+| Name | sell(ticket_id, ...arguments) |
+| Location | Event Ethereum Smart Contract |
+| Code | `CO10` |
+| Preconditions | Valid `...arguments` are provided |
+| | `ticket_id` is not already in sale |
+| | User is owner of `ticket_id` |
+| Postconditions | T721 Contract `sale_by_ticket` attribute is modified |
+
+### 4.1.8 Close Ticket Sale
+<a name="4_1_8_close_ticket_sale"></a>
+
+Opening a Ticket Sale starts by signing a transaction, this signed payload is then broadcasted to the Ethereum Blockchain and enters the EVM context. Finally, the transaction hits the Event Smart Contract and starts a new Ticket Sale.
+
+#### System Sequence Diagram
+
+<div style="text-align:center;">
+    <img src="resources/t721-4_1_8_1_close_ticket_sale_scenario.svg" style="width: 80%;max-width: 1000px;"/>
+</div>
+
+#### System Operation Contract
+
+| []() | |
+| :---: | :---: |
+| Name | close(ticket_id, ...arguments) |
+| Location | Event Ethereum Smart Contract |
+| Code | `CO11` |
+| Preconditions | Valid `...arguments` are provided |
+| | `ticket_id` is in sale |
+| | User is owner of `ticket_id` |
+| Postconditions | T721 Contract `sale_by_ticket` attribute is modified |
+
+### 4.1.9 Deploy Event
+<a name="4_1_9_deploy_event"></a>
+
+When all the event modules are selected, the appropriate contract is forged and sent as a transaction to the Blockchain. This will create a new instance of an Event Contract.
+
+#### System Sequence Diagram
+
+<div style="text-align:center;">
+    <img src="resources/t721-4_1_9_1_deploy_event_scenario.svg" style="width: 80%;max-width: 1000px;"/>
+</div>
+
+#### System Operation Contract
+
+| []() | |
+| :---: | :---: |
+| Name | Event(...constructor_arguments) |
+| Location | Event Ethereum Smart Contract |
+| Code | `CO11` |
+| Preconditions | Valid `...constructor_arguments` are provided |
+| Postconditions | Event Contract `owner` attribute is modified |
+| | Event Contract `` attribute is modified |
+| | Event Contract `minter` is configured |
+| | Event Contract `marketer` is configured |
+| | Event Contract `approver` is configured |
+
+
+### 4.1.10 Start Event
+<a name="4_1_10_start_event"></a>
+
+Once the contract is ready, the initial sale is not yet started. By calling the start method, we can start the sale of the initla tickets.
+
+#### System Sequence Diagram
+
+<div style="text-align:center;">
+    <img src="resources/t721-4_1_10_1_start_event_scenario.svg" style="width: 80%;max-width: 1000px;"/>
+</div>
+
+#### System Operation Contract
+
+| []() | |
+| :---: | :---: |
+| Name | start() |
+| Location | Event Ethereum Smart Contract |
+| Code | `CO11` |
+| Preconditions | Caller is owner of Event |
+| | Event has not started yet |
+| Postconditions | Event Contract `start` attribute is modified |
+
+### 4.1.11 Withdraw Event Funds
+<a name="4_1_11_withdraw_event_funds"></a>
+
+At any point, the owner can request withdrawal of the funds inside the Event contract.
+
+#### System Sequence Diagram
+
+<div style="text-align:center;">
+    <img src="resources/t721-4_1_11_1_withdraw_event_funds_scenario.svg" style="width: 80%;max-width: 1000px;"/>
+</div>
+
+#### System Operation Contract
+
+| []() | |
+| :---: | :---: |
+| Name | withdraw(amount) |
+| Location | Event Ethereum Smart Contract |
+| Code | `CO11` |
+| Preconditions | Caller is owner of Event |
+| | `amount` is lower or equal to the stored funds |
+| Postconditions | Event Contract funds are reduced by `amount` |
+| | User funds are increased buy `amount` |
+
+
+
+## 4.2 Domain Model
+<a name="4_2_domain_model"></a>
+
+<div style="text-align:center;">
+    <img src="resources/t721-4_2_1_domain_model.svg" style="width: 80%;max-width: 1000px;"/>
+</div>
+
+
 
 
 
