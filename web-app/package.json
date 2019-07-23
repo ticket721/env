@@ -127,7 +127,6 @@
         "react-lottie": "^1.2.3",
         "react-pose": "^4.0.8",
         "react-redux": "^7.0.3",
-        "react-shadow": "^16.3.2",
         "react-textfit": "^1.1.0",
         "redux": "^4.0.0",
         "redux-saga": "^1.0.2",
