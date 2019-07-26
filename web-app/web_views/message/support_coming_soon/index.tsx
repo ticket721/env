@@ -19,16 +19,13 @@ class SupportComingSoonContainer extends React.Component<SupportComingSoonProps>
                 height: '100%',
                 display: 'flex',
                 alignItems: 'center',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                flexDirection: 'column'
             }}
         >
-            <div style={{textAlign: 'center'}}>
-                <img src={image} style={{width: '35%', marginBottom: '75px'}}/>
-                <br/>
-                <Typography.Text style={{fontSize: 25, marginLeft: 24, color: theme.primary}}>{this.props.t('support_coming_soon')}</Typography.Text>
-                <br/>
-                <img src={cone} style={{width: '75px', marginTop: '75px'}}/>
-            </div>
+            <img src={image} style={{width: '35%'}}/>
+            <Typography.Text style={{fontSize: 25, color: theme.primary, marginTop: 24}}>{this.props.t('support_coming_soon')}</Typography.Text>
+            <img src={cone} style={{width: '75px', marginTop: 24}}/>
 
         </div>;
     }
