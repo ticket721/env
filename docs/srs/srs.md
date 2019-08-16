@@ -1,4 +1,4 @@
-# Software Requirements Specification
+# Software Requirements Specification 📕
 
 <div style="text-align: center;">
     <br/>
@@ -32,7 +32,7 @@
 3. [Specific requirements](#3_specific_requirements)
    1. [Functional requirements](#3_1_functional_requirements)
       1. [Actor goal list](#3_1_1_actor_goal_list)
-      2. [Use case view](#3_1_2_use_case_view)
+      2. [Use case view ⭐️](#3_1_2_use_case_view)
    2. [Non-functional requirements](#3_2_non_functional_requirements)
       1. [Performance efficiency](#3_2_1_performance)
       2. [Compatibility](#3_2_2_compatibility)
@@ -43,9 +43,9 @@
       7. [Portability](#3_2_7_portability)
       8. [Design constraints](#3_2_8_design_constraints)
    3. [External interfaces](#3_3_external_interfaces)
-      1. [UX & UI Views](#3_3_1_ux_ui_views)
+      1. [UX & UI Views 🖥](#3_3_1_ux_ui_views)
 4. [Analysis models](#4_analysis_model)
-   1. [Critical Scenarios](#4_1_critical_scenarios)
+   1. [Critical Scenarios ❗️](#4_1_critical_scenarios)
       1. [Create a T721 Account](#4_1_1_create_t721_account)
       2. [Unlock T721 Wallet](#4_1_2_unlock_t721_wallet)
       3. [Sign Transaction with T721 Wallet](#4_1_3_sign_transaction_with_t721_wallet)
@@ -57,7 +57,7 @@
       9. [Deploy Event](#4_1_9_deploy_event)
       10. [Start Event](#4_1_10_start_event)
       11. [Withdraw Event Funds](#4_1_11_withdraw_event_funds)
-   2. [Domain Model](#4_2_domain_model)
+   2. [Domain Model 🧩](#4_2_domain_model)
 
 # 1. Introduction
 <a name="1_introduction"></a>
@@ -87,6 +87,8 @@ This document is accessible by all the T721 team. Only technical and product tea
 | `Dapp` | Decentralized Application (in our case, using the Ethereum Virtual Machine) |
 | `SSD` | System Sequence Diagram |
 | `SOC` | System Operation Contract |
+| `UI` | User Interface |
+| `UX` | User eXperience |
 
 # 2. Overall description
 <a name="2_overall_description"></a>
@@ -206,16 +208,14 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | `T721 Organizer` | Withdraw Event Funds |
 | `T721 User` / `T721 Organizer` | Edit Username |
 
-### 3.1.2. Use Case View
+### 3.1.2. Use Case View ⭐
 <a name="3_1_2_use_case_view"></a>
 
-<div style="text-align: center;">
-    <img src="resources/t721-3_1_2_1_use_case_view.svg" style="width:80%;max-width: 1000px;"/>
-</div>
-
-### List of Use Cases
-
 #### T721 Account (T721AUC)
+
+<div style="text-align: center;">
+    <img src="resources/t721-3_1_2_1_t721_account_use_case_view.svg" style="width:80%;max-width: 1000px;"/>
+</div>
 
 <a name="T721AUC1"></a>
 
@@ -261,6 +261,7 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | Preconditions | T721 User / Organizer is logged in a T721 Account, T721 User / Organizer provides the correct password |
 | Postconditions | T721 Wallet is unlocked |
 
+
 <a name="T721AUC5"></a>
 
 | []() | |
@@ -295,6 +296,10 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | Postconditions | Previously provided token is unvalidated |
 
 #### T721 Events (T721EUC)
+
+<div style="text-align: center;">
+    <img src="resources/t721-3_1_2_2_t721_events_use_case_view.svg" style="width:80%;max-width: 1000px;"/>
+</div>
 
 <a name="T721EUC1"></a>
 
@@ -331,6 +336,10 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 
 #### T721 Tickets (T721TUC)
 
+<div style="text-align: center;">
+    <img src="resources/t721-3_1_2_3_t721_tickets_use_case_view.svg" style="width:80%;max-width: 1000px;"/>
+</div>
+
 <a name="T721TUC1"></a>
 
 | []() | |
@@ -365,6 +374,10 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | Postconditions | All information about the Ticket are sent to the T721 User |
 
 #### T721 Marketplace (T721MUC)
+
+<div style="text-align: center;">
+    <img src="resources/t721-3_1_2_4_t721_marketplace_use_case_view.svg" style="width:80%;max-width: 1000px;"/>
+</div>
 
 <a name="T721MUC1"></a>
 
@@ -411,6 +424,10 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | Postconditions | A transaction to close a Ticket Sale is sent by the T721 User Wallet to the Ethereum Blockchain |
 
 #### T721 Event Creation (T721ECUC)
+
+<div style="text-align: center;">
+    <img src="resources/t721-3_1_2_5_t721_event_creation_use_case_view.svg" style="width:80%;max-width: 1000px;"/>
+</div>
 
 <a name="T721ECUC1"></a>
 
@@ -480,6 +497,10 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 
 #### T721 Event Management (T721EMUC)
 
+<div style="text-align: center;">
+    <img src="resources/t721-3_1_2_6_t721_event_management_use_case_view.svg" style="width:80%;max-width: 1000px;"/>
+</div>
+
 <a name="T721EMUC1"></a>
 
 | []() | |
@@ -515,6 +536,10 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 
 #### T721 Settings (T721SUC)
 
+<div style="text-align: center;">
+    <img src="resources/t721-3_1_2_7_t721_settings_use_case_view.svg" style="width:80%;max-width: 1000px;"/>
+</div>
+
 <a name="T721SUC1"></a>
 
 | []() | |
@@ -525,7 +550,6 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | Primary Actor | T721 User, T721 Organizer |
 | Preconditions | T721 User / Organizer has provided a valid Wallet to the app, T721 User / Organizer has provided a valid signature of the new username |
 | Postconditions | The username is modified |
-
 
 ## 3.2. Non-Functional Requirements
 <a name="3_2_non_functional_requirements"></a>
@@ -580,7 +604,7 @@ The main goal of the T721 Platform is to think UX before anything else and provi
 - **T721 Server** exposes an `api` used by the **T721 WebApp**, **T721 Companion** and **T721 Scanner**.
 - **T721 Contracts** exposes read-only methods and helpers.
 
-### 3.3.1. UX & UI Views
+### 3.3.1. UX & UI Views 🖥
 <a name="3_3_1_ux_ui_views"></a>
 
 `UI Views` capture the intended design of every part of the platform, while the `UX Views` capture the intended layout and usability of them.
@@ -773,7 +797,6 @@ This overview shows how views are organized on the `desktop_web_app` and `mobile
 | `4` : on click | Trigger [System Operation Contract 2 in Create T721 Account (`CO2`)](#CO2) |
 | `8` : on click | Trigger [System Operation Contract 4 in Create T721 Account (`CO4`)](#CO4) |
 
-
 <a name="desktop_web_app./events"></a>
 ### Depth 2 | `UI1` > `/events`
 
@@ -823,10 +846,10 @@ This overview shows how views are organized on the `desktop_web_app` and `mobile
 <a name="desktop_web_app.UI6"></a>
 ### Depth 5 | `UI5` > Event Creation > Event Information Form (`UI6`)
 
-<div>
-    <img src="resources/ui/ui6_event_information_form.desktop.png"/>
-    <img src="resources/ui/ux6_event_information_form.desktop.svg"/>
-</div>
+<img src="resources/ui/ui6_event_information_form.desktop.png" width="80%"/>
+
+<img src="resources/ui/ux6_event_information_form.desktop.svg" width="80%"/>
+
 
 | []() | |
 | :---: | :---: |
@@ -950,10 +973,9 @@ This overview shows how views are organized on the `desktop_web_app` and `mobile
 <a name="desktop_web_app.UI12"></a>
 ### Depth 4 | `UI5` > QueuedEvent (`UI12`)
 
-<div>
-    <img src="resources/ui/ui12_queuedevent.desktop.png"/>
-    <img src="resources/ui/ux12_queuedevent.desktop.svg"/>
-</div>
+<img src="resources/ui/ui12_queuedevent.desktop.png"/>
+
+<img src="resources/ui/ux12_queuedevent.desktop.svg"/>
 
 | []() | |
 | :---: | :---: |
@@ -1217,7 +1239,6 @@ This overview shows how views are organized on the `desktop_web_app` and `mobile
 | `14` : on click | Navigate to [Marketplace (`UI17`)](#desktop_web_app.UI17) |
 | `15` : on click | Navigate to [Ticket Details (`UI21`)](#desktop_web_app.UI21) |
 | `16` : on click | Opens [Marketplace Ticket Sale Purchase (`MUI3`)](#desktop_web_app.MUI3), [Marketplace Ticket Sale Creation (`MUI4`)](#desktop_web_app.MUI4), or [Marketplace Ticket Sale Closing (`MUI5`)](#desktop_web_app.MUI5) |
-
 
 <a name="desktop_web_app.modals"></a>
 ### `modals`
@@ -1557,6 +1578,7 @@ This overview shows how views are organized on the `desktop_web_app` and `mobile
     <img src="resources/ui/ux1_main_navigation.mobile.svg" width="45%" align="right"/>
 </div>
 
+
 | []() | |
 | :---: | :---: |
 | Name | Mobile Support Warning |
@@ -1567,7 +1589,7 @@ This overview shows how views are organized on the `desktop_web_app` and `mobile
 # 4. Analysis Model
 <a name="4_analysis_model"></a>
 
-## 4.1. Critical Scenarios
+## 4.1. Critical Scenarios ❗
 <a name="4_1_critical_scenarios"></a>
 
 Critical Scenarios are sets of actions between the various types of Users and the System. They are defined in details with the help of the SSD and the SOC.
@@ -1838,7 +1860,6 @@ When all the event modules are selected, the appropriate contract is forged and 
 | | Event Contract `marketer` is configured |
 | | Event Contract `approver` is configured |
 
-
 ### 4.1.10 Start Event
 <a name="4_1_10_start_event"></a>
 
@@ -1888,9 +1909,7 @@ At any point, the owner can request withdrawal of the funds inside the Event con
 | Postconditions | Event Contract funds are reduced by `amount` |
 | | User funds are increased buy `amount` |
 
-
-
-## 4.2 Domain Model
+## 4.2 Domain Model 🧩
 <a name="4_2_domain_model"></a>
 
 <div style="text-align:center;">

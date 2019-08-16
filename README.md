@@ -102,7 +102,7 @@ If you need to create content on your test network, use the following command
 The actions that are executed are random transfers, buy, sales, and sale_closes
 
 ```shell
-gulp simulate --accounts number_of_accounts_to_user --events number_of_events_to_create --tickets number_of_tickets_per_event_to_create --actions number_of_actions_to_executed
+gulp simulation --accounts number_of_accounts_to_user --events number_of_events_to_create --tickets number_of_tickets_per_event_to_create --actions number_of_actions_to_executed
 ```
 
 #### Setting up the server

@@ -38,17 +38,6 @@ Defines exactly what is required from the platform for it to be valid. Each Use 
 
 | []() | |
 | :---: | :---: |
-| Name | Create T721 Account |
-| Code | `T721AUC1` |
-| Importance | Critical |
-| Primary Actor | Unauthenticated User |
-| Preconditions | User provides valid credentials |
-| Postconditions | New T721 account is created with given credentials, a new Wallet is generated |
-
-##### Example of Critical Use Case Definition
-
-| []() | |
-| :---: | :---: |
 | Name | Log In and use T721 Wallet |
 | Code | `T721AUC2` |
 | Importance | Non-Critical |
@@ -56,7 +45,18 @@ Defines exactly what is required from the platform for it to be valid. Each Use 
 | Preconditions | Unauthenticated User provides valid credentials |
 | Postconditions | A Token and its encrypted Wallet is sent to the Unauthenticated User |
 
-#### UI View 🖥
+##### Example of Critical Use Case Definition
+
+| []() | |
+| :---: | :---: |
+| Name | Create T721 Account |
+| Code | `T721AUC1` |
+| Importance | Critical |
+| Primary Actor | Unauthenticated User |
+| Preconditions | User provides valid credentials |
+| Postconditions | New T721 account is created with given credentials, a new Wallet is generated |
+
+#### UI & UX Views 🖥
 
 In our modern product process approach, we focus a lot more on external interfaces and user interactions. This is why we included what we are calling `UI Views`. In a hierarchical manner, each section of the website has its design captured. Two reasons for this :
 
@@ -64,15 +64,13 @@ In our modern product process approach, we focus a lot more on external interfac
 
 - When modification are required, it is now trivial to show previous and future version, and creates less ambiguous results.
 
+We also include an `UX View` for every `UI View`, that describes the nature of the elements present in the design, and captures key events and when they are triggered. This is very useful to keep consistent interfaces between mobile and desktop applications. Always associated with a Component Table that defines all the types of components that can be found on the `UX Views`.
+
 ##### Example of UI View
 
 <div style="text-align:center;">
     <img src="resources/psp-ui-view-example.png" style="width: 80%;max-width: 1000px;"/>
 </div>
-
-#### UX View 👨‍💻
-
-We also include an `UX View` for every `UI View`, that describes the nature of the elements present in the design, and captures key events and when they are triggered. This is very useful to keep consistent interfaces between mobile and desktop applications. Always associated with a Component Table that defines all the types of components that can be found on the `UX Views`.
 
 ##### Example of Component Table
 
@@ -138,59 +136,123 @@ Defines all the Actors en entities of our services. This is the reprensation of 
 </div>
 
 
-#### Software Architecture Document 📗
+### Software Architecture Document 📗
 
 This document goes deep into technical details. It is directly linked to the SRS and inherits some properties and sections defined there. It is composed of 7 Views, that define all the properties of the platform, and all of them should be edited according to current implementation. Adding a new field in a database table ? Edit the Data View. Changing the deployment configuration ? Edit the Dynamic View.
 
-#### Implementation Artifacts 📘
+#### Logical View 💡
+
+The Logical view presents all the tiers and layers of our system, and all the logical entities that are composing them. It provides a great overview of all the actors and interactions of the system, at a more technical level. It also describes all the use case realizations in details.
+
+##### Example of Layer and Tiers Diagram
+
+<div style="text-align:center;">
+    <img src="resources/psp-layer-and-tier-example.svg" style="width: 80%;max-width: 1000px;"/>
+</div>
+
+##### Example of Use Case Realization Diagram
+
+<div style="text-align:center;">
+    <img src="resources/psp-use-case-realization-example.svg" style="width: 80%;max-width: 1000px;"/>
+</div>
+
+#### Process View 🔀
+
+The Process view presents all the state shifting happening on the critical scenarios. It is composed of activity diagrams.
+
+##### Example of Activity Diagram
+
+<div style="text-align:center;">
+    <img src="resources/psp-activity-diagram-example.svg" style="width: 80%;max-width: 1000px;"/>
+</div>
+
+#### Implementation View 🛠
+
+The Implementation view describes in details critical implementation sections.
+
+##### Example of Implementation Diagram
+
+<div style="text-align:center;">
+    <img src="resources/psp-implementation-diagram-example.svg" style="width: 80%;max-width: 1000px;"/>
+</div>
+
+#### Data View 🗄
+
+The Data view captures the organization and tables of the existing means of storage.
+
+##### Example of Data Diagram
+
+<div style="text-align:center;">
+    <img src="resources/psp-data-diagram-example.svg" style="width: 80%;max-width: 1000px;"/>
+</div>
+
+#### Deployment View 🚀 
+
+The Deployment view captures the runtime infrastructure organization.
+
+##### Example of Deployment Diagram
+
+<div style="text-align:center;">
+    <img src="resources/psp-deployment-diagram-example.svg" style="width: 80%;max-width: 1000px;"/>
+</div>
+
+### Implementation Artifacts 📘
+
+The Implementation Artifacts are the last type of documents. They are composed of all the code, the tests and the configs and there is only one rule: the code should reflect what is described in both the SRS and the SAD, nothing more, nothing less. As soon as a modification is made to the code, the SRS and SAD should be checked and modified accordingly (sometimes not required).
 
 ### Goal of the PS
 
-### Lifecycle of the PS
+The Product State is the composition of the 3 documents and artifacts collections described above: SRS, SAD and Implementation. They are tightly coupled and they should always be at the same level. There should be no code not documented in the SAD or SRS, there whould be no documentation of non-existing implementation.
 
 ## Product State Shifting Proposal (P2SP)
 
-### Composition
-
-#### Title
-
-#### Description
-
-#### Goal
-
-#### Assignees
-
-#### View Updates
-
-### Goal of the P2SP
-
-### Example of P2SP Document
-
-### Lifecycle of the P2SP
-
-## Product State Shifting (P2S)
+For most modifications of the Product State, a document called the P2SP should be created and completed. The main purpose is to document the sections that are modified, added or removed from all the different views of the SAD & SRS before starting any implementation. This process will ensure no ambiguous communication between technical and non-technical team. It will also store informations for a longer time and will always provide precise indications for the implementation part. Each P2SP will then be declined into one or several issues / PRs until the whole proposal is applied in the implementation, SRS and SAD.
 
 ### Composition
 
 #### Title
 
-#### ID
+The title should be a short sentence explaining what modifications are required.
+
+#### Status
+
+The status of the P2SP is one of the following:
+
+- Sleeping: Document is not redacted yet
+- Proposal To Fill: Document should be filled
+- Waiting for reviews: Document is filled and assignees should review it
+- Waiting for Implementation: Document is filled and reviewed, next step is the code 
+- Implementing: Currently implementing modifications
+- Waiting for Validations: Implementation is done, and reviewers should check the work
+- Waiting for to be Merged: Work is done and should be merge to main branch
+- Merged: P2SP is done
 
 #### Description
 
-#### Goal
+Description should explain why the modifications are brought, in details.
 
 #### Assignees
 
+This is the following list of assignees:
+
+- Main: The main assignee is in charge of the P2SP
+- UI & UX: In charge of UI & UX View modification
+- Use Case & Critical Scenarios: In Charge of Use Case View and Crtical Scenarios modifications
+- Logical: In Charge of the Logical View modifications
+- Process: In Charge of the Process View modifications
+- Implementation: In Charge of the Implementation View modifications
+- Data: In Charge of the Data View modifications
+- Deployment: In Charge of the Deployment View modifications
+
+Of course, not all P2SP require all the assignees.
+
 #### View Updates
 
-#### Approvals
+For any view modification, it should follow one of the following cases.
 
-### Goal of the P2S
-
-### Example of P2S Document
-
-### Lifecycle of the P2S
+- Addition: New element is added and it should be mentionned new the diagram / text / table.
+- Modification: Both old and new version of the modified artifacts should be included
+- Removal: A list of removed artifacts should be provided
 
 ## Git
 
