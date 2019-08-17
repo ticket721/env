@@ -15,5 +15,13 @@
     "settings_username_set_new": "Sélectionnez un nouveau nom d'utilisateur",
     "settings_username_set_new_placeholder": "Entrez un nom d'utilisateur",
     "settings_username_upload_error": "Une erreur est survenue lors de la modification du nom d'utilisateur",
-    "settings_username_upload_success": "Succesfully updated username"
+    "settings_username_upload_success": "Modification du nom d'utilisateur effectuée",
+
+    "settings_companion_title": "Compagnon",
+    "settings_companion_linked_to": "Compte connecté au Compagnon avant l'ID",
+    "settings_companion_not_linked": "Compte connecté a aucun Compagnon",
+    "settings_companion_set_new": "Entrez votre code Compagnon",
+    "settings_companion_set_new_placeholder": "Entrez votre code",
+    "settings_companion_upload_error": "Une erreur est survenue lors de la connection entre le compte et le Compagnon. Votre code est probablement erroné",
+    "settings_companion_upload_success": "Connection effectuée entre le compte et le Compagnon"
 }

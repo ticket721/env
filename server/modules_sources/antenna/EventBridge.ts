@@ -141,7 +141,7 @@ export class EventBridge {
 
         // Check by address
         if (db_by === null) {
-            db_by = new AddressModel({address: by, admin: false, event: false});
+            db_by = new AddressModel({address: by, admin: false, event: false, companion: false});
             try {
                 await db_by.save();
             } catch (e) {
@@ -153,7 +153,7 @@ export class EventBridge {
 
         // Check to address
         if (db_to === null) {
-            db_to = new AddressModel({address: to, admin: false, event: false});
+            db_to = new AddressModel({address: to, admin: false, event: false, companion: false});
             try {
                 await db_to.save();
             } catch (e) {

@@ -15,5 +15,13 @@
     "settings_username_set_new": "Select a new username",
     "settings_username_set_new_placeholder": "Input username",
     "settings_username_upload_error": "An error occured while trying to upload new username",
-    "settings_username_upload_success": "Succesfully updated username"
+    "settings_username_upload_success": "Succesfully updated username",
+
+    "settings_companion_title": "Companion",
+    "settings_companion_linked_to": "Account is currently linked to Companion with ID",
+    "settings_companion_not_linked": "Account is not linked to any Companion",
+    "settings_companion_set_new": "Input code provided by Companion",
+    "settings_companion_set_new_placeholder": "Input code",
+    "settings_companion_upload_error": "An error occured while trying to link Account to Companion. The code might be invalid",
+    "settings_companion_upload_success": "Succesfully updated linked Companion"
 }

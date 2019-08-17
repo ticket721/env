@@ -2,64 +2,56 @@
     "routes": [
         {
             "method": "POST",
-            "path": "/addresses/companionlink",
-            "handler": "Address.companionLink",
+            "path": "/addresscodes/issue",
+            "handler": "Addresscode.issue",
             "config": {
                 "policies": []
             }
         },
         {
             "method": "GET",
-            "path": "/addresses/eventsoftickets",
-            "handler": "Address.eventsOfTickets",
+            "path": "/addresscodes",
+            "handler": "Addresscode.find",
             "config": {
                 "policies": []
             }
         },
         {
             "method": "GET",
-            "path": "/addresses",
-            "handler": "Address.find",
+            "path": "/addresscodes/count",
+            "handler": "Addresscode.count",
             "config": {
                 "policies": []
             }
         },
         {
             "method": "GET",
-            "path": "/addresses/count",
-            "handler": "Address.count",
-            "config": {
-                "policies": []
-            }
-        },
-        {
-            "method": "GET",
-            "path": "/addresses/:id",
-            "handler": "Address.findOne",
+            "path": "/addresscodes/:id",
+            "handler": "Addresscode.findOne",
             "config": {
                 "policies": []
             }
         },
         {
             "method": "POST",
-            "path": "/addresses",
-            "handler": "Address.create",
+            "path": "/addresscodes",
+            "handler": "Addresscode.create",
             "config": {
                 "policies": []
             }
         },
         {
             "method": "PUT",
-            "path": "/addresses/:id",
-            "handler": "Address.update",
+            "path": "/addresscodes/:id",
+            "handler": "Addresscode.update",
             "config": {
                 "policies": []
             }
         },
         {
             "method": "DELETE",
-            "path": "/addresses/:id",
-            "handler": "Address.destroy",
+            "path": "/addresscodes/:id",
+            "handler": "Addresscode.destroy",
             "config": {
                 "policies": []
             }

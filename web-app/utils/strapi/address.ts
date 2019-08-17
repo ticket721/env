@@ -3,6 +3,7 @@ export interface StrapiAddress {
     address: string;
     admin: boolean;
     event: boolean;
+    companion: boolean;
 
     actions_by: any[];
     actions_to: any[];
@@ -11,5 +12,7 @@ export interface StrapiAddress {
     queuedevents: any[];
     issued: any[];
     linked_event: any;
+    linked_wallet: any;
+    linked_companion: any;
     username: string;
 }

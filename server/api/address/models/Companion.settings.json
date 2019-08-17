@@ -1,0 +1,29 @@
+{
+  "connection": "default",
+  "collectionName": "companion",
+  "info": {
+    "name": "companion",
+    "description": "Represents a T721 Companion"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "device_identifier": {
+      "default": "",
+      "type": "string"
+    },
+    "companion": {
+      "unique": true,
+      "model": "address",
+      "via": "linked_wallet"
+    },
+    "wallet": {
+      "unique": true,
+      "model": "address",
+      "via": "linked_companion"
+    }
+  }
+}
