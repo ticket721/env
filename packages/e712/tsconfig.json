@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "outDir": "lib",
+        "declaration": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "downlevelIteration": true
+    },
+    "exclude": [
+        "node_modules",
+        "build"
+    ],
+    "include": [
+        "./sources/EIP712Signer.ts",
+        "./sources/address.ts"
+    ]
+}

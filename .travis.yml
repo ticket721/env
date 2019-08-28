@@ -49,6 +49,16 @@ jobs:
               - npm run test:lint
               - npm run test:jest
 
+        # Test Packge: e712
+        - name: "Test Package: e712"
+          node_js: "11"
+          install: skip
+          script:
+              - cd packages/e712 && npm install
+              - npm run test:editorconfig
+              - npm run test:lint
+              - npm run test:mocha
+
         # Build and deploy docker image for the Web App
         - stage: build
           name: "Build & Publish WebApp Docker Image"
