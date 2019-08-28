@@ -1,7 +1,6 @@
 <p align="center">
-  <img src="./imgs/title.png">
+  <img src="https://github.com/ticket721/env/raw/develop/packages/e712/imgs/title.png">
 </p>
-
 
 # Pure Typescript/Javascript implementation of the Ethereum Improvement Proposal 712
 
@@ -11,9 +10,11 @@ Have a complete library to issue EIP712 signature, verify them, or simply encode
 
 ## Installation
 
-```
-npm install --save @ticket721/e712
-```
+    npm install --save @ticket721/e712
+
+## Documentation
+
+You can find the documentation for the module [here](https://github.com/ticket721/env/tree/develop/packages/e712/docs/modules/_eip712signer_.md)
 
 ## Usage
 
@@ -175,3 +176,7 @@ web3.currentProvider.sendAsync({
     });
 
 ```
+
+## API
+
+### Table of contents
