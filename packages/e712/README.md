@@ -18,6 +18,8 @@ You can find the documentation for the module [here](https://github.com/ticket72
 
 ## Usage
 
+For a live usage, take a look at [the last test](./sources/EIP712.test.ts).
+
 ### Setup
 
 This is an example showcasing how you can integrate the provided class into your own extension of it.
@@ -66,6 +68,13 @@ class UserInfos extends EIP712Signer {
         );
     }
 
+    /**
+    * Helper function to set values before doing any signature or building any payload
+    * 
+    * @param firstName
+    * @param lastName
+    * @param age
+    */
     setUserInfos(firstName: string, lastName: string, age: number): void {
         if (!firstName || !lastName || age <= 0) throw new Error('Invalid User Information');
 
@@ -74,6 +83,21 @@ class UserInfos extends EIP712Signer {
         this.age = age;
     }
 
+    getPayload(): EIP712Payload {
+        const message_paylaod = {
+            firstName: this.firstName,
+            lastName: this.lastName,
+            age: this.age
+        };
+
+        return this.generatePayload(message_paylaod);
+    }
+
+    /**
+    * Generate a signature from the values previously given by the user
+    * 
+    * @param privateKey
+    */
     getSignature(privateKey: string): Promise<string> {
 
         const payload = this.getPayload();
@@ -82,6 +106,14 @@ class UserInfos extends EIP712Signer {
 
     }
 
+    /**
+    * Verifies a given signature and retrieves the signer address
+    * 
+    * @param firstName
+    * @param lastName
+    * @param age
+    * @param signature
+    */
     async getSignerAddress(firstName: string, lastName: string, age: number, signature: string): Promise<string> {
         if (!firstName || !lastName || age <= 0) throw new Error('Invalid User Information');
 
@@ -94,16 +126,6 @@ class UserInfos extends EIP712Signer {
         const original_payload = this.generatePayload(message_paylaod);
 
         return this.verify(original_payload, signature);
-    }
-
-    getPayload(): EIP712Payload {
-        const message_paylaod = {
-            firstName: this.firstName,
-            lastName: this.lastName,
-            age: this.age
-        };
-
-        return this.generatePayload(message_paylaod);
     }
 }
 
@@ -122,14 +144,14 @@ user_infos.setUserInfos('John', 'Doe', 22);
 
 // Generate the signature in place
 
-// We are using the 'ethers' package generate the wallets
+// We are using the 'ethers' package to generate the wallets
 const my_user_wallet = Wallet.createRandom();
 
 const signature = await user_infos.getSignature(my_user_wallet.privateKey);
 
 console.log('Signed by ', my_user_wallet.address);
 
-// If users uses a web3 browser able to sign the payloads itself, provide the following data as argument
+// If user uses a web3 browser able to sign the payloads itself, provide the following data as argument
 
 const ready_to_sign_with_third_party_wallet_provider = user_infos.getPayload();
 
@@ -155,20 +177,20 @@ console.log('Signature signed by ', signer);
 To sign with a third party wallet provider (let's say metamask), just run the following
 
 <p align="center">
-  <img height="500" src="./imgs/metamask.png">
+<img height="500" src="https://github.com/ticket721/env/raw/develop/packages/e712/imgs/metamask.png">
 </p>
 
 ```typescript
 
 const ready_to_sign_with_third_party_wallet_provider = user_infos.getPayload();
-const user_ethereum_address = '0x...' 
+const user_ethereum_address = '0x...';
 
 
 web3.currentProvider.sendAsync({
         method: 'eth_signTypedData_v3',
         params: [
             user_ethereum_address,
-            JSON.stringify(user_payload)
+            JSON.stringify(ready_to_sign_with_third_party_wallet_provider)
         ],
         from: user_ethereum_address},
     (error, result) => {
