@@ -1,5 +1,6 @@
 'use strict';
 const EthSigUtil = require('eth-sig-util');
+const CompanionAuthProof = require('../../../sign_utils/CompanionAuthProof');
 const { utils } = require('ethers');
 
 /**
@@ -55,50 +56,34 @@ module.exports = {
         const edit_signature = ctx.request.body.signature;
         const date = Date.now();
 
-        console.log(ctx);
-
         if (!edit_body || !edit_signature) {
             return ctx.response.badRequest('Missing Body and Signature');
         }
 
-        const authorized_fields = ['timestamp', 'device_identifier'];
-
-        for (const field of edit_body) {
-            if (authorized_fields.indexOf(field.name) === -1) {
-                return ctx.response.badRequest(`Illegal field in signature payload: ${field.name}`);
-            }
-        }
-
-        const timestamp_idx = edit_body.findIndex((elem) => elem.name === 'timestamp');
-
-        if (timestamp_idx === -1 || typeof edit_body[timestamp_idx].value !== 'number') {
+        if (typeof edit_body.timestamp !== 'number') {
             return ctx.response.badRequest('Missing timestamp');
         }
 
-        if (date > edit_body[timestamp_idx].value + (2 * 60 * 1000)) {
+        if (date > edit_body.timestamp + (2 * 60 * 1000)) {
             return ctx.response.clientTimeout();
         }
 
         try {
-            const signer = EthSigUtil.recoverTypedSignature({
-                data: edit_body,
-                sig: edit_signature
-            });
+            const cap = new CompanionAuthProof();
+            const signer = await cap.verifyProof(edit_body.timestamp, edit_body.device_identifier, edit_signature);
 
             let code           = '';
             const length = 6;
-            const characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            const characters       = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
             const charactersLength = characters.length;
             for ( let i = 0; i < length; i++ ) {
                 code += characters.charAt(Math.floor(Math.random() * charactersLength));
             }
 
-            const did_idx = edit_body.findIndex((elem) => elem.name === 'device_identifier');
-
             return strapi.services.addresscode.add({
                 code,
                 address: utils.getAddress(signer.toLowerCase()),
-                device_identifier: edit_body[did_idx].value
+                device_identifier: edit_body.device_identifier
             });
 
         }
