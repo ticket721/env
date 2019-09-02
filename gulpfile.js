@@ -54,7 +54,6 @@ const portalize_freeze = shell.task('./node_modules/.bin/portalize freeze ./port
 portalize_freeze.displayName = PortalizeFreeze;
 
 
-//console.log(identity['identity:clean']);
 // Cleans all portals
 exports.clean = series(server['server:clean'], contracts['contracts:clean'], network['network:clean'], identity['identity:clean']);
 
