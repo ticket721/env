@@ -4,6 +4,7 @@ Complete Environment for ticket721
 | Section | Description |
 | :---: | :---: |
 | [`docs`](./docs/README.md) | Documentation of the platform |
+| [`packages`](./packages/README.md) | Sources and docs of all tools built for T721 |
 | [`contracts`](./contracts) | Smart Contracts of the platform |
 | [`network`](./network) | Set of utilities to handle all things related to the Ethereum Network |
 | [`server`](./server) | Server & API of the platform. Records and formats events and serves them to frontend. |
