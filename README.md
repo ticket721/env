@@ -1,9 +1,11 @@
-# env
+ env
 Complete Environment for ticket721
 
 | Section | Description |
 | :---: | :---: |
 | [`docs`](./docs/README.md) | Documentation of the platform |
+| [`packages`](./packages/README.md) | Sources and docs of all tools built for T721 |
+| [`p2s`](./p2s) | History of major Product State Shiftings (p2s) |
 | [`contracts`](./contracts) | Smart Contracts of the platform |
 | [`network`](./network) | Set of utilities to handle all things related to the Ethereum Network |
 | [`server`](./server) | Server & API of the platform. Records and formats events and serves them to frontend. |
@@ -150,36 +152,38 @@ For the `public` role:
 
 | Section | What to activate |
 | :---:   | :---:            |
+| permissions - addresscode | `issue` |
 | Permissions - Approver | `count`, `find`, `findone` |
 | Permissions - Sale | `count`, `find`, `findone` |
-| Permissions - Queuedevent | `count`, `find`, `findone`, `create` |
+| Permissions - Queuedevent | `count`, `find`, `findone`, `create`, `update` |
 | Permissions - Height | `count`, `find`, `findone` |
 | Permissions - Marketer | `count`, `find`, `findone` |
 | Permissions - Eventcontract | `count`, `find`, `findone` |
-| Permissions - Ticket | `count`, `find`, `findone` |
+| Permissions - Ticket | `count`, `find`, `findone`, `companionlist` |
 | Permissions - Network | `count`, `find`, `findone` |
 | Permissions - Minter | `count`, `find`, `findone` |
-| Permissions - Address | `count`, `find`, `findone`, `eventsoftickets`, `update` |
+| Permissions - Address | `count`, `find`, `findone`, `eventsoftickets`, `update`, `companionlink` |
 | Permissions - Action | `count`, `find`, `findone` |
-| Permissions - Event | `count`, `find`, `findone` |
+| Permissions - Event | `count`, `find`, `findone`, `update`, `countallincoming`, `findallincoming` |
 | Upload - Upload | `upload` |
 
 For the `authenticated` role:
 
 | Section | What to activate |
 | :---:   | :---:            |
+| permissions - addresscode | `issue` |
 | Permissions - Approver | `count`, `find`, `findone` |
 | Permissions - Sale | `count`, `find`, `findone` |
-| Permissions - Queuedevent | `count`, `find`, `findone`, `create` |
+| Permissions - Queuedevent | `count`, `find`, `findone`, `create`, `update` |
 | Permissions - Height | `count`, `find`, `findone` |
 | Permissions - Marketer | `count`, `find`, `findone` |
 | Permissions - Eventcontract | `count`, `find`, `findone` |
-| Permissions - Ticket | `count`, `find`, `findone` |
+| Permissions - Ticket | `count`, `find`, `findone`, `companionlist` |
 | Permissions - Network | `count`, `find`, `findone` |
 | Permissions - Minter | `count`, `find`, `findone` |
-| Permissions - Address | `count`, `find`, `findone`, `eventsoftickets`, `update` |
+| Permissions - Address | `count`, `find`, `findone`, `eventsoftickets`, `update`, `companionlink` |
 | Permissions - Action | `count`, `find`, `findone` |
-| Permissions - Event | `count`, `find`, `findone` |
+| Permissions - Event | `count`, `find`, `findone`, `update`, `countallincoming`, `findallincoming` |
 | Upload - Upload | `upload` |
 | User Permissions - User | `setwallet` |
 

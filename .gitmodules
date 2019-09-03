@@ -1,0 +1,4 @@
+[submodule "p2s"]
+	path = p2s
+	url = git@github.com:ticket721/p2s
+	branch = master

@@ -1,6 +1,9 @@
 language: node_js
 node_js: "lts/*"
 
+git:
+    submodules: false
+
 cache:
     directories:
         # We cache the SDK so we don't have to download it again on subsequent builds.
@@ -49,9 +52,19 @@ jobs:
               - npm run test:lint
               - npm run test:jest
 
+        # Test Companion App Core
+        - name: "Test Companion App"
+          node_js: "10"
+          install: skip
+          script:
+              - cd companion-app && npm install
+              - npm run test:editorconfig
+              - npm run test:lint
+              - npm run test:mocha
+
         # Test Packge: e712
         - name: "Test Package: e712"
-          node_js: "11"
+          node_js: "10"
           install: skip
           script:
               - cd packages/e712 && npm install

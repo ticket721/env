@@ -1,6 +1,6 @@
 {
     "name": "@ticket721/e712",
-    "version": "0.1.0",
+    "version": "0.1.2",
     "description": "Pure Typescript/Javascript implementation of the Ethereum Improvement Proposal 712",
     "keywords": [
         "ethereum",
@@ -36,7 +36,8 @@
         "test:mocha": "nyc ts-mocha ./sources/**.test.ts",
         "test:lint": "tslint --project .",
         "editorconfig-cli": "editorconfig-cli",
-        "test:editorconfig": "npm run editorconfig-cli"
+        "test:editorconfig": "npm run editorconfig-cli",
+        "doc": "typedoc --theme markdown --excludePrivate"
     },
     "editorconfig-cli": [
         "./package.json",
@@ -63,6 +64,8 @@
         "nyc": "^14.1.1",
         "ts-mocha": "^6.0.0",
         "tslint": "^5.19.0",
+        "typedoc": "^0.15.0",
+        "typedoc-plugin-markdown": "^2.1.4",
         "typescript": "^3.5.3"
     }
 }

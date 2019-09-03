@@ -3,3 +3,5 @@ node_modules
 portal
 .DS_Store
 .expo
+.nyc_output
+coverage

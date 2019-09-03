@@ -8,13 +8,14 @@
 
 | Version | Prepared By | Email |
 | :---:   | :---:       | :---: |
-| 1.0 | Iulian Rotaru | iulian.rotaru@ticket721.com |
+| 1.1 | Iulian Rotaru | iulian.rotaru@ticket721.com |
 
 ## Document History
 
 | Version | Date | Description | Author |
 | :---:   | :---: | :---:      | :---:  |
 | 1.0 | 02/08/2019 | Initial Documentation | Iulian Rotaru |
+| 1.1 | 03/09/2019 | Include P2SP1 | Iulian Rotaru |
 
 ## Table of contents
 
@@ -29,6 +30,7 @@
     2. [Process view 🔀](#2_2_process_view)
     3. [Implementation view 🛠](#2_3_implementation_view)
         1. [EVM](#2_3_1_evm)
+        1. [Companion App](#2_3_2_companion_app)
     4. [Data view 🗄](#2_4_data_view)
     5. [Deployment view 🚀](#2_5_deployment_view)
         1. [Test infrastructure](#2_5_1_test_infrastructure)
@@ -161,6 +163,16 @@ The following diagrams define in details the System Operation Contracts.
     <img src="resources/t721-2_1_2_14_co14.svg"/>
 </div>
 
+#### Generate Ticket QR Codes
+
+<div style="text-align: center;">
+    <img src="resources/t721-2_1_2_15_co15.svg"/>
+</div>
+
+<div style="text-align: center;">
+    <img src="resources/t721-2_1_2_16_co16.svg"/>
+</div>
+
 ## 2.2. Process view 🔀
 <a name="2_2_process_view"></a>
 
@@ -230,6 +242,12 @@ The following diagrams define in details the System Operation Contracts.
     <img src="resources/t721-2_2_11_withdraw_event_funds_activity_diagram.svg"/>
 </div>
 
+#### Generate Ticket QR Codes
+
+<div style="text-align: center;">
+    <img src="resources/t721-2_2_12_generate_ticket_qr_codes_activity_diagram.svg"/>
+</div>
+
 ## 2.3. Implementation view 🛠
 <a name="2_3_implementation_view"></a>
 
@@ -238,6 +256,13 @@ The following diagrams define in details the System Operation Contracts.
 
 <div style="text-align: center;">
     <img src="resources/t721-2_3_1_evm_implementation_view.svg"/>
+</div>
+
+### 2.3.2 Companion App
+<a name="2_3_2_companion_app"></a>
+
+<div style="text-align: center;">
+    <img src="resources/t721-2_3_2_companion_app_implementation_view.svg"/>
 </div>
 
 ## 2.4. Data view 🗄
@@ -253,6 +278,12 @@ The following diagrams define in details the System Operation Contracts.
 
 <div style="text-align: center;">
     <img src="resources/t721-2_4_1_data_view_address.svg"/>
+</div>
+
+### Companion
+
+<div style="text-align: center;">
+    <img src="resources/t721-2_4_1_data_view_companion.svg"/>
 </div>
 
 ### Event & Queuedevent

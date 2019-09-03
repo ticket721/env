@@ -1,5 +1,5 @@
 'use strict';
-const EthSigUtil = require('eth-sig-util');
+const CompanionAuthProof = require('../../../sign_utils/CompanionAuthProof');
 
 /**
  * Ticket.js controller
@@ -24,49 +24,62 @@ module.exports = {
             return ctx.response.badRequest('Missing Body and Signature');
         }
 
-        const authorized_fields = ['timestamp', 'device_identifier'];
-
-        for (const field of edit_body) {
-            if (authorized_fields.indexOf(field.name) === -1) {
-                return ctx.response.badRequest(`Illegal field in signature payload: ${field.name}`);
-            }
-        }
-
-        const timestamp_idx = edit_body.findIndex((elem) => elem.name === 'timestamp');
-
-        if (timestamp_idx === -1 || typeof edit_body[timestamp_idx].value !== 'number') {
+        if (typeof edit_body.timestamp !== 'number') {
             return ctx.response.badRequest('Missing timestamp');
         }
 
-        if (date > edit_body[timestamp_idx].value + (2 * 60 * 1000)) {
+        if (date > edit_body.timestamp + (2 * 60 * 1000)) {
             return ctx.response.clientTimeout();
         }
 
-        try {
-            const signer = EthSigUtil.recoverTypedSignature({
-                data: edit_body,
-                sig: edit_signature
-            });
 
-            const device_identifier_idx = edit_body.findIndex((elem) => elem.name === 'device_identifier');
+        try {
+
+            const cap = new CompanionAuthProof();
+            const signer = await cap.verifyProof(edit_body.timestamp, edit_body.device_identifier, edit_signature);
 
             const companion = await strapi.services.companion.fetchAll({
-                device_identifier: edit_body[device_identifier_idx].value
+                device_identifier: edit_body.device_identifier
             });
 
             if (companion.length === 0) {
-                return ctx.response.notFound();
+                return {
+                    linked: false,
+                    linked_to: null,
+                    tickets: []
+                }
             }
 
-            if (companion[0].companion.address.toLowerCase() !== signer) {
-                return ctx.response.forbidden();
+            if (companion[0].companion.address.toLowerCase() !== signer.toLowerCase()) {
+                return {
+                    linked: false,
+                    linked_to: null,
+                    tickets: []
+                };
+            }
+
+            if (companion[0].wallet === null) {
+
+                console.log('delete crippled companion');
+                await strapi.services.companion.remove({id: companion[0].id});
+
+                return {
+                    linked: false,
+                    linked_to: null,
+                    tickets: []
+                };
+
             }
 
             const tickets = await strapi.services.ticket.fetchAll({
                 owner: companion[0].wallet.id
-            });
+            }, ['event', 'event.address', 'event.banners', 'event.image']);
 
-            return tickets;
+            return {
+                linked: true,
+                linked_to: companion[0].wallet.address,
+                tickets
+            };
 
         } catch (e) {
             console.error(e);

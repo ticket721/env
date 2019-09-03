@@ -3,7 +3,6 @@ import * as ESU                                          from 'eth-sig-util';
 import { expect }                                        from 'chai';
 import { Wallet }                                        from 'ethers';
 
-
 const UselessType = [
     {
         name: 'useless',
@@ -109,6 +108,7 @@ class UnbuildableEtherMail extends EIP712Signer {
     }
 }
 
+// tslint:disable-next-line:max-classes-per-file
 class EtherMail extends EIP712Signer {
     constructor() {
         super(
@@ -129,7 +129,7 @@ describe('e712 tests', (): void => {
 
         expect
         (
-            ESU.TypedDataUtils.encodeType('Mail', types)
+            (ESU as any).TypedDataUtils.encodeType('Mail', types)
         )
             .to.equal
         (
@@ -138,7 +138,7 @@ describe('e712 tests', (): void => {
 
         expect
         (
-            ESU.TypedDataUtils.encodeType('Person', types)
+            (ESU as any).TypedDataUtils.encodeType('Person', types)
         )
             .to.equal
         (
@@ -153,7 +153,7 @@ describe('e712 tests', (): void => {
 
         expect
         (
-            '0x' + ESU.TypedDataUtils.hashType('Mail', types).toString('hex')
+            '0x' + (ESU as any).TypedDataUtils.hashType('Mail', types).toString('hex')
         )
             .to.equal
         (
@@ -162,7 +162,7 @@ describe('e712 tests', (): void => {
 
         expect
         (
-            '0x' + ESU.TypedDataUtils.hashType('Person', types).toString('hex')
+            '0x' + (ESU as any).TypedDataUtils.hashType('Person', types).toString('hex')
         )
             .to.equal
         (
@@ -177,7 +177,7 @@ describe('e712 tests', (): void => {
 
         expect
         (
-            '0x' + ESU.TypedDataUtils.encodeData('Mail', payload, types).toString('hex')
+            '0x' + (ESU as any).TypedDataUtils.encodeData('Mail', payload, types).toString('hex')
         )
             .to.equal
         (
@@ -192,7 +192,7 @@ describe('e712 tests', (): void => {
 
         expect
         (
-            '0x' + ESU.TypedDataUtils.hashStruct('Mail', payload, types).toString('hex')
+            '0x' + (ESU as any).TypedDataUtils.hashStruct('Mail', payload, types).toString('hex')
         )
             .to.equal
         (
@@ -217,7 +217,7 @@ describe('e712 tests', (): void => {
 
         expect
         (
-            '0x' + ESU.TypedDataUtils.sign(formatted_payload).toString('hex')
+            '0x' + (ESU as any).TypedDataUtils.sign(formatted_payload).toString('hex')
         )
             .to.equal
         (
@@ -242,7 +242,7 @@ describe('e712 tests', (): void => {
 
         expect
         (
-            '0x' + ESU.TypedDataUtils.sign(formatted_payload).toString('hex')
+            '0x' + (ESU as any).TypedDataUtils.sign(formatted_payload).toString('hex')
         )
             .to.equal
         (
@@ -267,7 +267,7 @@ describe('e712 tests', (): void => {
 
         expect
         (
-            '0x' + ESU.TypedDataUtils.sign(formatted_payload).toString('hex')
+            '0x' + (ESU as any).TypedDataUtils.sign(formatted_payload).toString('hex')
         )
             .to.equal
         (
@@ -727,7 +727,6 @@ describe('e712 tests', (): void => {
 
     });
 
-
     it('pads and verifies', async (): Promise<void> => {
 
         const em = new EtherMail();
@@ -745,77 +744,77 @@ describe('e712 tests', (): void => {
         const address = '0x14Fd1C6E490208216Fc8CeA209C990Eb484d8477';
 
         const payload = {
-            "domain": {
-                "name": "Ether Mail",
-                "version": "1",
-                "chainId": 1,
-                "verifyingContract": "0xe4937b3fead67f09f5f15b0a1991a588f7be54ca"
+            'domain': {
+                'name': 'Ether Mail',
+                'version': '1',
+                'chainId': 1,
+                'verifyingContract': '0xe4937b3fead67f09f5f15b0a1991a588f7be54ca'
             },
-            "message": {
-                "from": {
-                    "name": "lol",
-                    "wallet": "0xe4937b3fead67f09f5f15b0a1991a588f7be54ca",
-                    "points": "0x1243"
+            'message': {
+                'from': {
+                    'name': 'lol',
+                    'wallet': '0xe4937b3fead67f09f5f15b0a1991a588f7be54ca',
+                    'points': '0x1243'
                 },
-                "to": {
-                    "name": "lele",
-                    "wallet": "0xc7449fedabef2cf2749b7c83448fba9bc8dc273d",
-                    "points": "0xabbc"
+                'to': {
+                    'name': 'lele',
+                    'wallet': '0xc7449fedabef2cf2749b7c83448fba9bc8dc273d',
+                    'points': '0xabbc'
                 },
-                "contents": "Hello lele"
+                'contents': 'Hello lele'
             },
-            "primaryType": "Mail",
-            "types": {
-                "Mail": [
+            'primaryType': 'Mail',
+            'types': {
+                'Mail': [
                     {
-                        "name": "from",
-                        "type": "Person"
+                        'name': 'from',
+                        'type': 'Person'
                     },
                     {
-                        "name": "to",
-                        "type": "Person"
+                        'name': 'to',
+                        'type': 'Person'
                     },
                     {
-                        "name": "contents",
-                        "type": "string"
+                        'name': 'contents',
+                        'type': 'string'
                     }
                 ],
-                "Person": [
+                'Person': [
                     {
-                        "name": "name",
-                        "type": "string"
+                        'name': 'name',
+                        'type': 'string'
                     },
                     {
-                        "name": "wallet",
-                        "type": "address"
+                        'name': 'wallet',
+                        'type': 'address'
                     },
                     {
-                        "name": "points",
-                        "type": "bytes"
+                        'name': 'points',
+                        'type': 'bytes'
                     }
                 ],
-                "UselessType": [
+                'UselessType': [
                     {
-                        "name": "useless",
-                        "type": "bool"
+                        'name': 'useless',
+                        'type': 'bool'
                     }
                 ],
-                "EIP712Domain": [
+                'EIP712Domain': [
                     {
-                        "name": "name",
-                        "type": "string"
+                        'name': 'name',
+                        'type': 'string'
                     },
                     {
-                        "name": "version",
-                        "type": "string"
+                        'name': 'version',
+                        'type': 'string'
                     },
                     {
-                        "name": "chainId",
-                        "type": "uint256"
+                        'name': 'chainId',
+                        'type': 'uint256'
                     },
                     {
-                        "name": "verifyingContract",
-                        "type": "address"
+                        'name': 'verifyingContract',
+                        'type': 'address'
                     }
                 ]
             }
@@ -857,6 +856,7 @@ describe('e712 tests', (): void => {
 
         const primaryType = 'User';
 
+        // tslint:disable-next-line:max-classes-per-file
         class UserInfos extends EIP712Signer {
 
             private firstName: string = null;
@@ -883,7 +883,7 @@ describe('e712 tests', (): void => {
 
                 const payload = this.getPayload();
 
-                return this.sign(privateKey, payload)
+                return this.sign(privateKey, payload);
 
             }
 
@@ -910,7 +910,6 @@ describe('e712 tests', (): void => {
 
                 return this.generatePayload(message_paylaod);
             }
-
 
         }
 

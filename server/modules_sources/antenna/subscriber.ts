@@ -11,7 +11,7 @@ import { sale_close_fetch_call, sale_close_view_call }     from './events/sale_c
 import { new_admin_fetch_call, new_admin_view_call }       from './events/new_admin';
 import { delete_admin_fetch_call, delete_admin_view_call } from './events/delete_admin';
 import { update }                                          from './prices';
-import { HeightModel, SaleModel }     from './models';
+import { AddressCodeModel, HeightModel, SaleModel }        from './models';
 
 const get_height = async (height: any, start_height: number): Promise<any> => {
 
@@ -66,6 +66,13 @@ const update_open_sales_prices = async (web3: any, block: number): Promise<void>
 
 };
 
+const remove_address_codes = async (): Promise<void> => {
+
+    const time_limit = Date.now() - 15 * 60 * 1000;
+
+    await AddressCodeModel.where('created_at', '<', new Date(time_limit)).destroy({require: false});
+};
+
 export async function subscriber(net_id: number, web3: any, eb: EventBridge, start_height: number): Promise<void> {
 
     const AdministrationBoardArtifact = Portalize.get.get('AdministrationBoardV0.artifact.json', {module: 'contracts'});
@@ -106,6 +113,16 @@ export async function subscriber(net_id: number, web3: any, eb: EventBridge, sta
             closing_process = true;
             await close_outdated_sales(new Date(Date.now()));
             closing_process = false;
+        }
+    }, 20000);
+    
+    let code_erasing_process = false;
+    
+    setInterval(async (): Promise<void> => {
+        if (!code_erasing_process) {
+            code_erasing_process = true;
+            await remove_address_codes();
+            code_erasing_process = false;
         }
     }, 20000);
 
