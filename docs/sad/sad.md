@@ -8,13 +8,14 @@
 
 | Version | Prepared By | Email |
 | :---:   | :---:       | :---: |
-| 1.0 | Iulian Rotaru | iulian.rotaru@ticket721.com |
+| 1.1 | Iulian Rotaru | iulian.rotaru@ticket721.com |
 
 ## Document History
 
 | Version | Date | Description | Author |
 | :---:   | :---: | :---:      | :---:  |
 | 1.0 | 02/08/2019 | Initial Documentation | Iulian Rotaru |
+| 1.1 | 03/09/2019 | Include P2SP1 | Iulian Rotaru |
 
 ## Table of contents
 
