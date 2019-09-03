@@ -1,13 +1,14 @@
 {
-  "packages": [
-      "companion-app",
-      "contracts",
-      "identity",
-      "network",
-      "scanner-app",
-      "server",
-      "server/modules_sources",
-      "web-app"
-  ],
-  "version": "0.1.0"
+    "packages": [
+        "companion-app",
+        "contracts",
+        "identity",
+        "network",
+        "scanner-app",
+        "server",
+        "server/modules_sources",
+        "web-app",
+        "packages/e712"
+    ],
+    "version": "0.1.0"
 }

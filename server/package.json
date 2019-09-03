@@ -38,6 +38,7 @@
     "homepage": "https://github.com/ticket721/server#readme",
     "dependencies": {
         "@htmlacademy/editorconfig-cli": "^1.0.0",
+        "@ticket721/e712": "^0.1.1",
         "@types/bookshelf": "^0.9.9",
         "@types/jest": "^24.0.6",
         "@types/node": "^11.9.4",
@@ -48,7 +49,7 @@
         "dockerode": "^2.5.8",
         "eth-sig-util": "1.4.2",
         "ethers": "^4.0.26",
-        "gulp": "^4.0.0",
+        "gulp": "4.0.2",
         "gulp-typescript": "^5.0.0",
         "husky": "^1.3.1",
         "jest": "^24.1.0",

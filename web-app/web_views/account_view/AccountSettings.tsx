@@ -1,7 +1,8 @@
-import * as React         from 'react';
-import { Col, Row }       from 'antd';
-import UsernameForm       from './settings_cards/UsernameForm';
-import { StrapiAddress }  from '@utils/strapi/address';
+import * as React        from 'react';
+import { Col, Row }      from 'antd';
+import UsernameForm      from './settings_cards/UsernameForm';
+import { StrapiAddress } from '@utils/strapi/address';
+import CompanionForm     from './settings_cards/CompanionForm';
 
 export interface AccountSettingsProps {
     strapi_address: StrapiAddress;
@@ -15,6 +16,9 @@ export default class AccountSettings extends React.Component<AccountSettingsProp
             <Row gutter={16}>
                 <Col span={8}>
                     <UsernameForm strapi_address={this.props.strapi_address} address={this.props.address} coinbase={this.props.coinbase}/>
+                </Col>
+                <Col span={8}>
+                    <CompanionForm strapi_address={this.props.strapi_address} address={this.props.address} coinbase={this.props.coinbase}/>
                 </Col>
             </Row>
         </div>;

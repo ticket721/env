@@ -1,0 +1,27 @@
+{
+    "connection": "default",
+    "collectionName": "addresscodes",
+    "info": {
+        "name": "addresscode",
+        "description": "code used to ease connection between address and companion"
+    },
+    "options": {
+        "increments": true,
+        "timestamps": true,
+        "comment": ""
+    },
+    "attributes": {
+        "address": {
+            "required": true,
+            "type": "string"
+        },
+        "code": {
+            "required": true,
+            "type": "string"
+        },
+        "device_identifier": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

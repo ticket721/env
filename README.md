@@ -1,14 +1,29 @@
-# env
+ env
 Complete Environment for ticket721
 
+| Section | Description |
+| :---: | :---: |
+| [`docs`](./docs/README.md) | Documentation of the platform |
+| [`packages`](./packages/README.md) | Sources and docs of all tools built for T721 |
+| [`p2s`](./p2s) | History of major Product State Shiftings (p2s) |
+| [`contracts`](./contracts) | Smart Contracts of the platform |
+| [`network`](./network) | Set of utilities to handle all things related to the Ethereum Network |
+| [`server`](./server) | Server & API of the platform. Records and formats events and serves them to frontend. |
+| [`web-app`](./web-app) | React Web Application to use the platform |
+| [`identity`](./identity) | Assets sources for the various frontends |
+| [`companion-app`](./companion-app) | React Native Mobile Application to store tickets and create verifiable QR Codes |
+| [`scanner-app`](./scanner-app) | React Native Mobile Application to scan and verify generated QR Codes |
+
 ## Env
+
+### Local Variables
 
 | Variable | Mandatory | Values | Description |
 | :---: | :---: | :---: | :---: |
 | `T721_NETWORK` | yes | `test`, `local` | This value will tell every task how it should behave / configure the tools |
 | `T721_SERVER` | yes | `development` | This value will tell the `server` module how it should behave, and where it should connect itself |
 
-## Travis Env
+### Travis Variables
 
 Variables that should be available during the travis build
 
@@ -33,15 +48,14 @@ Variables that should be available during the travis build
 | `ROPSTEN_TX_EXPLORER` | Like this => `https://ropsten.etherscan.io/tx/TRANSACTION_HASH` (with the `TRANSACTION_HASH` ) |
 | `STRAPI_PUBLIC_ENDPOINT` | Public endpoint of the api |
 
-## Cluster Requirement
+### K8S Cluster requirements
 
 * Name => `ropsten`
 * Size => `[0 - 1] standard-2, [1 - 6] small`
-* IPS => `3 IPS in same region`
+* IPS => `1 IP in same region`
 * Disks => `geth-disk;ssd;200, pg-disk;hdd;50, strapi-disk;hdd;25`
 
-
-## Tasks
+## Gulp Tasks
 
 | Name | Description |
 | :---: | :---------: |
@@ -50,8 +64,10 @@ Variables that should be available during the travis build
 | `clean` | Calls clean on submodules |
 | `deploy` | Configure the network depending on `T721_NETWORK`, and deploys all the smart contracts |
 | `simulation` | Run the simulation script from the `contracts` module, populating the configured ethereum node |
+| `deploy_ropsten` | Deploys the smart contract to the ropsten network. See configuration section |
+| `fake_mine` | Mine some blocks (only working with ganache test network) |
 
-## Setup process
+## Local Setup process
 
 #### Install dependencies
 
@@ -88,7 +104,7 @@ If you need to create content on your test network, use the following command
 The actions that are executed are random transfers, buy, sales, and sale_closes
 
 ```shell
-gulp simulate --accounts number_of_accounts_to_user --events number_of_events_to_create --tickets number_of_tickets_per_event_to_create --actions number_of_actions_to_executed
+gulp simulation --accounts number_of_accounts_to_user --events number_of_events_to_create --tickets number_of_tickets_per_event_to_create --actions number_of_actions_to_executed
 ```
 
 #### Setting up the server
@@ -136,36 +152,38 @@ For the `public` role:
 
 | Section | What to activate |
 | :---:   | :---:            |
+| permissions - addresscode | `issue` |
 | Permissions - Approver | `count`, `find`, `findone` |
 | Permissions - Sale | `count`, `find`, `findone` |
-| Permissions - Queuedevent | `count`, `find`, `findone`, `create` |
+| Permissions - Queuedevent | `count`, `find`, `findone`, `create`, `update` |
 | Permissions - Height | `count`, `find`, `findone` |
 | Permissions - Marketer | `count`, `find`, `findone` |
 | Permissions - Eventcontract | `count`, `find`, `findone` |
-| Permissions - Ticket | `count`, `find`, `findone` |
+| Permissions - Ticket | `count`, `find`, `findone`, `companionlist` |
 | Permissions - Network | `count`, `find`, `findone` |
 | Permissions - Minter | `count`, `find`, `findone` |
-| Permissions - Address | `count`, `find`, `findone`, `eventsoftickets`, `update` |
+| Permissions - Address | `count`, `find`, `findone`, `eventsoftickets`, `update`, `companionlink` |
 | Permissions - Action | `count`, `find`, `findone` |
-| Permissions - Event | `count`, `find`, `findone` |
+| Permissions - Event | `count`, `find`, `findone`, `update`, `countallincoming`, `findallincoming` |
 | Upload - Upload | `upload` |
 
 For the `authenticated` role:
 
 | Section | What to activate |
 | :---:   | :---:            |
+| permissions - addresscode | `issue` |
 | Permissions - Approver | `count`, `find`, `findone` |
 | Permissions - Sale | `count`, `find`, `findone` |
-| Permissions - Queuedevent | `count`, `find`, `findone`, `create` |
+| Permissions - Queuedevent | `count`, `find`, `findone`, `create`, `update` |
 | Permissions - Height | `count`, `find`, `findone` |
 | Permissions - Marketer | `count`, `find`, `findone` |
 | Permissions - Eventcontract | `count`, `find`, `findone` |
-| Permissions - Ticket | `count`, `find`, `findone` |
+| Permissions - Ticket | `count`, `find`, `findone`, `companionlist` |
 | Permissions - Network | `count`, `find`, `findone` |
 | Permissions - Minter | `count`, `find`, `findone` |
-| Permissions - Address | `count`, `find`, `findone`, `eventsoftickets`, `update` |
+| Permissions - Address | `count`, `find`, `findone`, `eventsoftickets`, `update`, `companionlink` |
 | Permissions - Action | `count`, `find`, `findone` |
-| Permissions - Event | `count`, `find`, `findone` |
+| Permissions - Event | `count`, `find`, `findone`, `update`, `countallincoming`, `findallincoming` |
 | Upload - Upload | `upload` |
 | User Permissions - User | `setwallet` |
 
@@ -207,7 +225,13 @@ gulp clean
 gulp dismantle
 ```
 
-#### Deploying to ropsten testnet
+#### Easier; Dismantle Portalize and remove every node_modules
+
+```shell
+npm run clean
+```
+
+## Deploying to ropsten testnet
 
 Start by writing a configuration file:
 

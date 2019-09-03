@@ -9,6 +9,100 @@ const EthSigUtil = require('eth-sig-util');
 
 module.exports = {
 
+    companionLink: async (ctx) => {
+        const edit_body = ctx.request.body.body;
+        const edit_signature = ctx.request.body.signature;
+        const date = Date.now();
+
+        if (!edit_body || !edit_signature) {
+            return ctx.response.badRequest('Missing Body and Signature');
+        }
+
+        const authorized_fields = ['timestamp', 'code'];
+
+        for (const field of edit_body) {
+            if (authorized_fields.indexOf(field.name) === -1) {
+                return ctx.response.badRequest(`Illegal field in signature payload: ${field.name}`);
+            }
+        }
+
+        const timestamp_idx = edit_body.findIndex((elem) => elem.name === 'timestamp');
+
+        if (timestamp_idx === -1 || typeof edit_body[timestamp_idx].value !== 'number') {
+            return ctx.response.badRequest('Missing timestamp');
+        }
+
+        if (date > edit_body[timestamp_idx].value + (2 * 60 * 1000)) {
+            return ctx.response.clientTimeout();
+        }
+
+        try {
+            const signer = EthSigUtil.recoverTypedSignature({
+                data: edit_body,
+                sig: edit_signature
+            });
+
+            const code_idx = edit_body.findIndex((elem) => elem.name === 'code');
+
+            const code = edit_body[code_idx].value.toUpperCase();
+
+            const address_code = await strapi.services.addresscode.fetchAll({
+                code
+            });
+
+            if (address_code.length === 0) {
+                return ctx.response.notFound();
+            }
+
+            let companion_address = await strapi.services.address.fetchAll({
+                address: address_code[0].address
+            });
+
+            if (companion_address.length === 0) {
+                companion_address = [await strapi.services.address.add({
+                    address: address_code[0].address,
+                    event: false,
+                    admin: false,
+                    companion: true
+                })];
+            } else {
+                if (companion_address[0].linked_wallet) {
+                    return ctx.response.badRequest();
+                }
+            }
+
+            let wallet_address = await strapi.services.address.fetchAll({
+                address: signer
+            });
+
+            if (wallet_address.length === 0) {
+                wallet_address = [await strapi.services.address.add({
+                    address: signer,
+                    event: false,
+                    admin: false,
+                    companion: false
+                })];
+            }
+
+            let companion = await strapi.services.companion.add({
+                device_identifier: address_code[0].device_identifier,
+                wallet: wallet_address[0].id,
+                companion: companion_address[0].id
+            });
+
+            await strapi.services.addresscode.remove({
+                id: address_code[0].id
+            });
+
+            return companion;
+
+        }
+        catch (e) {
+            return ctx.response.badRequest();
+        }
+
+    },
+
     /**
      * Retrieve all events linked to tickets owner by address
      *
@@ -118,7 +212,7 @@ module.exports = {
         const date = Date.now();
 
         if (!edit_body || !edit_signature) {
-            return ctx.response.unauthorized();
+            return ctx.response.badRequest('Missing Body and Signature');
         }
 
         const authorized_fields = ['username', 'timestamp'];

@@ -1,6 +1,14 @@
 {
     "routes": [
         {
+            "method": "POST",
+            "path": "/addresses/companionlink",
+            "handler": "Address.companionLink",
+            "config": {
+                "policies": []
+            }
+        },
+        {
             "method": "GET",
             "path": "/addresses/eventsoftickets",
             "handler": "Address.eventsOfTickets",
