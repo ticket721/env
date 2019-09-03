@@ -161,6 +161,16 @@ The following diagrams define in details the System Operation Contracts.
     <img src="resources/t721-2_1_2_14_co14.svg"/>
 </div>
 
+#### Generate Ticket QR Codes
+
+<div style="text-align: center;">
+    <img src="resources/t721-2_1_2_15_co15.svg"/>
+</div>
+
+<div style="text-align: center;">
+    <img src="resources/t721-2_1_2_16_co16.svg"/>
+</div>
+
 ## 2.2. Process view 🔀
 <a name="2_2_process_view"></a>
 
