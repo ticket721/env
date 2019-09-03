@@ -661,6 +661,16 @@ This overview shows how views are organized on the `desktop_web_app` and `mobile
         - [T721 Wallet Sign Transaction (`MUI8`)](#desktop_web_app.MUI8)
 - [`mobile_web_app`](#mobile_web_app)
     - [Support Warning (`UI1`)](#mobile_web_app.UI1)
+- [`companion_app`](#companion_app)
+    - [Identity Generation (`UI1`)](#companion_app.UI1)
+    - [Network Selection (`UI7`)](#companion_app.UI7)
+    - [Identity Generation (`UI1`)](#companion_app.UI1)
+        - [Network Creation (`UI8`)](#companion_app.UI8)
+    - [Account Binding (`UI2`)](#companion_app.UI2)
+    - [Main Navigation (`UI3`)](#companion_app.UI3)
+        - [Ticket List (`UI4`)](#companion_app.UI4)
+            - [Ticket Details (`UI5`)](#companion_app.UI5)
+        - [Companion Settings (`UI6`)](#companion_app.UI6)
     
 ---
 
@@ -1585,6 +1595,161 @@ This overview shows how views are organized on the `desktop_web_app` and `mobile
 | Hierarchy | `none` |
 | Part of | `#mobile_web_app.UI1` |
 | Unique ID | `#mobile_web_app.UI1.support_warning` |
+
+---
+---
+---
+
+<a name="companion_app"></a>
+### `companion_app`
+
+<a name="companion_app.UI1"></a>
+#### Depth 1 | Identity Generation (UI1)
+
+<div>
+    <img src="resources/ui/ui1_identity_generation.companion.png" width="45%"/>
+    <img src="resources/ui/ux1_identity_generation.companion.svg" width="45%"/>
+</div>
+
+| []() | |
+| :---: | :---: |
+| Name | Identity Generation |
+| Hierarchy | none |
+| Part of | `#companion_app.UI11` |
+| Unique ID | `#companion_app.UI1` |
+| Render Conditions | No Wallet generated and stored, no device ID recovered and stored |
+
+<a name="companion_app.UI7"></a>
+#### Depth 1 | Network Selection (UI7)
+
+<div>
+    <img src="resources/ui/ui7_network_selection.companion.png" width="45%"/>
+    <img src="resources/ui/ux7_network_selection.companion.svg" width="45%"/>
+</div>
+
+| []() | |
+| :---: | :---: |
+| Name | Network Selection |
+| Hierarchy | none |
+| Part of | `#companion_app.UI7` |
+| Unique ID | `#companion_app.UI7` |
+| Render Conditions | No Network selected |
+| Type | UI Element |
+| `2` : on click | Open Network creation form |
+| `3` : on click | Select specified network |
+
+<a name="companion_app.UI8"></a>
+#### Depth 2 | Network Creation (UI8)
+
+<div>
+    <img src="resources/ui/ui8_network_creation.companion.png" width="45%"/>
+    <img src="resources/ui/ux8_network_creation.companion.svg" width="45%"/>
+</div>
+
+| []() | |
+| :---: | :---: |
+| Name | Network Creation |
+| Hierarchy | `UI7` > |
+| Part of | `#companion_app.UI8` |
+| Unique ID | `#companion_app.UI8` |
+| Render Conditions | none |
+| Type | UI Element |
+| `8` : on click | Submit Network Creation form |
+
+<a name="companion_app.UI2"></a>
+#### Depth 1 | Account Binding (UI2)
+
+<div>
+    <img src="resources/ui/ui2_account_binding.companion.png" width="45%"/>
+    <img src="resources/ui/ux2_account_binding.companion.svg" width="45%"/>
+</div>
+
+| []() | |
+| :---: | :---: |
+| Name | Account Binding |
+| Hierarchy | none |
+| Part of | `#companion_app.UI2` |
+| Unique ID | `#companion_app.UI2` |
+| Render Conditions | none |
+
+<a name="companion_app.UI3"></a>
+#### Depth 1 | Main Navigation (UI3)
+
+<div>
+    <img src="resources/ui/ui3_main_navigation.companion.png" width="45%"/>
+    <img src="resources/ui/ux3_main_navigation.companion.svg" width="45%"/>
+</div>
+
+| []() | |
+| :---: | :---: |
+| Name | Main Navigation |
+| Hierarchy | none |
+| Part of | `#companion_app.UI3` |
+| Unique ID | `#companion_app.UI3` |
+| Render Conditions | none |
+| Type | UI Element |
+| `1` : on click | Navigate to Ticket List (`UI4`) |
+| `2` : on click | Navigate to Companion Settings (`UI6`) |
+
+<a name="companion_app.UI4"></a>
+#### Depth 2 | Ticket List (UI4)
+
+<div>
+    <img src="resources/ui/ui4_ticket_list.companion.png" width="45%"/>
+    <img src="resources/ui/ux4_ticket_list.companion.svg" width="45%"/>
+</div>
+
+| []() | |
+| :---: | :---: |
+| Name | Ticket List |
+| Hierarchy | `UI3` > |
+| Part of | `#companion_app.UI4` |
+| Unique ID | `#companion_app.UI4` |
+| Render Conditions | none |
+| Type | UI Element |
+| `3` : on click | Navigate to Ticket Details (`UI5`) |
+
+<a name="companion_app.UI5"></a>
+#### Depth 3 | Ticket Details (UI5)
+
+<div>
+    <img src="resources/ui/ui5_ticket_details.companion.png" width="45%"/>
+    <img src="resources/ui/ux5_ticket_details.companion.svg" width="45%"/>
+</div>
+
+| []() | |
+| :---: | :---: |
+| Name | Ticket Details |
+| Hierarchy | `UI3` > `UI4` > |
+| Part of | `#companion_app.UI5` |
+| Unique ID | `#companion_app.UI5` |
+| Render Conditions | none |
+| Type | UI Element |
+| `1` : on click | Navigate to Ticket List (`UI4`) |
+
+<a name="companion_app.UI6"></a>
+#### Depth 2 | Companion Settings (UI6)
+
+<div>
+    <img src="resources/ui/ui6_companion_settings.companion.png" width="45%"/>
+    <img src="resources/ui/ux6_companion_settings.companion.svg" width="45%"/>
+</div>
+
+| []() | |
+| :---: | :---: |
+| Name | Companion Settings |
+| Hierarchy | `UI3` > |
+| Part of | `#companion_app.UI6` |
+| Unique ID | `#companion_app.UI6` |
+| Render Conditions | none |
+| Type | UI Element |
+| `3` : on click | Trigger [Use Case Clear Storage (`T721COUS5`)](#T721COUS5) |
+| `5` : on click | Open T721 Telegram Group |
+| `6` : on click | Open T721 Twitter Page |
+| `7` : on click | Open T721 Slack Chat |
+| `8` : on click | Open T721 SPectrum Page |
+| `9` : on click | Open T721 Website |
+
 
 # 4. Analysis Model
 <a name="4_analysis_model"></a>
