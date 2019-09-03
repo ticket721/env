@@ -12,7 +12,7 @@
         "ios": {
             "bundleIdentifier": "com.ticket721.companion",
             "supportsTablet": true,
-            "buildNumber": "3"
+            "buildNumber": "4"
         },
         "android": {
             "package": "com.ticket721.companion"
