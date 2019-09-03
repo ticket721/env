@@ -240,6 +240,12 @@ The following diagrams define in details the System Operation Contracts.
     <img src="resources/t721-2_2_11_withdraw_event_funds_activity_diagram.svg"/>
 </div>
 
+#### Generate Ticket QR Codes
+
+<div style="text-align: center;">
+    <img src="resources/t721-2_2_12_generate_ticket_qr_codes_activity_diagram.svg"/>
+</div>
+
 ## 2.3. Implementation view 🛠
 <a name="2_3_implementation_view"></a>
 
