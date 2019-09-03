@@ -57,6 +57,7 @@
       9. [Deploy Event](#4_1_9_deploy_event)
       10. [Start Event](#4_1_10_start_event)
       11. [Withdraw Event Funds](#4_1_11_withdraw_event_funds)
+      11. [Generate Ticket QR Codes](#4_1_12_generate_ticket_qr_codes)
    2. [Domain Model 🧩](#4_2_domain_model)
 
 # 1. Introduction
@@ -550,6 +551,59 @@ The `Minter`, `Marketer` and `Approver` are three module types for an Event. Eac
 | Primary Actor | T721 User, T721 Organizer |
 | Preconditions | T721 User / Organizer has provided a valid Wallet to the app, T721 User / Organizer has provided a valid signature of the new username |
 | Postconditions | The username is modified |
+
+#### T721 Companion (T721COUC)
+
+<div style="text-align: center;">
+    <img src="resources/t721-3_1_2_8_t721_companion_use_case_view.svg" style="width:80%;max-width: 1000px;"/>
+</div>
+
+
+<a name="T721COUC1"></a>
+
+| []() | |
+| :---: | :---: |
+| Name | Link Companion to Wallet |
+| Code | T721COUC1 |
+| Importance | Non-Critical |
+| Primary Actor | T721 User |
+| Preconditions | |
+| Postconditions | Companion device is linked to main Wallet |
+
+
+<a name="T721COUC2"></a>
+
+| []() | |
+| :---: | :---: |
+| Name | List Owned Tickets |
+| Code | T721COUC2 |
+| Importance | Non-Critical |
+| Primary Actor | T721 User |
+| Preconditions | Companion device already linked to Wallet |
+| Postconditions | List of Tickets owned by linked Wallet is retrieved |
+
+<a name="T721COUC3"></a>
+
+| []() | |
+| :---: | :---: |
+| Name | Generate Ticket QR Codes |
+| Code | T721COUC3 |
+| Importance | Critical |
+| Primary Actor | T721 User |
+| Preconditions | Companion device already linked to Wallet, User selects Ticket to generate | codes  |
+Postconditions | A Dynamic QR Code is generated, changing every 5 seconds |
+
+<a name="T721COUC3"></a>
+
+| []() | |
+| :---: | :---: |
+| Name | Clear Storage |
+| Code | T721COUC4 |
+| Importance | Non-Critical |
+| Primary Actor | T721 User |
+| Preconditions | |
+| Postconditions | All locally stored Tickets are removed from storage |
+
 
 ## 3.2. Non-Functional Requirements
 <a name="3_2_non_functional_requirements"></a>
@@ -2073,6 +2127,39 @@ At any point, the owner can request withdrawal of the funds inside the Event con
 | | `amount` is lower or equal to the stored funds |
 | Postconditions | Event Contract funds are reduced by `amount` |
 | | User funds are increased buy `amount` |
+
+### 4.1.12 Generate Ticket QR Codes
+<a name="4_1_12_generate_ticket_qr_codes"></a>
+
+When Companion is properly linked, a T721 User will be able to generate Dynamic QR Codes. These QR Codes contains a cryptographic signature that prove the ticket’s ownership. The signature contains a timestamp, making it incredibly difficult to fraud as the signature has a limited life span.
+
+#### System Sequence Diagram
+
+<div style="text-align:center;">
+    <img src="resources/t721-4_1_12_1_generate_qr_codes_scenario.svg" style="width: 80%;max-width: 1000px;"/>
+</div>
+
+#### System Operation Contract
+
+<a name="CO15"></a>
+
+| []() | |
+| :---: | :---: |
+| Name | getTicketProof(ticket_id) |
+| Location | Companion |
+| Code | CO15 |
+| Preconditions | T721 User has provided a valid wallet |
+| Postconditions | A Signature of ticket_id is generated, a timestamp is also returned |
+
+<a name="CO16"></a>
+
+| []() | |
+| :---: | :---: |
+| Name | generateQRCode(signature, ticket_id, timestamp) |
+| Location | Companion |
+| Code | CO16 |
+| Preconditions | T721 User has provided a valid signature |
+| Postconditions | A QR Code is generated |
 
 ## 4.2 Domain Model 🧩
 <a name="4_2_domain_model"></a>
