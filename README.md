@@ -5,6 +5,7 @@ Complete Environment for ticket721
 | :---: | :---: |
 | [`docs`](./docs/README.md) | Documentation of the platform |
 | [`packages`](./packages/README.md) | Sources and docs of all tools built for T721 |
+| [`p2s`](./p2s) | History of major Product State Shiftings (p2s) |
 | [`contracts`](./contracts) | Smart Contracts of the platform |
 | [`network`](./network) | Set of utilities to handle all things related to the Ethereum Network |
 | [`server`](./server) | Server & API of the platform. Records and formats events and serves them to frontend. |
