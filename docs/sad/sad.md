@@ -29,6 +29,7 @@
     2. [Process view 🔀](#2_2_process_view)
     3. [Implementation view 🛠](#2_3_implementation_view)
         1. [EVM](#2_3_1_evm)
+        1. [Companion App](#2_3_2_companion_app)
     4. [Data view 🗄](#2_4_data_view)
     5. [Deployment view 🚀](#2_5_deployment_view)
         1. [Test infrastructure](#2_5_1_test_infrastructure)
@@ -256,6 +257,13 @@ The following diagrams define in details the System Operation Contracts.
     <img src="resources/t721-2_3_1_evm_implementation_view.svg"/>
 </div>
 
+### 2.3.2 Companion App
+<a name="2_3_2_companion_app"></a>
+
+<div style="text-align: center;">
+    <img src="resources/t721-2_3_2_companion_app_implementation_view.svg"/>
+</div>
+
 ## 2.4. Data view 🗄
 <a name="2_4_data_view"></a>
 
@@ -269,6 +277,12 @@ The following diagrams define in details the System Operation Contracts.
 
 <div style="text-align: center;">
     <img src="resources/t721-2_4_1_data_view_address.svg"/>
+</div>
+
+### Companion
+
+<div style="text-align: center;">
+    <img src="resources/t721-2_4_1_data_view_companion.svg"/>
 </div>
 
 ### Event & Queuedevent
