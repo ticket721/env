@@ -1,7 +1,9 @@
-import { EIP712DomainType, EIP712Payload, EIP712Signer } from './EIP712Signer';
+import { EIP712DomainType, EIP712Payload, EIP712Signer, EIP712Signature } from './EIP712Signer';
 import * as ESU                                          from 'eth-sig-util';
 import { expect }                                        from 'chai';
 import { Wallet }                                        from 'ethers';
+
+const primaryType = 'Mail';
 
 const UselessType = [
     {
@@ -65,8 +67,6 @@ const domain = {
     verifyingContract: '0xe4937b3fead67f09f5f15b0a1991a588f7be54ca'
 };
 
-const primaryType = 'Mail';
-
 const payload = {
     from: {
         name: 'lol',
@@ -100,7 +100,6 @@ class UnbuildableEtherMail extends EIP712Signer {
     constructor() {
         super(
             domain,
-            primaryType,
             ['Mail', Mail],
             ['Person', Person],
             ['EIP712Domain', EIP712DomainType]
@@ -113,7 +112,6 @@ class EtherMail extends EIP712Signer {
     constructor() {
         super(
             domain,
-            primaryType,
             ['Mail', Mail],
             ['Person', Person],
             ['UselessType', UselessType]
@@ -186,7 +184,7 @@ describe('e712 tests', (): void => {
 
     });
 
-    it('IP712Signer - hashData', (): void => {
+    it('EIP712Signer - hashData', (): void => {
 
         const em = new EtherMail();
 
@@ -235,7 +233,6 @@ describe('e712 tests', (): void => {
             message: payload,
             primaryType: 'EIP712Domain',
             types: {
-                ...types,
                 EIP712Domain: EIP712DomainType
             }
         };
@@ -562,7 +559,6 @@ describe('e712 tests', (): void => {
             message: payload,
             primaryType: 'EIP712Domain',
             types: {
-                ...types,
                 EIP712Domain: [
                     ...EIP712DomainType
                 ]
@@ -643,7 +639,7 @@ describe('e712 tests', (): void => {
 
         expect(ESU.recoverTypedSignature_v4({
             data: formatted_payload,
-            sig: signature
+            sig: signature.hex
         }).toLowerCase()).to.equal(ew.address.toLowerCase());
 
     });
@@ -667,7 +663,7 @@ describe('e712 tests', (): void => {
 
         expect(ESU.recoverTypedSignature_v4({
             data: formatted_payload,
-            sig: signature
+            sig: signature.hex
         }).toLowerCase()).to.equal(ew.address.toLowerCase());
 
     });
@@ -711,7 +707,7 @@ describe('e712 tests', (): void => {
         };
 
         const signature = await em.sign(ew.privateKey, formatted_payload, true);
-        expect((await em.verify(formatted_payload, signature)).toLowerCase()).to.equal(ew.address.toLowerCase());
+        expect((await em.verify(formatted_payload, signature.hex)).toLowerCase()).to.equal(ew.address.toLowerCase());
 
     });
 
@@ -720,10 +716,10 @@ describe('e712 tests', (): void => {
         const ew = Wallet.createRandom();
         const em = new EtherMail();
 
-        const formatted_payload = em.generatePayload(payload);
+        const formatted_payload = em.generatePayload(payload, 'Mail');
 
         const signature = await em.sign(ew.privateKey, formatted_payload, true);
-        expect((await em.verify(formatted_payload, signature)).toLowerCase()).to.equal(ew.address.toLowerCase());
+        expect((await em.verify(formatted_payload, signature.hex)).toLowerCase()).to.equal(ew.address.toLowerCase());
 
     });
 
@@ -866,7 +862,6 @@ describe('e712 tests', (): void => {
             constructor() {
                 super(
                     domain,
-                    primaryType,
                     ['User', User]
                 );
             }
@@ -879,7 +874,7 @@ describe('e712 tests', (): void => {
                 this.age = age;
             }
 
-            getSignature(privateKey: string): Promise<string> {
+            getSignature(privateKey: string): Promise<EIP712Signature> {
 
                 const payload = this.getPayload();
 
@@ -896,7 +891,7 @@ describe('e712 tests', (): void => {
                     age: this.age
                 };
 
-                const original_payload = this.generatePayload(message_paylaod);
+                const original_payload = this.generatePayload(message_paylaod, 'User');
 
                 return this.verify(original_payload, signature);
             }
@@ -908,7 +903,7 @@ describe('e712 tests', (): void => {
                     age: this.age
                 };
 
-                return this.generatePayload(message_paylaod);
+                return this.generatePayload(message_paylaod, 'User');
             }
 
         }
@@ -942,7 +937,7 @@ describe('e712 tests', (): void => {
         const lastName = 'Doe';
         const age = 22;
 
-        const signer = await user_infos.getSignerAddress(firstName, lastName, age, signature);
+        const signer = await user_infos.getSignerAddress(firstName, lastName, age, signature.hex);
 
         console.log('Signature signed by ', signer);
 

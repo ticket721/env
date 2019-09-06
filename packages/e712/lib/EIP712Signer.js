@@ -90,11 +90,11 @@ var EIP712Signer = /** @class */ (function () {
      * @param primary_type Primary Type to use
      * @param types Arrays containing name and fields
      */
-    function EIP712Signer(domain, primary_type) {
+    function EIP712Signer(domain) {
         var e_1, _a;
         var types = [];
-        for (var _i = 2; _i < arguments.length; _i++) {
-            types[_i - 2] = arguments[_i];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            types[_i - 1] = arguments[_i];
         }
         /**
          * All types of current Signer
@@ -112,31 +112,10 @@ var EIP712Signer = /** @class */ (function () {
             chainId: null
         };
         /**
-         * Mandatory pimaryType field
-         */
-        this.primaryType = null;
-        /**
          * Required for checks
          */
         this.REQUIRED_FIELDS = ['domain', 'types', 'message', 'primaryType'];
-        /**
-         * Interprets a `Buffer` as a signed integer and returns a `BN`. Assumes 256-bit numbers.
-         *
-         * @param num Signed integer value
-         */
-        this._fromSigned = function (num) {
-            return new bn_js_1.BN(Buffer.from(num.slice(2), 'hex')).fromTwos(256);
-        };
-        /**
-         * Converts a `BN` to an unsigned integer and returns it as a `Buffer`. Assumes 256-bit numbers.
-         *
-         * @param num
-         */
-        this._toUnsigned = function (num) {
-            return Buffer.from(num.toTwos(256).toArray());
-        };
         this._setDomain(domain);
-        this._setPrimaryType(primary_type);
         try {
             for (var types_1 = __values(types), types_1_1 = types_1.next(); !types_1_1.done; types_1_1 = types_1.next()) {
                 var type = types_1_1.value;
@@ -172,15 +151,6 @@ var EIP712Signer = /** @class */ (function () {
      */
     EIP712Signer.prototype._setDomain = function (domain) {
         this.domain = domain;
-    };
-    /**
-     * Sets the primary type field
-     *
-     * @param ptype Primary type name
-     * @private
-     */
-    EIP712Signer.prototype._setPrimaryType = function (ptype) {
-        this.primaryType = ptype;
     };
     /**
      * Encodes a single field. Works by calling itself recursively for complexe types or arrays
@@ -333,13 +303,30 @@ var EIP712Signer = /** @class */ (function () {
      * @private
      */
     EIP712Signer.prototype._verifyTypes = function (payload) {
-        var e_5, _a, e_6, _b;
-        if (Object.keys(payload.types).length !== Object.keys(this.structs).length) {
-            throw new Error("Invalid Types in given payload: got " + Object.keys(payload.types) + ", expect " + Object.keys(this.structs));
+        var e_5, _a, e_6, _b, e_7, _c;
+        var primary_type_dependencies = this._getDependenciesOf(payload.primaryType);
+        var required_types = {
+            'EIP712Domain': this.structs['EIP712Domain']
+        };
+        try {
+            for (var primary_type_dependencies_1 = __values(primary_type_dependencies), primary_type_dependencies_1_1 = primary_type_dependencies_1.next(); !primary_type_dependencies_1_1.done; primary_type_dependencies_1_1 = primary_type_dependencies_1.next()) {
+                var dep = primary_type_dependencies_1_1.value;
+                required_types[dep] = this.structs[dep];
+            }
+        }
+        catch (e_5_1) { e_5 = { error: e_5_1 }; }
+        finally {
+            try {
+                if (primary_type_dependencies_1_1 && !primary_type_dependencies_1_1.done && (_a = primary_type_dependencies_1.return)) _a.call(primary_type_dependencies_1);
+            }
+            finally { if (e_5) throw e_5.error; }
+        }
+        if (Object.keys(payload.types).length !== Object.keys(required_types).length) {
+            throw new Error("Invalid Types in given payload: got " + Object.keys(payload.types) + ", expect " + Object.keys(required_types));
         }
         try {
-            for (var _c = __values(Object.keys(payload.types)), _d = _c.next(); !_d.done; _d = _c.next()) {
-                var type = _d.value;
+            for (var _d = __values(Object.keys(payload.types)), _e = _d.next(); !_e.done; _e = _d.next()) {
+                var type = _e.value;
                 if (!this.structs[type])
                     throw new Error("Unknown type " + type);
                 var current_type = payload.types[type];
@@ -352,26 +339,26 @@ var EIP712Signer = /** @class */ (function () {
                         throw new Error("Error in " + type + " type: mismatch in field types: got " + field.type + ", expected " + registered_current_type[eq_idx].type);
                 };
                 try {
-                    for (var current_type_1 = (e_6 = void 0, __values(current_type)), current_type_1_1 = current_type_1.next(); !current_type_1_1.done; current_type_1_1 = current_type_1.next()) {
+                    for (var current_type_1 = (e_7 = void 0, __values(current_type)), current_type_1_1 = current_type_1.next(); !current_type_1_1.done; current_type_1_1 = current_type_1.next()) {
                         var field = current_type_1_1.value;
                         _loop_1(field);
                     }
                 }
-                catch (e_6_1) { e_6 = { error: e_6_1 }; }
+                catch (e_7_1) { e_7 = { error: e_7_1 }; }
                 finally {
                     try {
-                        if (current_type_1_1 && !current_type_1_1.done && (_b = current_type_1.return)) _b.call(current_type_1);
+                        if (current_type_1_1 && !current_type_1_1.done && (_c = current_type_1.return)) _c.call(current_type_1);
                     }
-                    finally { if (e_6) throw e_6.error; }
+                    finally { if (e_7) throw e_7.error; }
                 }
             }
         }
-        catch (e_5_1) { e_5 = { error: e_5_1 }; }
+        catch (e_6_1) { e_6 = { error: e_6_1 }; }
         finally {
             try {
-                if (_d && !_d.done && (_a = _c.return)) _a.call(_c);
+                if (_e && !_e.done && (_b = _d.return)) _b.call(_d);
             }
-            finally { if (e_5) throw e_5.error; }
+            finally { if (e_6) throw e_6.error; }
         }
     };
     /**
@@ -381,7 +368,7 @@ var EIP712Signer = /** @class */ (function () {
      * @private
      */
     EIP712Signer.prototype._verifyDomain = function (payload) {
-        var e_7, _a;
+        var e_8, _a;
         try {
             for (var _b = __values(this.structs['EIP712Domain']), _c = _b.next(); !_c.done; _c = _b.next()) {
                 var field = _c.value;
@@ -389,12 +376,12 @@ var EIP712Signer = /** @class */ (function () {
                     throw new Error("Missing field in domain: " + field.name);
             }
         }
-        catch (e_7_1) { e_7 = { error: e_7_1 }; }
+        catch (e_8_1) { e_8 = { error: e_8_1 }; }
         finally {
             try {
                 if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
             }
-            finally { if (e_7) throw e_7.error; }
+            finally { if (e_8) throw e_8.error; }
         }
     };
     /**
@@ -404,8 +391,8 @@ var EIP712Signer = /** @class */ (function () {
      * @private
      */
     EIP712Signer.prototype._verifyPrimaryType = function (payload) {
-        if (this.primaryType !== payload.primaryType && payload.primaryType !== 'EIP712Domain') {
-            throw new Error("Mismatch in primary types: expected " + this.primaryType + ", got " + payload.primaryType);
+        if (!this.structs[payload.primaryType]) {
+            throw new Error("Invalid primary type " + payload.primaryType + ": unknown type");
         }
     };
     /**
@@ -415,7 +402,7 @@ var EIP712Signer = /** @class */ (function () {
      * @private
      */
     EIP712Signer.prototype._verifyMainPayloadField = function (payload) {
-        var e_8, _a;
+        var e_9, _a;
         if (Object.keys(payload).length !== this.REQUIRED_FIELDS.length) {
             throw new Error("Invalid payload: has fields " + Object.keys(payload) + ", should have " + this.REQUIRED_FIELDS);
         }
@@ -427,13 +414,29 @@ var EIP712Signer = /** @class */ (function () {
                 }
             }
         }
-        catch (e_8_1) { e_8 = { error: e_8_1 }; }
+        catch (e_9_1) { e_9 = { error: e_9_1 }; }
         finally {
             try {
                 if (_c && !_c.done && (_a = _b.return)) _a.call(_b);
             }
-            finally { if (e_8) throw e_8.error; }
+            finally { if (e_9) throw e_9.error; }
         }
+    };
+    /**
+     * Interprets a `Buffer` as a signed integer and returns a `BN`. Assumes 256-bit numbers.
+     *
+     * @param num Signed integer value
+     */
+    EIP712Signer.prototype._fromSigned = function (num) {
+        return new bn_js_1.BN(Buffer.from(num.slice(2), 'hex')).fromTwos(256);
+    };
+    /**
+     * Converts a `BN` to an unsigned integer and returns it as a `Buffer`. Assumes 256-bit numbers.
+     *
+     * @param num
+     */
+    EIP712Signer.prototype._toUnsigned = function (num) {
+        return Buffer.from(num.toTwos(256).toArray());
     };
     /**
      * Pads provided string value to match provided length value.
@@ -504,7 +507,12 @@ var EIP712Signer = /** @class */ (function () {
                 rStr = EIP712Signer._padWithZeroes(this._toUnsigned(rSig).toString('hex'), 64);
                 sStr = EIP712Signer._padWithZeroes(this._toUnsigned(sSig).toString('hex'), 64);
                 vStr = vSig.toString(16);
-                return [2 /*return*/, "0x" + rStr + sStr + vStr];
+                return [2 /*return*/, {
+                        hex: "0x" + rStr + sStr + vStr,
+                        v: vSig,
+                        r: rStr,
+                        s: sStr
+                    }];
             });
         });
     };
@@ -529,12 +537,30 @@ var EIP712Signer = /** @class */ (function () {
      * Helper that generates a complete payload, ready for signature (should work with web3, metamask etc)
      *
      * @param data Message field in the generated payload
+     * @param primaryType Main type of given data
      */
-    EIP712Signer.prototype.generatePayload = function (data) {
+    EIP712Signer.prototype.generatePayload = function (data, primaryType) {
+        var e_10, _a;
+        var dependencies = this._getDependenciesOf(primaryType);
+        var types = {};
+        try {
+            for (var dependencies_2 = __values(dependencies), dependencies_2_1 = dependencies_2.next(); !dependencies_2_1.done; dependencies_2_1 = dependencies_2.next()) {
+                var dep = dependencies_2_1.value;
+                types[dep] = this.structs[dep];
+            }
+        }
+        catch (e_10_1) { e_10 = { error: e_10_1 }; }
+        finally {
+            try {
+                if (dependencies_2_1 && !dependencies_2_1.done && (_a = dependencies_2.return)) _a.call(dependencies_2);
+            }
+            finally { if (e_10) throw e_10.error; }
+        }
+        types['EIP712Domain'] = this.structs['EIP712Domain'];
         return {
             domain: this.domain,
-            primaryType: this.primaryType,
-            types: this.structs,
+            primaryType: primaryType,
+            types: types,
             message: data
         };
     };

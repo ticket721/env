@@ -29,9 +29,9 @@ This class should be extended by a custom class.
 
 ###  constructor
 
-\+ **new EIP712Signer**(`domain`: [EIP712Domain](../interfaces/_eip712signer_.eip712domain.md), `primary_type`: string, ...`types`: [string, [EIP712Struct](../modules/_eip712signer_.md#eip712struct)][]): *[EIP712Signer](_eip712signer_.eip712signer.md)*
+\+ **new EIP712Signer**(`domain`: [EIP712Domain](../interfaces/_eip712signer_.eip712domain.md), ...`types`: [string, [EIP712Struct](../modules/_eip712signer_.md#eip712struct)][]): *[EIP712Signer](_eip712signer_.eip712signer.md)*
 
-*Defined in [EIP712Signer.ts:381](https://github.com/ticket721/env/blob/5c085aa/packages/e712/sources/EIP712Signer.ts#L381)*
+*Defined in [EIP712Signer.ts:383](https://github.com/ticket721/env/blob/d31f6a3/packages/e712/sources/EIP712Signer.ts#L383)*
 
 Sets all information related to the signatures that will be generated.
 
@@ -40,7 +40,6 @@ Sets all information related to the signatures that will be generated.
 Name | Type | Description |
 ------ | ------ | ------ |
 `domain` | [EIP712Domain](../interfaces/_eip712signer_.eip712domain.md) | Domain structure |
-`primary_type` | string | Primary Type to use |
 `...types` | [string, [EIP712Struct](../modules/_eip712signer_.md#eip712struct)][] | Arrays containing name and fields  |
 
 **Returns:** *[EIP712Signer](_eip712signer_.eip712signer.md)*
@@ -51,7 +50,7 @@ Name | Type | Description |
 
 ▸ **encode**(`payload`: [EIP712Payload](../interfaces/_eip712signer_.eip712payload.md), `verify`: boolean): *string*
 
-*Defined in [EIP712Signer.ts:424](https://github.com/ticket721/env/blob/5c085aa/packages/e712/sources/EIP712Signer.ts#L424)*
+*Defined in [EIP712Signer.ts:425](https://github.com/ticket721/env/blob/d31f6a3/packages/e712/sources/EIP712Signer.ts#L425)*
 
 Encode the given payload
 
@@ -68,9 +67,9 @@ ___
 
 ###  generatePayload
 
-▸ **generatePayload**(`data`: any): *[EIP712Payload](../interfaces/_eip712signer_.eip712payload.md)*
+▸ **generatePayload**(`data`: any, `primaryType`: string): *[EIP712Payload](../interfaces/_eip712signer_.eip712payload.md)*
 
-*Defined in [EIP712Signer.ts:489](https://github.com/ticket721/env/blob/5c085aa/packages/e712/sources/EIP712Signer.ts#L489)*
+*Defined in [EIP712Signer.ts:496](https://github.com/ticket721/env/blob/d31f6a3/packages/e712/sources/EIP712Signer.ts#L496)*
 
 Helper that generates a complete payload, ready for signature (should work with web3, metamask etc)
 
@@ -78,7 +77,8 @@ Helper that generates a complete payload, ready for signature (should work with 
 
 Name | Type | Description |
 ------ | ------ | ------ |
-`data` | any | Message field in the generated payload  |
+`data` | any | Message field in the generated payload |
+`primaryType` | string | Main type of given data  |
 
 **Returns:** *[EIP712Payload](../interfaces/_eip712signer_.eip712payload.md)*
 
@@ -86,9 +86,9 @@ ___
 
 ###  sign
 
-▸ **sign**(`privateKey`: string, `payload`: [EIP712Payload](../interfaces/_eip712signer_.eip712payload.md), `verify`: boolean): *Promise‹string›*
+▸ **sign**(`privateKey`: string, `payload`: [EIP712Payload](../interfaces/_eip712signer_.eip712payload.md), `verify`: boolean): *Promise‹[EIP712Signature](../interfaces/_eip712signer_.eip712signature.md)›*
 
-*Defined in [EIP712Signer.ts:454](https://github.com/ticket721/env/blob/5c085aa/packages/e712/sources/EIP712Signer.ts#L454)*
+*Defined in [EIP712Signer.ts:455](https://github.com/ticket721/env/blob/d31f6a3/packages/e712/sources/EIP712Signer.ts#L455)*
 
 Sign the given payload
 
@@ -100,7 +100,7 @@ Name | Type | Default | Description |
 `payload` | [EIP712Payload](../interfaces/_eip712signer_.eip712payload.md) | - | Payload to sign |
 `verify` | boolean | false | True if verifications should be made  |
 
-**Returns:** *Promise‹string›*
+**Returns:** *Promise‹[EIP712Signature](../interfaces/_eip712signer_.eip712signature.md)›*
 
 ___
 
@@ -108,7 +108,7 @@ ___
 
 ▸ **verify**(`payload`: [EIP712Payload](../interfaces/_eip712signer_.eip712payload.md), `signature`: string, `verify`: boolean): *Promise‹string›*
 
-*Defined in [EIP712Signer.ts:478](https://github.com/ticket721/env/blob/5c085aa/packages/e712/sources/EIP712Signer.ts#L478)*
+*Defined in [EIP712Signer.ts:484](https://github.com/ticket721/env/blob/d31f6a3/packages/e712/sources/EIP712Signer.ts#L484)*
 
 Verifies the given signature
 
@@ -128,7 +128,7 @@ ___
 
 ▸ **verifyPayload**(`payload`: [EIP712Payload](../interfaces/_eip712signer_.eip712payload.md)): *void*
 
-*Defined in [EIP712Signer.ts:410](https://github.com/ticket721/env/blob/5c085aa/packages/e712/sources/EIP712Signer.ts#L410)*
+*Defined in [EIP712Signer.ts:411](https://github.com/ticket721/env/blob/d31f6a3/packages/e712/sources/EIP712Signer.ts#L411)*
 
 Throws if provided payload does not match current settings
 

@@ -30,6 +30,12 @@ export interface EIP712Payload {
     message: any;
     domain: EIP712Domain;
 }
+export interface EIP712Signature {
+    hex: string;
+    v: number;
+    s: string;
+    r: string;
+}
 /**
  * EIP712Domain Type, useful as it is always required inside the payload for the signature
  */
@@ -51,13 +57,9 @@ export declare class EIP712Signer {
      */
     private domain;
     /**
-     * Mandatory pimaryType field
-     */
-    private primaryType;
-    /**
      * Required for checks
      */
-    private REQUIRED_FIELDS;
+    private readonly REQUIRED_FIELDS;
     /**
      * Adds provided type to type list
      *
@@ -73,13 +75,6 @@ export declare class EIP712Signer {
      * @private
      */
     private _setDomain;
-    /**
-     * Sets the primary type field
-     *
-     * @param ptype Primary type name
-     * @private
-     */
-    private _setPrimaryType;
     /**
      * Encodes a single field. Works by calling itself recursively for complexe types or arrays
      *
@@ -182,7 +177,7 @@ export declare class EIP712Signer {
      * @param primary_type Primary Type to use
      * @param types Arrays containing name and fields
      */
-    constructor(domain: EIP712Domain, primary_type: string, ...types: [string, EIP712Struct][]);
+    constructor(domain: EIP712Domain, ...types: [string, EIP712Struct][]);
     /**
      * Throws if provided payload does not match current settings
      *
@@ -203,7 +198,7 @@ export declare class EIP712Signer {
      * @param payload Payload to sign
      * @param verify True if verifications should be made
      */
-    sign(privateKey: string, payload: EIP712Payload, verify?: boolean): Promise<string>;
+    sign(privateKey: string, payload: EIP712Payload, verify?: boolean): Promise<EIP712Signature>;
     /**
      * Verifies the given signature
      *
@@ -216,6 +211,7 @@ export declare class EIP712Signer {
      * Helper that generates a complete payload, ready for signature (should work with web3, metamask etc)
      *
      * @param data Message field in the generated payload
+     * @param primaryType Main type of given data
      */
-    generatePayload(data: any): EIP712Payload;
+    generatePayload(data: any, primaryType: string): EIP712Payload;
 }
