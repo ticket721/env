@@ -52,8 +52,6 @@ const domain = {
     verifyingContract: '0xe4937b3fead67f09f5f15b0a1991a588f7be54ca'
 };
 
-const primaryType = 'User';
-
 class UserInfos extends EIP712Signer {
 
     private firstName: string = null;
@@ -63,7 +61,6 @@ class UserInfos extends EIP712Signer {
     constructor() {
         super(
             domain,
-            primaryType,
             ['User', User]
         );
     }
@@ -90,7 +87,7 @@ class UserInfos extends EIP712Signer {
             age: this.age
         };
 
-        return this.generatePayload(message_paylaod);
+        return this.generatePayload(message_paylaod, 'User');
     }
 
     /**
@@ -123,7 +120,7 @@ class UserInfos extends EIP712Signer {
             age: this.age
         };
 
-        const original_payload = this.generatePayload(message_paylaod);
+        const original_payload = this.generatePayload(message_paylaod, 'User');
 
         return this.verify(original_payload, signature);
     }

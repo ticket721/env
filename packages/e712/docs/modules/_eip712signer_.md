@@ -14,6 +14,7 @@
 
 * [EIP712Domain](../interfaces/_eip712signer_.eip712domain.md)
 * [EIP712Payload](../interfaces/_eip712signer_.eip712payload.md)
+* [EIP712Signature](../interfaces/_eip712signer_.eip712signature.md)
 * [EIP712StructField](../interfaces/_eip712signer_.eip712structfield.md)
 
 ### Type aliases
@@ -31,7 +32,7 @@
 
 Ƭ **EIP712Struct**: *[EIP712StructField](../interfaces/_eip712signer_.eip712structfield.md)[]*
 
-*Defined in [EIP712Signer.ts:15](https://github.com/ticket721/env/blob/5c085aa/packages/e712/sources/EIP712Signer.ts#L15)*
+*Defined in [EIP712Signer.ts:15](https://github.com/ticket721/env/blob/d31f6a3/packages/e712/sources/EIP712Signer.ts#L15)*
 
 User Defined Types are just an array of the fields they contain
 
@@ -41,7 +42,7 @@ User Defined Types are just an array of the fields they contain
 
 • **B32Z**: *"0x0000000000000000000000000000000000000000000000000000000000000000"* = "0x0000000000000000000000000000000000000000000000000000000000000000"
 
-*Defined in [EIP712Signer.ts:64](https://github.com/ticket721/env/blob/5c085aa/packages/e712/sources/EIP712Signer.ts#L64)*
+*Defined in [EIP712Signer.ts:71](https://github.com/ticket721/env/blob/d31f6a3/packages/e712/sources/EIP712Signer.ts#L71)*
 
 Byte32 zero value
 
@@ -68,6 +69,6 @@ ___
     }
 ]
 
-*Defined in [EIP712Signer.ts:42](https://github.com/ticket721/env/blob/5c085aa/packages/e712/sources/EIP712Signer.ts#L42)*
+*Defined in [EIP712Signer.ts:49](https://github.com/ticket721/env/blob/d31f6a3/packages/e712/sources/EIP712Signer.ts#L49)*
 
 EIP712Domain Type, useful as it is always required inside the payload for the signature

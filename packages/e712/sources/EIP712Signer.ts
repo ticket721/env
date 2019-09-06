@@ -1,5 +1,5 @@
 import { utils } from 'ethers';
-import { BN }    from 'bn.js';
+import { BN } from 'bn.js';
 
 /**
  * Field in a User Defined Types
@@ -34,6 +34,13 @@ export interface EIP712Payload {
     primaryType: string;
     message: any;
     domain: EIP712Domain;
+}
+
+export interface EIP712Signature {
+    hex: string;
+    v: number;
+    s: string;
+    r: string;
 }
 
 /**
@@ -87,11 +94,6 @@ export class EIP712Signer {
     };
 
     /**
-     * Mandatory pimaryType field
-     */
-    private primaryType: string = null;
-
-    /**
      * Required for checks
      */
     private readonly REQUIRED_FIELDS: string[] = ['domain', 'types', 'message', 'primaryType'];
@@ -118,16 +120,6 @@ export class EIP712Signer {
      */
     private _setDomain(domain: EIP712Domain): void {
         this.domain = domain;
-    }
-
-    /**
-     * Sets the primary type field
-     *
-     * @param ptype Primary type name
-     * @private
-     */
-    private _setPrimaryType(ptype: string): void {
-        this.primaryType = ptype;
     }
 
     /**
@@ -282,8 +274,18 @@ export class EIP712Signer {
      * @private
      */
     private _verifyTypes(payload: EIP712Payload): void {
-        if (Object.keys(payload.types).length !== Object.keys(this.structs).length) {
-            throw new Error(`Invalid Types in given payload: got ${Object.keys(payload.types)}, expect ${Object.keys(this.structs)}`);
+
+        const primary_type_dependencies = this._getDependenciesOf(payload.primaryType);
+        const required_types = {
+            'EIP712Domain': this.structs['EIP712Domain']
+        };
+
+        for (const dep of primary_type_dependencies) {
+            required_types[dep] = this.structs[dep];
+        }
+
+        if (Object.keys(payload.types).length !== Object.keys(required_types).length) {
+            throw new Error(`Invalid Types in given payload: got ${Object.keys(payload.types)}, expect ${Object.keys(required_types)}`);
         }
 
         for (const type of Object.keys(payload.types)) {
@@ -322,8 +324,8 @@ export class EIP712Signer {
      * @private
      */
     private _verifyPrimaryType(payload: EIP712Payload): void {
-        if (this.primaryType !== payload.primaryType && payload.primaryType !== 'EIP712Domain') {
-            throw new Error(`Mismatch in primary types: expected ${this.primaryType}, got ${payload.primaryType}`);
+        if (!this.structs[payload.primaryType]) {
+            throw new Error(`Invalid primary type ${payload.primaryType}: unknown type`);
         }
     }
 
@@ -380,12 +382,12 @@ export class EIP712Signer {
         return myString;
     }
 
-//    ______      _     _ _        _____      _             __
-//    | ___ \    | |   | (_)      |_   _|    | |           / _|
-//    | |_/ /   _| |__ | |_  ___    | | _ __ | |_ ___ _ __| |_ __ _  ___ ___
-//    |  __/ | | | '_ \| | |/ __|   | || '_ \| __/ _ \ '__|  _/ _` |/ __/ _ \
-//    | |  | |_| | |_) | | | (__   _| || | | | ||  __/ |  | || (_| | (_|  __/
-//    \_|   \__,_|_.__/|_|_|\___|  \___/_| |_|\__\___|_|  |_| \__,_|\___\___|
+    //    ______      _     _ _        _____      _             __
+    //    | ___ \    | |   | (_)      |_   _|    | |           / _|
+    //    | |_/ /   _| |__ | |_  ___    | | _ __ | |_ ___ _ __| |_ __ _  ___ ___
+    //    |  __/ | | | '_ \| | |/ __|   | || '_ \| __/ _ \ '__|  _/ _` |/ __/ _ \
+    //    | |  | |_| | |_) | | | (__   _| || | | | ||  __/ |  | || (_| | (_|  __/
+    //    \_|   \__,_|_.__/|_|_|\___|  \___/_| |_|\__\___|_|  |_| \__,_|\___\___|
 
     /**
      * Sets all information related to the signatures that will be generated.
@@ -394,9 +396,8 @@ export class EIP712Signer {
      * @param primary_type Primary Type to use
      * @param types Arrays containing name and fields
      */
-    public constructor(domain: EIP712Domain, primary_type: string, ...types: [string, EIP712Struct][]) {
+    public constructor(domain: EIP712Domain, ...types: [string, EIP712Struct][]) {
         this._setDomain(domain);
-        this._setPrimaryType(primary_type);
         for (const type of types) {
             this._addType(type[0], type[1]);
         }
@@ -451,7 +452,7 @@ export class EIP712Signer {
      * @param payload Payload to sign
      * @param verify True if verifications should be made
      */
-    public async sign(privateKey: string, payload: EIP712Payload, verify: boolean = false): Promise<string> {
+    public async sign(privateKey: string, payload: EIP712Payload, verify: boolean = false): Promise<EIP712Signature> {
         const sk = new utils.SigningKey(privateKey);
 
         const encoded_payload = this.encode(payload, verify);
@@ -465,7 +466,12 @@ export class EIP712Signer {
         const sStr = EIP712Signer._padWithZeroes(this._toUnsigned(sSig).toString('hex'), 64);
         const vStr = vSig.toString(16);
 
-        return `0x${rStr}${sStr}${vStr}`;
+        return {
+            hex: `0x${rStr}${sStr}${vStr}`,
+            v: vSig,
+            r: rStr,
+            s: sStr
+        };
     }
 
     /**
@@ -485,13 +491,23 @@ export class EIP712Signer {
      * Helper that generates a complete payload, ready for signature (should work with web3, metamask etc)
      *
      * @param data Message field in the generated payload
+     * @param primaryType Main type of given data
      */
-    public generatePayload(data: any): EIP712Payload {
+    public generatePayload(data: any, primaryType: string): EIP712Payload {
+
+        const dependencies = this._getDependenciesOf(primaryType);
+        const types = {};
+
+        for (const dep of dependencies) {
+            types[dep] = this.structs[dep];
+        }
+
+        types['EIP712Domain'] = this.structs['EIP712Domain'];
 
         return {
             domain: this.domain,
-            primaryType: this.primaryType,
-            types: this.structs,
+            primaryType,
+            types,
             message: data
         };
 
