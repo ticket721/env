@@ -56,6 +56,7 @@ module.exports = {
                     address: formatted_address,
                     admin: false,
                     event: false,
+                    companion: false,
                     username: user.username
                 });
             } else {
