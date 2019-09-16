@@ -23,7 +23,7 @@
 
 • **hex**: *string*
 
-*Defined in [EIP712Signer.ts:40](https://github.com/ticket721/env/blob/d31f6a3/packages/e712/sources/EIP712Signer.ts#L40)*
+*Defined in [EIP712Signer.ts:40](https://github.com/ticket721/env/blob/a0cc00d/packages/e712/sources/EIP712Signer.ts#L40)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 • **r**: *string*
 
-*Defined in [EIP712Signer.ts:43](https://github.com/ticket721/env/blob/d31f6a3/packages/e712/sources/EIP712Signer.ts#L43)*
+*Defined in [EIP712Signer.ts:43](https://github.com/ticket721/env/blob/a0cc00d/packages/e712/sources/EIP712Signer.ts#L43)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 • **s**: *string*
 
-*Defined in [EIP712Signer.ts:42](https://github.com/ticket721/env/blob/d31f6a3/packages/e712/sources/EIP712Signer.ts#L42)*
+*Defined in [EIP712Signer.ts:42](https://github.com/ticket721/env/blob/a0cc00d/packages/e712/sources/EIP712Signer.ts#L42)*
 
 ___
 
@@ -47,4 +47,4 @@ ___
 
 • **v**: *number*
 
-*Defined in [EIP712Signer.ts:41](https://github.com/ticket721/env/blob/d31f6a3/packages/e712/sources/EIP712Signer.ts#L41)*
+*Defined in [EIP712Signer.ts:41](https://github.com/ticket721/env/blob/a0cc00d/packages/e712/sources/EIP712Signer.ts#L41)*

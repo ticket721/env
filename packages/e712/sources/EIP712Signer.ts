@@ -146,6 +146,12 @@ export class EIP712Signer {
             return ['bytes32', utils.keccak256(Buffer.from(value, 'utf8'))];
         }
 
+        if (type === 'uint256') {
+            if (typeof value === 'object') {
+                value = value.toString();
+            }
+        }
+
         // If ends by [], it's an array
         if (type.lastIndexOf('[]') === type.length - 2) {
             const extracted_type = type.slice(0, type.lastIndexOf('[]'));

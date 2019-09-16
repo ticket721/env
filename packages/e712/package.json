@@ -1,6 +1,6 @@
 {
     "name": "@ticket721/e712",
-    "version": "0.1.3",
+    "version": "0.1.4",
     "description": "Pure Typescript/Javascript implementation of the Ethereum Improvement Proposal 712",
     "keywords": [
         "ethereum",
@@ -11,7 +11,7 @@
     "author": "Iulian Rotaru <iulian@rotaru.fr> (mortimr)",
     "homepage": "https://github.com/ticket721/env/tree/master/packages/e712#readme",
     "license": "MIT",
-    "main": "lib/EIP712Signer.js",
+    "main": "lib/index.js",
     "repository": {
         "type": "git",
         "url": "git+https://github.com/ticket721/env.git"

@@ -1,7 +1,8 @@
 import { EIP712DomainType, EIP712Payload, EIP712Signer, EIP712Signature } from './EIP712Signer';
-import * as ESU                                          from 'eth-sig-util';
-import { expect }                                        from 'chai';
-import { Wallet }                                        from 'ethers';
+import * as ESU                                                           from 'eth-sig-util';
+import { expect }                                                         from 'chai';
+import { Wallet }                                                         from 'ethers';
+import { BN }                                                             from 'bn.js';
 
 const primaryType = 'Mail';
 
@@ -36,6 +37,10 @@ const Person = [
     {
         name: 'useless_two',
         type: 'UselessType'
+    },
+    {
+        name: 'integer_value',
+        type: 'uint256'
     }
 ];
 
@@ -76,7 +81,8 @@ const payload = {
         useless_one: {
             useless: true
         },
-        useless_two: null
+        useless_two: null,
+        integer_value: new BN(12)
     },
     to: {
         name: 'lele',
@@ -91,7 +97,8 @@ const payload = {
         },
         useless_two: {
             useless: false
-        }
+        },
+        integer_value: 12
     },
     contents: 'Hello lele'
 };
@@ -557,6 +564,35 @@ describe('e712 tests', (): void => {
         const formatted_payload = {
             domain,
             message: payload,
+            primaryType: 'EIP712Domain',
+            types: {
+                EIP712Domain: [
+                    ...EIP712DomainType
+                ]
+            }
+        };
+
+        em.verifyPayload(formatted_payload as any);
+
+    });
+
+    it('verifyPayload and exchange BN and numbers', (): void => {
+
+        const em = new EtherMail();
+
+        const formatted_payload = {
+            domain,
+            message: {
+                ...payload,
+                from: {
+                    ...payload.from,
+                    integer_value: 12
+                },
+                to: {
+                    ...payload.to,
+                    integer_value: new BN(12)
+                }
+            },
             primaryType: 'EIP712Domain',
             types: {
                 EIP712Domain: [

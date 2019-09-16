@@ -173,6 +173,11 @@ var EIP712Signer = /** @class */ (function () {
         if (type === 'string') {
             return ['bytes32', ethers_1.utils.keccak256(Buffer.from(value, 'utf8'))];
         }
+        if (type === 'uint256') {
+            if (typeof value === 'object') {
+                value = value.toString();
+            }
+        }
         // If ends by [], it's an array
         if (type.lastIndexOf('[]') === type.length - 2) {
             var extracted_type_1 = type.slice(0, type.lastIndexOf('[]'));

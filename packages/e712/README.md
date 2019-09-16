@@ -14,7 +14,9 @@ Have a complete library to issue EIP712 signature, verify them, or simply encode
 
 ## Documentation
 
-You can find the documentation for the module [here](https://github.com/ticket721/env/tree/develop/packages/e712/docs/modules/_eip712signer_.md)
+You can find the documentation for the modules here:
+- [EIP712Signer](https://github.com/ticket721/env/tree/develop/packages/e712/docs/modules/_eip712signer_.md), the base class to generate signatures
+- [MTKNSigner](https://github.com/ticket721/env/tree/develop/packages/e712/docs/modules/_mtknsigner_.md), extension of the `EIP712Signer` base class to make a mTKN helper
 
 ## Usage
 
@@ -196,6 +198,98 @@ web3.currentProvider.sendAsync({
 
 ```
 
-## API
+## MTKNSigner
 
-### Table of contents
+A helper class documented [here](https://github.com/ticket721/env/tree/develop/packages/e712/docs/modules/_mtknsigner_.md). It generates signatures for the three main methods `signedTransfer`, `signedApprove` and `signedTransferFrom` and provides signature verifiers.
+
+### Example: with private key available
+
+```typescript
+import { MTKNSigner, EIP712Signature }    from '@ticket721/e712';
+import { Wallet }                         from 'ethers';
+import { BN }                             from 'bn.js';
+
+const domain_name = 'my mtkn';
+const domain_version = '1';
+const domain_chain_id = 1;
+const domain_contract = '0xd0a21D06befee2C5851EbafbcB1131d35B135e87';
+
+const transfer_recipient = '0x19C8239E04ceA1B1C0342E6da5cF3a5Ca54874e1';
+const address_zero = '0x0000000000000000000000000000000000000000';
+
+
+// Build helper class
+const mtkn = new MTKNSigner(domain_name, domain_version, domain_chain_id, domain_contract);
+
+// Use your own private keys
+const wallet = Wallet.createRandom();
+
+// Generate proof
+const sig: EIP712Signature = await mtkn.transfer(transfer_recipient, new BN(1000), {
+    signer: wallet.address,
+    relayer: address_zero
+}, {
+    nonce: new BN(0),
+    gasLimit: new BN(1000000),
+    gasPrice: 1000000,
+    reward: 500
+}, wallet.privateKey) as EIP712Signature;
+
+// Verify proofs
+const verification = await mtkn.verifyTransfer(transfer_recipient, new BN(1000), {
+    signer: wallet.address,
+    relayer: address_zero
+}, {
+    nonce: new BN(0),
+    gasLimit: new BN(1000000),
+    gasPrice: 1000000,
+    reward: 500
+}, sig.hex);
+
+```
+
+### Example: sign with web3 browser
+
+```typescript
+import { MTKNSigner, EIP712Payload }    from '@ticket721/e712';
+import { BN }                             from 'bn.js';
+
+const domain_name = 'my mtkn';
+const domain_version = '1';
+const domain_chain_id = 1;
+const domain_contract = '0xd0a21D06befee2C5851EbafbcB1131d35B135e87';
+
+const transfer_recipient = '0x19C8239E04ceA1B1C0342E6da5cF3a5Ca54874e1';
+const address_zero = '0x0000000000000000000000000000000000000000';
+
+const my_web3_browser_address = '0x19C8239E04ceA1B1C0342E6da5cF3a5Ca54874e1';
+
+// Build helper class
+const mtkn = new MTKNSigner(domain_name, domain_version, domain_chain_id, domain_contract);
+
+// Generate ready-to-sign payload
+const payload: EIP712Payload = await mtkn.transfer(transfer_recipient, new BN(1000), {
+    signer: my_web3_browser_address,
+    relayer: address_zero
+}, {
+    nonce: new BN(0),
+    gasLimit: new BN(1000000),
+    gasPrice: 1000000,
+    reward: 500
+}) as EIP712Payload;
+
+// Sign with web3
+web3.currentProvider.sendAsync({
+        method: 'eth_signTypedData_v3',
+        params: [
+            my_web3_browser_address,
+            JSON.stringify(payload)
+        ],
+        from: my_web3_browser_address},
+    (error, result) => {
+        // do your stuff, signature is in result.result (if no errors)
+    });
+
+
+```
+
