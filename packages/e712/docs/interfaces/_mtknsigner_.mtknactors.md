@@ -21,7 +21,7 @@
 
 • **relayer**: *string*
 
-Defined in MTKNSigner.ts:108
+*Defined in [MTKNSigner.ts:111](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/MTKNSigner.ts#L111)*
 
 ___
 
@@ -29,4 +29,4 @@ ___
 
 • **signer**: *string*
 
-Defined in MTKNSigner.ts:107
+*Defined in [MTKNSigner.ts:110](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/MTKNSigner.ts#L110)*

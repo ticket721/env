@@ -50,6 +50,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var EIP712Signer_1 = require("./EIP712Signer");
 var ethers_1 = require("ethers");
+/**
+ * @ignore
+ */
 exports.MTKNTypes = {
     EIP712Domain: EIP712Signer_1.EIP712DomainType,
     mActors: [

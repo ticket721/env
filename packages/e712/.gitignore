@@ -6,6 +6,4 @@ website/build
 package-lock.json
 yarn.lock
 .nyc_output
-docs/globals.md
-docs/README.md
 

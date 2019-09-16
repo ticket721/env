@@ -23,7 +23,7 @@
 
 • **gasLimit**: *number | BN*
 
-Defined in MTKNSigner.ts:113
+*Defined in [MTKNSigner.ts:116](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/MTKNSigner.ts#L116)*
 
 ___
 
@@ -31,7 +31,7 @@ ___
 
 • **gasPrice**: *number | BN*
 
-Defined in MTKNSigner.ts:114
+*Defined in [MTKNSigner.ts:117](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/MTKNSigner.ts#L117)*
 
 ___
 
@@ -39,7 +39,7 @@ ___
 
 • **nonce**: *number | BN*
 
-Defined in MTKNSigner.ts:112
+*Defined in [MTKNSigner.ts:115](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/MTKNSigner.ts#L115)*
 
 ___
 
@@ -47,4 +47,4 @@ ___
 
 • **reward**: *number | BN*
 
-Defined in MTKNSigner.ts:115
+*Defined in [MTKNSigner.ts:118](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/MTKNSigner.ts#L118)*

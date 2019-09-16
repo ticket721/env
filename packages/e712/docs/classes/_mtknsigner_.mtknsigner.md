@@ -40,7 +40,7 @@
 
 *Overrides [EIP712Signer](_eip712signer_.eip712signer.md).[constructor](_eip712signer_.eip712signer.md#constructor)*
 
-Defined in MTKNSigner.ts:121
+*Defined in [MTKNSigner.ts:124](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/MTKNSigner.ts#L124)*
 
 **Parameters:**
 
@@ -59,7 +59,7 @@ Name | Type |
 
 ▸ **approve**(`spender`: string, `amount`: number | BN, `actors`: [MTKNActors](../interfaces/_mtknsigner_.mtknactors.md), `txparams`: [MTKNTxParams](../interfaces/_mtknsigner_.mtkntxparams.md), `private_key?`: string): *Promise‹[EIP712Signature](../interfaces/_eip712signer_.eip712signature.md) | [EIP712Payload](../interfaces/_eip712signer_.eip712payload.md)›*
 
-Defined in MTKNSigner.ts:200
+*Defined in [MTKNSigner.ts:203](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/MTKNSigner.ts#L203)*
 
 **`description`** Generates `approve` signature or payload.
 
@@ -83,7 +83,7 @@ ___
 
 *Inherited from [EIP712Signer](_eip712signer_.eip712signer.md).[encode](_eip712signer_.eip712signer.md#encode)*
 
-*Defined in [EIP712Signer.ts:431](https://github.com/ticket721/env/blob/a0cc00d/packages/e712/sources/EIP712Signer.ts#L431)*
+*Defined in [EIP712Signer.ts:431](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/EIP712Signer.ts#L431)*
 
 Encode the given payload
 
@@ -104,7 +104,7 @@ ___
 
 *Inherited from [EIP712Signer](_eip712signer_.eip712signer.md).[generatePayload](_eip712signer_.eip712signer.md#generatepayload)*
 
-*Defined in [EIP712Signer.ts:502](https://github.com/ticket721/env/blob/a0cc00d/packages/e712/sources/EIP712Signer.ts#L502)*
+*Defined in [EIP712Signer.ts:502](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/EIP712Signer.ts#L502)*
 
 Helper that generates a complete payload, ready for signature (should work with web3, metamask etc)
 
@@ -125,7 +125,7 @@ ___
 
 *Inherited from [EIP712Signer](_eip712signer_.eip712signer.md).[sign](_eip712signer_.eip712signer.md#sign)*
 
-*Defined in [EIP712Signer.ts:461](https://github.com/ticket721/env/blob/a0cc00d/packages/e712/sources/EIP712Signer.ts#L461)*
+*Defined in [EIP712Signer.ts:461](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/EIP712Signer.ts#L461)*
 
 Sign the given payload
 
@@ -145,7 +145,7 @@ ___
 
 ▸ **transfer**(`recipient`: string, `amount`: number | BN, `actors`: [MTKNActors](../interfaces/_mtknsigner_.mtknactors.md), `txparams`: [MTKNTxParams](../interfaces/_mtknsigner_.mtkntxparams.md), `private_key?`: string): *Promise‹[EIP712Signature](../interfaces/_eip712signer_.eip712signature.md) | [EIP712Payload](../interfaces/_eip712signer_.eip712payload.md)›*
 
-Defined in MTKNSigner.ts:146
+*Defined in [MTKNSigner.ts:149](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/MTKNSigner.ts#L149)*
 
 **`description`** Generates `transfer` signature or payload.
 
@@ -167,7 +167,7 @@ ___
 
 ▸ **transferFrom**(`sender`: string, `recipient`: string, `amount`: number | BN, `actors`: [MTKNActors](../interfaces/_mtknsigner_.mtknactors.md), `txparams`: [MTKNTxParams](../interfaces/_mtknsigner_.mtkntxparams.md), `private_key?`: string): *Promise‹[EIP712Signature](../interfaces/_eip712signer_.eip712signature.md) | [EIP712Payload](../interfaces/_eip712signer_.eip712payload.md)›*
 
-Defined in MTKNSigner.ts:255
+*Defined in [MTKNSigner.ts:258](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/MTKNSigner.ts#L258)*
 
 **`description`** Generates `transferFrom` signature or payload.
 
@@ -192,7 +192,7 @@ ___
 
 *Inherited from [EIP712Signer](_eip712signer_.eip712signer.md).[verify](_eip712signer_.eip712signer.md#verify)*
 
-*Defined in [EIP712Signer.ts:490](https://github.com/ticket721/env/blob/a0cc00d/packages/e712/sources/EIP712Signer.ts#L490)*
+*Defined in [EIP712Signer.ts:490](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/EIP712Signer.ts#L490)*
 
 Verifies the given signature
 
@@ -212,7 +212,7 @@ ___
 
 ▸ **verifyApprove**(`spender`: string, `amount`: number | BN, `actors`: [MTKNActors](../interfaces/_mtknsigner_.mtknactors.md), `txparams`: [MTKNTxParams](../interfaces/_mtknsigner_.mtkntxparams.md), `signature`: string): *Promise‹boolean›*
 
-Defined in MTKNSigner.ts:231
+*Defined in [MTKNSigner.ts:234](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/MTKNSigner.ts#L234)*
 
 **`description`** Verifies `approve` signature
 
@@ -236,7 +236,7 @@ ___
 
 *Inherited from [EIP712Signer](_eip712signer_.eip712signer.md).[verifyPayload](_eip712signer_.eip712signer.md#verifypayload)*
 
-*Defined in [EIP712Signer.ts:417](https://github.com/ticket721/env/blob/a0cc00d/packages/e712/sources/EIP712Signer.ts#L417)*
+*Defined in [EIP712Signer.ts:417](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/EIP712Signer.ts#L417)*
 
 Throws if provided payload does not match current settings
 
@@ -254,7 +254,7 @@ ___
 
 ▸ **verifyTransfer**(`recipient`: string, `amount`: number | BN, `actors`: [MTKNActors](../interfaces/_mtknsigner_.mtknactors.md), `txparams`: [MTKNTxParams](../interfaces/_mtknsigner_.mtkntxparams.md), `signature`: string): *Promise‹boolean›*
 
-Defined in MTKNSigner.ts:177
+*Defined in [MTKNSigner.ts:180](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/MTKNSigner.ts#L180)*
 
 **`description`** Verifies `transfer` signature
 
@@ -276,7 +276,7 @@ ___
 
 ▸ **verifyTransferFrom**(`sender`: string, `recipient`: string, `amount`: number | BN, `actors`: [MTKNActors](../interfaces/_mtknsigner_.mtknactors.md), `txparams`: [MTKNTxParams](../interfaces/_mtknsigner_.mtkntxparams.md), `signature`: string): *Promise‹boolean›*
 
-Defined in MTKNSigner.ts:289
+*Defined in [MTKNSigner.ts:292](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/MTKNSigner.ts#L292)*
 
 **`description`** Verifies `transferFrom` signature
 

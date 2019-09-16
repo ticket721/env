@@ -2,6 +2,9 @@ import { EIP712DomainType, EIP712Payload, EIP712Signature, EIP712Signer, EIP712S
 import { BN }                                                                                from 'bn.js';
 import { utils }                                                                             from 'ethers';
 
+/**
+ * @ignore
+ */
 export const MTKNTypes: { [key: string]: EIP712StructField[] } = {
     EIP712Domain: EIP712DomainType,
 

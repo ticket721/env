@@ -23,7 +23,7 @@ Field in a User Defined Types
 
 • **name**: *string*
 
-*Defined in [EIP712Signer.ts:8](https://github.com/ticket721/env/blob/a0cc00d/packages/e712/sources/EIP712Signer.ts#L8)*
+*Defined in [EIP712Signer.ts:8](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/EIP712Signer.ts#L8)*
 
 ___
 
@@ -31,4 +31,4 @@ ___
 
 • **type**: *string*
 
-*Defined in [EIP712Signer.ts:9](https://github.com/ticket721/env/blob/a0cc00d/packages/e712/sources/EIP712Signer.ts#L9)*
+*Defined in [EIP712Signer.ts:9](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/EIP712Signer.ts#L9)*

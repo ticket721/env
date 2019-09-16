@@ -25,7 +25,7 @@ Interface of the complete payload required for signing
 
 • **domain**: *[EIP712Domain](_eip712signer_.eip712domain.md)*
 
-*Defined in [EIP712Signer.ts:36](https://github.com/ticket721/env/blob/a0cc00d/packages/e712/sources/EIP712Signer.ts#L36)*
+*Defined in [EIP712Signer.ts:36](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/EIP712Signer.ts#L36)*
 
 ___
 
@@ -33,7 +33,7 @@ ___
 
 • **message**: *any*
 
-*Defined in [EIP712Signer.ts:35](https://github.com/ticket721/env/blob/a0cc00d/packages/e712/sources/EIP712Signer.ts#L35)*
+*Defined in [EIP712Signer.ts:35](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/EIP712Signer.ts#L35)*
 
 ___
 
@@ -41,7 +41,7 @@ ___
 
 • **primaryType**: *string*
 
-*Defined in [EIP712Signer.ts:34](https://github.com/ticket721/env/blob/a0cc00d/packages/e712/sources/EIP712Signer.ts#L34)*
+*Defined in [EIP712Signer.ts:34](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/EIP712Signer.ts#L34)*
 
 ___
 
@@ -49,7 +49,7 @@ ___
 
 • **types**: *object*
 
-*Defined in [EIP712Signer.ts:31](https://github.com/ticket721/env/blob/a0cc00d/packages/e712/sources/EIP712Signer.ts#L31)*
+*Defined in [EIP712Signer.ts:31](https://github.com/ticket721/env/blob/f8a7220/packages/e712/sources/EIP712Signer.ts#L31)*
 
 #### Type declaration:
 

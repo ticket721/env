@@ -1,5 +1,8 @@
 import { EIP712Payload, EIP712Signature, EIP712Signer, EIP712StructField } from './EIP712Signer';
 import { BN } from 'bn.js';
+/**
+ * @ignore
+ */
 export declare const MTKNTypes: {
     [key: string]: EIP712StructField[];
 };

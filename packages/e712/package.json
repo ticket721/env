@@ -1,6 +1,6 @@
 {
     "name": "@ticket721/e712",
-    "version": "0.1.4",
+    "version": "0.1.6",
     "description": "Pure Typescript/Javascript implementation of the Ethereum Improvement Proposal 712",
     "keywords": [
         "ethereum",
@@ -9,7 +9,7 @@
         "eccrypto"
     ],
     "author": "Iulian Rotaru <iulian@rotaru.fr> (mortimr)",
-    "homepage": "https://github.com/ticket721/env/tree/master/packages/e712#readme",
+    "homepage": "https://github.com/ticket721/env/blob/develop/packages/e712/docs/README.md",
     "license": "MIT",
     "main": "lib/index.js",
     "repository": {
@@ -37,7 +37,7 @@
         "test:lint": "tslint --project .",
         "editorconfig-cli": "editorconfig-cli",
         "test:editorconfig": "npm run editorconfig-cli",
-        "doc": "typedoc --theme markdown --excludePrivate"
+        "doc": "typedoc --theme markdown --excludePrivate --readme ./README.md"
     },
     "editorconfig-cli": [
         "./package.json",

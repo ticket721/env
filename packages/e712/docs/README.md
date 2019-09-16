@@ -1,3 +1,7 @@
+**[@ticket721/e712](README.md)**
+
+[Globals](globals.md)
+
 <p align="center">
   <img src="https://github.com/ticket721/env/raw/develop/packages/e712/imgs/title.png">
 </p>
@@ -184,7 +188,6 @@ To sign with a third party wallet provider (let's say metamask), just run the fo
 const ready_to_sign_with_third_party_wallet_provider = user_infos.getPayload();
 const user_ethereum_address = '0x...';
 
-
 web3.currentProvider.sendAsync({
         method: 'eth_signTypedData_v3',
         params: [
@@ -216,7 +219,6 @@ const domain_contract = '0xd0a21D06befee2C5851EbafbcB1131d35B135e87';
 
 const transfer_recipient = '0x19C8239E04ceA1B1C0342E6da5cF3a5Ca54874e1';
 const address_zero = '0x0000000000000000000000000000000000000000';
-
 
 // Build helper class
 const mtkn = new MTKNSigner(domain_name, domain_version, domain_chain_id, domain_contract);
@@ -290,6 +292,4 @@ web3.currentProvider.sendAsync({
         // do your stuff, signature is in result.result (if no errors)
     });
 
-
 ```
-
