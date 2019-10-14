@@ -3,6 +3,7 @@ node_modules
 /portal
 .DS_Store
 deployment.ropsten.json
+deployment.rinkeby.json
 ropsten.portal*
 /OpenVPN
 /t721/charts

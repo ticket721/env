@@ -22,3 +22,5 @@
 .vscode/
 deploy_scripts
 templates/parity
+templates/geth/resources/rinkeby.json
+

@@ -3,6 +3,7 @@ const {local_configure} = require('./network/local');
 const {test_configure} = require('./network/test');
 const {ropsten_configure} = require('./network/ropsten');
 const combiner = require('../events');
+const {rinkeby_configure} = require('./network/rinkeby');
 
 const configure = async () => {
     signale.info('[contracts][configure]');
@@ -17,6 +18,9 @@ const configure = async () => {
             break;
         case 'ropsten':
             await ropsten_configure();
+            break;
+        case 'rinkeby':
+            await rinkeby_configure();
             break;
         default:
             throw new Error(`Unknown Network ${process.env.T721_NETWORK}`)

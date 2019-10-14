@@ -18,10 +18,30 @@ spec:
             release: "{{ .Release.Name }}"
             heritage: "{{ .Release.Service }}"
         spec:
+                {{ if .Values.geth.rinkeby.enabled }}
+
+            initContainers:
+                - name: genesis-block
+                  image: "{{ .Values.geth.container.image }}:{{ .Values.geth.container.version }}"
+                  volumeMounts:
+                      - name: "{{ .Release.Name }}-geth-volume"
+                        mountPath: /root/.ethereum
+
+                      - name: "{{ .Release.Name }}-geth-genesis-volume"
+                        mountPath: /root/
+
+                  command:
+                      - geth
+                  args:
+                      - "--datadir=/root/.ethereum/rinkeby"
+                      - "init"
+                      - "/root/genesis.json"
+
+                {{ end }}
             containers:
                 - name: "{{ .Release.Name }}-geth"
                   image: "{{ .Values.geth.container.image }}:{{ .Values.geth.container.version }}"
-                  imagePullPolicy: IfNotPresent
+                  imagePullPolicy: Always
                   resources:
                     limits:
                         cpu: {{ .Values.geth.cpu.limit }}
@@ -70,19 +90,28 @@ spec:
                   command:
                       - geth
                   args:
+                          {{ if .Values.geth.rinkeby.enabled }}
+                    - "--networkid={{ .Values.geth.rinkeby.networkid }}"
+                    - "--ethstats"
+                    - "🎫 T721 (ticket721.com):Respect my authoritah!@stats.rinkeby.io"
+                    - "--bootnodes={{ .Values.geth.rinkeby.bootnodes }}"
+                    - "--syncmode=fast"
+                    - "--datadir=/root/.ethereum/rinkeby"
+                          {{ end }}
                     - "--rpc"
                     - "--rpcaddr=0.0.0.0"
                     - "--rpcapi=eth,web3,net"
                     - "--rpcvhosts=*"
                     - "--rpccorsdomain=https://{{ .Values.webapp.ingress.host }}"
                     - "--cache=1024"
-                          {{ if .Values.geth.ropsten.enabled }}
-                    - "--bootnodes={{ .Values.geth.ropsten.bootnodes }}"
-                    - "--testnet"
-                    - "--syncmode=fast"
-                          {{ end }}
             volumes:
                 - name: "{{ .Release.Name }}-geth-volume"
                   persistentVolumeClaim:
                       claimName: "{{ .Release.Name }}-geth-pvc"
 
+                - name: "{{ .Release.Name }}-geth-genesis-volume"
+                  configMap:
+                    name: "{{ .Release.Name }}-geth-rinkeby-genesis"
+                    items:
+                        - key: genesis.json
+                          path: genesis.json

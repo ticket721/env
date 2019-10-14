@@ -12,9 +12,9 @@ cache:
 stages:
     - name: test
     - name: build
-      if: branch = ropsten AND type IN (push)
+      if: (branch = ropsten OR branch = rinkeby) AND type IN (push)
     - name: deploy
-      if: branch = ropsten AND type IN (push)
+      if: (branch = ropsten OR branch = rinkeby) AND type IN (push)
 
 jobs:
     include:
