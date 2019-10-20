@@ -6,6 +6,8 @@ import { TabGetter }              from './TabGetter';
 import { HandleGetter }           from './misc/HandleGetter';
 import { I18N, I18NProps }        from '../../utils/misc/i18n';
 import { theme }                  from '../../utils/theme';
+import { AppState, UserInfos }    from '../../utils/redux/app_state';
+import { connect }                from 'react-redux';
 
 const TabPane = Tabs.TabPane;
 
@@ -15,9 +17,14 @@ export interface AccountTabsProps {
     queried_address: string;
     address: StrapiAddress;
     coinbase: string;
+    user_infos: UserInfos;
 }
 
-type MergedAccountTabsProps = AccountTabsProps & I18NProps;
+interface AccountTabsRState {
+    user_infos: UserInfos;
+}
+
+type MergedAccountTabsProps = AccountTabsProps & I18NProps & AccountTabsRState;
 
 class AccountTabs extends React.Component<MergedAccountTabsProps> {
     render(): React.ReactNode {
@@ -34,7 +41,7 @@ class AccountTabs extends React.Component<MergedAccountTabsProps> {
             <TabPane tab={this.props.t('account_tabs_tickets')} key='tickets'>
                 <TicketListFetcher address={this.props.address} coinbase={this.props.coinbase}/>
             </TabPane>
-        ] as React.ReactNode[]).concat(TabGetter(this.props.address, this.props.queried_address, this.props.coinbase, this.props.t));
+        ] as React.ReactNode[]).concat(TabGetter(this.props.address, this.props.queried_address, this.props.coinbase, this.props.user_infos, this.props.t));
 
         return <div style={{width: '96%', marginLeft: '2%', marginTop: 12, marginBottom: 12}}>
             <div style={{marginLeft: 48}}>
@@ -83,4 +90,10 @@ class AccountTabs extends React.Component<MergedAccountTabsProps> {
     }
 }
 
-export default I18N.withNamespaces(['account'])(AccountTabs);
+const mapStateToProps = (state: AppState): AccountTabsRState => ({
+    user_infos: state.app.user_infos
+});
+
+export default I18N.withNamespaces(['account'])(
+    connect(mapStateToProps)(AccountTabs)
+);

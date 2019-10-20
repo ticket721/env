@@ -603,6 +603,12 @@
                 "role": {
                   "type": "string"
                 },
+                "firstName": {
+                  "type": "string"
+                },
+                "lastName": {
+                  "type": "string"
+                },
                 "encrypted_wallet": {
                   "type": "json"
                 },

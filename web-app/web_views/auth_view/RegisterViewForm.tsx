@@ -19,7 +19,7 @@ interface RegisterFormRState {
 }
 
 interface RegisterFormRDispatch {
-    register: (username: string, password: string, email: string) => void;
+    register: (username: string, password: string, email: string, firstName: string, lastName: string) => void;
 }
 
 type MergedRegisterFormProps = RegisterFormProps & RegisterFormRState & RegisterFormRDispatch & I18NProps & FormComponentProps;
@@ -30,7 +30,7 @@ class RegisterForm extends React.Component<MergedRegisterFormProps> {
         this.props.form.validateFields((err: Error, values: any) => {
             if (!err) {
                 RGA.event({category: 'Register', action: 'Submit Register Form'});
-                this.props.register(values.username, values.password, values.email);
+                this.props.register(values.username, values.password, values.email, values.firstName, values.lastName);
             }
         });
     }
@@ -67,6 +67,26 @@ class RegisterForm extends React.Component<MergedRegisterFormProps> {
                         <Input
                             prefix={<Icon type='user' style={{color: 'rgba(0,0,0,.25)'}}/>}
                             placeholder={this.props.t('username')}
+                        />
+                    )}
+                </Form.Item>
+                <Form.Item>
+                    {getFieldDecorator('firstName', {
+                        rules: [{required: true, message: `${this.props.t('please_input_firstName')}`}],
+                    })(
+                        <Input
+                            prefix={<Icon type='user' style={{color: 'rgba(0,0,0,.25)'}}/>}
+                            placeholder={this.props.t('firstName')}
+                        />
+                    )}
+                </Form.Item>
+                <Form.Item>
+                    {getFieldDecorator('lastName', {
+                        rules: [{required: true, message: `${this.props.t('please_input_lastName')}`}],
+                    })(
+                        <Input
+                            prefix={<Icon type='user' style={{color: 'rgba(0,0,0,.25)'}}/>}
+                            placeholder={this.props.t('lastName')}
                         />
                     )}
                 </Form.Item>
@@ -116,8 +136,8 @@ const mapStateToProps = (state: AppState): RegisterFormRState => ({
     status: state.app.auth_process_status
 });
 const mapDispatchToProps = (dispatch: Dispatch): RegisterFormRDispatch => ({
-    register: (username: string, password: string, email: string): void => {
-        dispatch(Register(username, password, email));
+    register: (username: string, password: string, email: string, firstName: string, lastName: string): void => {
+        dispatch(Register(username, password, email, firstName, lastName));
     }
 });
 

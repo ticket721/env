@@ -291,6 +291,7 @@ module.exports = {
         params.confirmed = true;
       }
 
+      console.log('Creating user with params', params);
       const user = await strapi.query('user', 'users-permissions').create(params);
 
       const jwt = strapi.plugins['users-permissions'].services.jwt.issue(_.pick(user.toJSON ? user.toJSON() : user, ['_id', 'id']));

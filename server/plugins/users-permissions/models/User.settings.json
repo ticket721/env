@@ -49,6 +49,14 @@
       "plugin": "users-permissions",
       "configurable": false
     },
+    "firstName": {
+      "type": "string",
+      "default": "Jon"
+    },
+    "lastName": {
+      "type": "string",
+      "default": "Doe"
+    },
     "encrypted_wallet": {
       "default": "",
       "type": "json"

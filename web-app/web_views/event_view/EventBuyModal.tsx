@@ -28,6 +28,7 @@ export interface EventBuyModalProps {
     minter: StrapiMinter;
     contract: VtxContract;
     coinbase: string;
+    mint_count: number;
     t: any;
 }
 
@@ -165,7 +166,7 @@ class EventBuyModal extends React.Component<MergedEventBuyModalProps, EventBuyMo
                 width={1200}
                 footer={[
                     <Button key='back' onClick={this.close_catcher}>{this.props.t('buy_modal_cancel_button')}</Button>,
-                    <Button key='submit' type='primary' onClick={this.on_action} loading={status.button_loading} disabled={status.button_disabled}>
+                    <Button key='submit' type='primary' onClick={this.on_action} loading={status.button_loading} disabled={this.props.mint_count > 0 || status.button_disabled}>
                         {this.props.t(status.button_title)}
                     </Button>
                 ]}
@@ -181,6 +182,7 @@ class EventBuyModal extends React.Component<MergedEventBuyModalProps, EventBuyMo
                     tx={tx}
                     ended={this.ended()}
                     sold_out={this.sold_out()}
+                    mint_count={this.props.mint_count}
                 />
             </Modal>
         </div>;
