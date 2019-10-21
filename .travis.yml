@@ -79,7 +79,6 @@ jobs:
           script:
               - cd web-app
               - ./build.sh
-              - npm install signale
               - node publish.js
 
         # Build and deploy docker image for the Server & Server Modules
