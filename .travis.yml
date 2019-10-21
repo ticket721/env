@@ -75,15 +75,16 @@ jobs:
         # Build and deploy docker image for the Web App
         - stage: build
           name: "Build & Publish WebApp Docker Image"
+          node_js: "10"
           install: skip
           script:
               - cd web-app
-              - npm install
               - ./build.sh
               - node publish.js
 
         # Build and deploy docker image for the Server & Server Modules
         - name: "Build & Publish Server & Server Modules Docker Image"
+          node_js: "10"
           script:
               - cd server
               - ./build.sh
@@ -91,6 +92,7 @@ jobs:
 
         # Deploys current commit to ropsten infrastructure
         - stage: deploy
+          node_js: "10"
           install: skip
           name: "Deploying to GKE"
           script:
