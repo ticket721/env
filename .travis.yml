@@ -78,12 +78,12 @@ jobs:
           install: skip
           script:
               - cd web-app
+              - npm install
               - ./build.sh
               - node publish.js
 
         # Build and deploy docker image for the Server & Server Modules
         - name: "Build & Publish Server & Server Modules Docker Image"
-          install: skip
           script:
               - cd server
               - ./build.sh
