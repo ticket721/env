@@ -85,6 +85,7 @@ jobs:
         # Build and deploy docker image for the Server & Server Modules
         - name: "Build & Publish Server & Server Modules Docker Image"
           node_js: "10"
+          install: skip
           script:
               - cd server
               - ./build.sh
