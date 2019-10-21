@@ -73,6 +73,7 @@ const apply_config = async () => {
         
             "compilers": {
                 "solc": {
+                    "version": "0.5.0"
                 }
             }
         }
