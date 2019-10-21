@@ -28,7 +28,7 @@ jobs:
               - npm run test:editorconfig
               - npm run test:configure
               - npm run test:compile
-              - npm run test:solidity-coverage
+              - npm run test:mocha
 
         # Test Server utilities
         - name: "Test Server"
