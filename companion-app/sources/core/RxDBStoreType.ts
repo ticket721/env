@@ -29,12 +29,12 @@ export const initial_store = {
             linked_to: null
         },
         {
-            name: 'Ropsten',
-            strapi_url: 'https://api.ropsten.ticket721.com',
-            eth_node_url: 'https://geth.ropsten.ticket721.com',
+            name: 'Rinkeby',
+            strapi_url: 'https://api.rinkeby.ticket721.com',
+            eth_node_url: 'https://geth.rinkeby.ticket721.com',
             tickets: [null],
             linked_to: null
         }
     ],
-    selected_network: 'Ropsten'
+    selected_network: 'Rinkeby'
 };
