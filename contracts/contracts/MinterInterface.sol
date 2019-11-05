@@ -17,5 +17,6 @@ contract Minter {
     function getEventURI(uint256) public view returns (string memory);
     function getTicketInfos(uint256) public view returns (bytes32[] memory);
     function getMinterSignature() public pure returns (string memory);
+    function mintCount(address) public view returns (uint256);
 
 }

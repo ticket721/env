@@ -20,8 +20,32 @@ export const AppActions = {
     FetchLocalWallet: '[APP] FETCH_LOCAL_WALLET',
     ResetLocalWallet: '[APP] RESET_LOCAL_WALLET',
     UnlockingLocalWallet: '[APP] UNLOCKING_LOCAL_WALLET',
-    UnlockedLocalWallet: '[APP] UNLOCKED_LOCAL_WALLET'
+    UnlockedLocalWallet: '[APP] UNLOCKED_LOCAL_WALLET',
+    SetUserInfos: '[APP] SET_USER_INFOS',
+    UpdateUserInfos: '[APP] UPDATE_USER_INFOS'
 };
+
+export interface IUpdateUserInfos extends Action<string> {
+    firstName: string;
+    lastName: string;
+}
+
+export const UpdateUserInfos = (firstName: string, lastName: string): IUpdateUserInfos => ({
+    type: AppActions.UpdateUserInfos,
+    firstName,
+    lastName
+});
+
+export interface ISetUserInfos extends Action<string> {
+    firstName: string;
+    lastName: string;
+}
+
+export const SetUserInfos = (firstName: string, lastName: string): ISetUserInfos => ({
+    type: AppActions.SetUserInfos,
+    firstName,
+    lastName
+});
 
 export interface ISubmitEncryptedWallet extends Action<string> {
     encrypted_wallet: string;
@@ -150,6 +174,8 @@ export interface IRegister extends Action<string> {
     username: string;
     password: string;
     email: string;
+    firstName: string;
+    lastName: string;
 }
 
 /**
@@ -158,13 +184,17 @@ export interface IRegister extends Action<string> {
  * @param username
  * @param password
  * @param email
+ * @param firstName
+ * @param lastName
  * @constructor
  */
-export const Register = (username: string, password: string, email: string): IRegister => ({
+export const Register = (username: string, password: string, email: string, firstName: string, lastName: string): IRegister => ({
     type: AppActions.Register,
     username,
     password,
-    email
+    email,
+    firstName,
+    lastName
 });
 
 export interface ISetAuthStatus extends Action<string> {

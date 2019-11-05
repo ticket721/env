@@ -8,12 +8,12 @@ import {
     ISetAuthStatus,
     ISetLocalWallet,
     ISetStrapi,
-    ISetToken,
+    ISetToken, ISetUserInfos,
     ISetWalletProvider,
     IStatus,
     IUnlockedLocalWallet,
     IUnlockingLocalWallet
-}                                                                                    from './actions';
+} from './actions';
 import { VtxeventsActions }                                                          from 'ethvtx/lib/vtxevents/actions/actionTypes';
 
 const UnlockedLocalWalletReducer: Reducer<AppSection, IUnlockedLocalWallet> =
@@ -161,6 +161,15 @@ const ReadyReducer: Reducer<AppSection, IReady> =
 
     };
 
+const SetUserInfosReducer: Reducer<AppSection, ISetUserInfos> =
+    (state: AppSection, action: ISetUserInfos): AppSection => ({
+        ...state,
+        user_infos: {
+            firstName: action.firstName,
+            lastName: action.lastName
+        }
+    });
+
 export const AppReducer: Reducer<AppSection, AppActionTypes> =
     (state: AppSection = InitialAppState.app, action: AppActionTypes): AppSection => {
 
@@ -185,6 +194,8 @@ export const AppReducer: Reducer<AppSection, AppActionTypes> =
                 return UnlockingLocalWalletReducer(state, action as IUnlockingLocalWallet);
             case AppActions.UnlockedLocalWallet:
                 return UnlockedLocalWalletReducer(state, action as IUnlockedLocalWallet);
+            case AppActions.SetUserInfos:
+                return SetUserInfosReducer(state, action as ISetUserInfos);
             default:
                 return state;
         }

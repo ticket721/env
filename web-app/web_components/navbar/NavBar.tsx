@@ -200,8 +200,7 @@ export default class NavBar extends React.Component<MergedNavBarProps, NavBarSta
 
             const popover_title = <Typography.Text style={{color: theme.white, fontSize: 18}}>{this.props.account.address}</Typography.Text>;
 
-            account = <routes.Link route={'account'} params={{}}>
-                <div id='wallet_widget'>
+            account = <div id='wallet_widget'>
                     <style>
                         {`
                         .wallet_widget .ant-popover-title {
@@ -217,8 +216,7 @@ export default class NavBar extends React.Component<MergedNavBarProps, NavBarSta
                                 <span style={{marginLeft: 20, color: theme.white}}>{this.props.t('wallet')}</span> : null}
                         </div>
                     </Popover>
-                </div>
-            </routes.Link>;
+                </div>;
 
         }
 
@@ -286,6 +284,14 @@ export default class NavBar extends React.Component<MergedNavBarProps, NavBarSta
                                 <div>
                                     <Icon type='experiment'/>
                                     <span>{this.props.t('manage_events')}</span>
+                                </div>
+                            </Link>
+                        </Menu.Item>
+                        <Menu.Item key='account'>
+                            <Link href='/account'>
+                                <div>
+                                    <Icon type='user'/>
+                                    <span>{this.props.t('account')}</span>
                                 </div>
                             </Link>
                         </Menu.Item>

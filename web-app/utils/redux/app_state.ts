@@ -133,6 +133,11 @@ export interface LocalWallet {
     address: string;
 }
 
+export interface UserInfos {
+    firstName: string;
+    lastName: string;
+}
+
 export interface AppSection {
     ready: AppReady;
     status: AppStatus;
@@ -142,6 +147,7 @@ export interface AppSection {
     token: string;
     t721_wallet: LocalWallet;
     auth_process_status: AuthStatus;
+    user_infos: UserInfos;
 }
 
 export interface ContractInformations {
@@ -203,6 +209,7 @@ export const InitialAppState: AppState = {
             remote_settings: false,
             app: false
         },
+        user_infos: null,
         provider: null,
         status: AppStatus.Loading,
         strapi: null,

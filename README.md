@@ -45,12 +45,12 @@ Variables that should be available during the travis build
 | `HELM_RELEASE_NAME` | Name of release live on the cluster |
 | `HELM_VERSION` | Version to install for helm |
 | `LETSENCRYPT_ACME_SERVER` | Letsencrypt server to use |
-| `ROPSTEN_TX_EXPLORER` | Like this => `https://ropsten.etherscan.io/tx/TRANSACTION_HASH` (with the `TRANSACTION_HASH` ) |
+| `ROPSTEN_TX_EXPLORER` | Like this => `https://rinkeby.etherscan.io/tx/TRANSACTION_HASH` (with the `TRANSACTION_HASH` ) |
 | `STRAPI_PUBLIC_ENDPOINT` | Public endpoint of the api |
 
 ### K8S Cluster requirements
 
-* Name => `ropsten`
+* Name => `rinkeby`
 * Size => `[0 - 1] standard-2, [1 - 6] small`
 * IPS => `1 IP in same region`
 * Disks => `geth-disk;ssd;200, pg-disk;hdd;50, strapi-disk;hdd;25`
@@ -64,7 +64,7 @@ Variables that should be available during the travis build
 | `clean` | Calls clean on submodules |
 | `deploy` | Configure the network depending on `T721_NETWORK`, and deploys all the smart contracts |
 | `simulation` | Run the simulation script from the `contracts` module, populating the configured ethereum node |
-| `deploy_ropsten` | Deploys the smart contract to the ropsten network. See configuration section |
+| `deploy_rinkeby` | Deploys the smart contract to the rinkeby network. See configuration section |
 | `fake_mine` | Mine some blocks (only working with ganache test network) |
 
 ## Local Setup process
@@ -231,23 +231,23 @@ gulp dismantle
 npm run clean
 ```
 
-## Deploying to ropsten testnet
+## Deploying to rinkeby testnet
 
 Start by writing a configuration file:
 
 ```json
 {
     "network": {
-        "name": "ropsten",
+        "name": "rinkeby",
         "id": 3
     },
     "infura": {
         "project_id": "INFURA_PROJECT_ID",
         "project_secret": "INFURA_PROJECT_SECRET",
-        "node_endpoint": "https://ropsten.infura.io/v3"
+        "node_endpoint": "https://rinkeby.infura.io/v3"
     },
     "server": {
-        "url": "https://api.ropsten.ticket721.com"
+        "url": "https://api.rinkeby.ticket721.com"
     },
     "addresses": {
         "deployer": "0x43003a92397e361072f238f63a29ec18f8e12841",
@@ -261,6 +261,6 @@ Start by writing a configuration file:
 Then run
 
 ```shell
-env T721_CONFIG_PATH=./deployment.ropsten.json  gulp deploy_ropsten
+env T721_CONFIG_PATH=./deployment.rinkebu.json  gulp deploy_rinkeby
 ```
 

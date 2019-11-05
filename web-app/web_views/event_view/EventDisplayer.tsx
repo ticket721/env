@@ -26,6 +26,8 @@ import EventEditCancel       from './EventEditCancel';
 import { Divider }           from 'antd';
 import EventFundsGrid        from './EventFundsGrid';
 import { RGA }               from '../../utils/misc/ga';
+import EventListBack         from './EventListBack';
+import EventUserList         from './EventUserList';
 
 // Props
 
@@ -49,7 +51,7 @@ interface EventDisplayerRDispatch {
 }
 
 interface EventDisplayerState {
-    edit: boolean;
+    mode: string;
 }
 
 type MergedEventDisplayerProps = EventDisplayerProps & EventDisplayerRState & EventDisplayerRDispatch;
@@ -57,7 +59,7 @@ type MergedEventDisplayerProps = EventDisplayerProps & EventDisplayerRState & Ev
 class EventDisplayer extends React.Component<MergedEventDisplayerProps, EventDisplayerState> {
 
     state: EventDisplayerState = {
-        edit: false
+        mode: 'preview'
     };
 
     componentDidMount(): void {
@@ -95,51 +97,70 @@ class EventDisplayer extends React.Component<MergedEventDisplayerProps, EventDis
     }
 
     edit = (): void => {
-        if (!this.state.edit) {
+        if (this.state.mode !== 'edit') {
             RGA.event({category: 'User', action: 'Open Edit Form'});
         }
         this.setState({
-            edit: !this.state.edit
+            mode: this.state.mode === 'edit' ? 'preview' : 'edit'
+        });
+    }
+
+    list = (): void => {
+        this.setState({
+            mode: this.state.mode === 'list' ? 'preview' : 'list'
         });
     }
 
     render(): React.ReactNode {
-        if (this.state.edit) {
-            return <div style={{width: '100%', height: '100%', marginTop: -24, marginBottom: -24, paddingTop: 24, paddingBottom: 24}}>
-                <div style={{width: '100%', backgroundColor: theme.white, padding: 24, borderRadius: 5}}>
-                    <EventEditCancel cancel={this.edit}/>
-                    <Divider/>
-                    <EventEditInformations event={this.props.event} cancel={this.edit}/>
-                </div>
-            </div>;
+        switch (this.state.mode) {
+            case 'preview':
+                return <div style={{width: '100%', height: '100%'}}>
+                    <EventImages
+                        event={this.props.event}
+                        strapi_url={this.props.strapi_url}
+                        user_address={this.props.coinbase ? this.props.coinbase.address : null}
+                        edit_trigger={this.edit}
+                        list_trigger={this.list}
+                    />
+                    <EventInformationGrid event={this.props.event}/>
+                    <EventTicketsGrid
+                        address={this.props.address}
+                        minter={this.props.event_type.minter as StrapiMinter}
+                        marketer={this.props.event_type.marketer as StrapiMarketer}
+                        approver={this.props.event_type.approver as StrapiApprover}
+                        event={this.props.event}
+                        contract={this.props.contract}
+                        strapi_url={this.props.strapi_url}
+                    />
+                    <EventFundsGrid
+                        event={this.props.event}
+                        coinbase={this.props.coinbase}
+                        contract={this.props.contract}
+                    />
+                    <EventActivityGrid
+                        event={this.props.event}
+                        address={this.props.address}
+                    />
+                </div>;
+            case 'edit':
+                return <div style={{width: '100%', height: '100%', marginTop: -24, marginBottom: -24, paddingTop: 24, paddingBottom: 24}}>
+                    <div style={{width: '100%', backgroundColor: theme.white, padding: 24, borderRadius: 5}}>
+                        <EventEditCancel cancel={this.edit}/>
+                        <Divider/>
+                        <EventEditInformations event={this.props.event} cancel={this.edit}/>
+                    </div>
+                </div>;
+
+            case 'list':
+                return <div style={{width: '100%', height: '100%', marginTop: -24, marginBottom: -24, paddingTop: 24, paddingBottom: 24}}>
+                    <div style={{width: '100%', backgroundColor: theme.white, padding: 24, borderRadius: 5}}>
+                        <EventListBack cancel={this.list}/>
+                        <Divider/>
+                        <EventUserList event={this.props.event}/>
+                    </div>
+                </div>;
+
         }
-        return <div style={{width: '100%', height: '100%'}}>
-            <EventImages
-                event={this.props.event}
-                strapi_url={this.props.strapi_url}
-                user_address={this.props.coinbase ? this.props.coinbase.address : null}
-                edit_trigger={this.edit}
-            />
-            <EventInformationGrid event={this.props.event}/>
-            <EventTicketsGrid
-                address={this.props.address}
-                minter={this.props.event_type.minter as StrapiMinter}
-                marketer={this.props.event_type.marketer as StrapiMarketer}
-                approver={this.props.event_type.approver as StrapiApprover}
-                event={this.props.event}
-                contract={this.props.contract}
-                strapi_url={this.props.strapi_url}
-            />
-            <EventFundsGrid
-                event={this.props.event}
-                coinbase={this.props.coinbase}
-                contract={this.props.contract}
-            />
-            <EventActivityGrid
-                event={this.props.event}
-                address={this.props.address}
-            />
-        </div>;
     }
 }
 

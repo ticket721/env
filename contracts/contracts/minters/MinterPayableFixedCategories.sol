@@ -25,6 +25,7 @@ contract MinterPayableFixedCategories is Minter {
     bytes32[] private categories;
     address private t721;
     uint256 private end;
+    mapping (address => uint256) mint_balances;
 
     function configure_minter(bytes32[] memory names, uint256[] memory prices, uint256[] memory caps, uint256 _end) internal {
         require(names.length == prices.length, "Invalid number of names and prices");
@@ -45,10 +46,15 @@ contract MinterPayableFixedCategories is Minter {
         require(block.timestamp < end, "Sale ended");
         require(tickets_sold[ticket_type] < ticket_caps[ticket_type], "All tickets sold out");
         utility.i_do_not_keep_the_change(sell_prices[ticket_type]);
+        mint_balances[msg.sender] += 1;
 
         uint256 id = T721V0(t721).mint(msg.sender, sell_prices[ticket_type], address(0));
         tickets_sold[ticket_type] += 1;
         id_to_type[id] = ticket_type;
+    }
+
+    function mintCount(address owner) public view returns (uint256) {
+        return mint_balances[owner];
     }
 
     function getMintPrice(bytes32 ticket_type) public view returns (uint256) {

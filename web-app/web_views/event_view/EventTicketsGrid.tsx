@@ -56,6 +56,7 @@ export interface EventTicketsGridProps {
 interface EventTicketsGridRState {
     categories: TicketCategory[];
     coinbase: string;
+    mint_count: number;
 }
 
 type MergedEventTicketsGridProps = EventTicketsGridProps & EventTicketsGridRState & I18NProps;
@@ -117,6 +118,7 @@ class QueuedEventTicketsGrid extends React.Component<MergedEventTicketsGridProps
                 minter={this.props.minter}
                 coinbase={this.props.coinbase}
                 contract={this.props.contract}
+                mint_count={this.props.mint_count}
                 t={this.props.t}
             />
             <Grid
@@ -176,18 +178,21 @@ class QueuedEventTicketsGrid extends React.Component<MergedEventTicketsGridProps
 const mapStateToProps = (state: AppState, ownProps: EventTicketsGridProps): EventTicketsGridRState => {
 
     let categories = null;
+    let mint_count = null;
 
     if (ownProps.minter && ownProps.contract) {
 
         const minter_name = ownProps.minter.name;
 
         categories = MinterCategoriesGetter(minter_name, ownProps.contract);
+        mint_count = ownProps.contract.fn.mintCount(state.vtxconfig.coinbase);
 
     }
 
     return {
         categories,
-        coinbase: state.vtxconfig.coinbase
+        coinbase: state.vtxconfig.coinbase,
+        mint_count
     };
 };
 

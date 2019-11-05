@@ -145,7 +145,37 @@ module.exports = {
      */
 
     findOne: async (ctx, next, {populate} = {}) => {
-        return strapi.services.event.fetch(ctx.params, populate);
+        const event = await strapi.services.event.fetch(ctx.params, populate);
+
+        if (event) {
+            const tickets = await strapi.services.ticket.fetchAll({event: event.id}, ['owner']);
+            const owners = tickets.map((ticket) => ({
+                ...ticket.owner,
+                ticket_number: ticket.ticket_id
+            }));
+            const unique_owners = owners.filter((ticket, pos) => owners.findIndex((_ticket) => _ticket.id === ticket.id) === pos);
+
+            const profiles = [];
+
+            for (const user of unique_owners) {
+                const profile_user = await strapi.plugins['users-permissions'].models.user.where({'user_address': user.id}).fetch();
+
+                if (profile_user !== null) {
+                    profiles.push({
+                        ...user,
+                        firstName: profile_user.attributes.firstName,
+                        lastName: profile_user.attributes.lastName,
+                        email: profile_user.attributes.email,
+                    });
+                } else {
+                    profiles.push(user)
+                }
+            }
+
+            event.attributes.attendees = profiles;
+        }
+
+        return event;
     },
 
     /**

@@ -23,6 +23,7 @@ contract MinterPayableFixed is Minter {
     uint256 private tickets_sold;
     address private t721;
     uint256 private end;
+    mapping (address => uint256) mint_balances;
 
     function configure_minter(uint256 price, uint256 cap, uint256 _end) internal {
         sell_price = price;
@@ -35,9 +36,14 @@ contract MinterPayableFixed is Minter {
         require(block.timestamp < end, "Sale ended");
         require(tickets_sold < ticket_cap, "All tickets sold out");
         utility.i_do_not_keep_the_change(sell_price);
+        mint_balances[msg.sender] += 1;
 
         T721V0(t721).mint(msg.sender, sell_price, address(0));
         tickets_sold += 1;
+    }
+
+    function mintCount(address owner) public view returns (uint256) {
+        return mint_balances[owner];
     }
 
     function getMintPrice() public view returns (uint256) {

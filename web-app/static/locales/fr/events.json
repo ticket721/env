@@ -95,5 +95,15 @@
     "event_edit_informations_upload_error": "Erreur d'envoi",
     "event_edit_informations_upload_success": "Envoi réussi",
 
-    "create_event": "Créer un événement"
+    "create_event": "Créer un événement",
+
+    "buy_modal_ticket_already_owned": "Vous avez déjà un billet pour cet événement !",
+    "buy_modal_install_companion": "Accédez aux paramètres dans l'onglet compte pour lier votre application Companion et générer votre QR code.",
+    "list_button": "Participants",
+    "event_list_cancel_button": "Retour",
+    "list_firstName": "Prénom",
+    "list_lastName": "Nom",
+    "list_email": "Email",
+    "list_ticketID": "Ticket ID",
+    "list_address": "Adresse Utilisateur"
 }

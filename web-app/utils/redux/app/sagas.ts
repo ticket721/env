@@ -10,16 +10,16 @@ import {
     ISetWalletProvider,
     IStart,
     IStartVortex,
-    ISubmitEncryptedWallet,
+    ISubmitEncryptedWallet, IUpdateUserInfos,
     Ready,
     SetAuthStatus,
     SetLocalWallet,
     SetStrapi,
-    SetToken,
+    SetToken, SetUserInfos,
     SetWalletProvider,
     StartVortex,
     Status
-}                                                                              from './actions';
+} from './actions';
 import { call, put, select, takeEvery }                                        from 'redux-saga/effects';
 import { AppModuleReady, AppState, AppStatus, AuthStatus, WalletProviderType } from '../app_state';
 import Strapi                                                                  from 'strapi-sdk-javascript';
@@ -305,7 +305,17 @@ function* onRegister(action: IRegister): SagaIterator {
         yield put(SetAuthStatus(AuthStatus.RegisterStarted));
 
         try {
-            const token = yield call(strapi.register.bind(strapi), action.username, action.email, action.password);
+            const token = (yield call(strapi.request.bind(strapi), 'post', `${state.app.config.strapi_endpoint}/auth/local/register`, {
+                data: {
+                    username: action.username,
+                    email: action.email,
+                    password: action.password,
+                    firstName: action.firstName,
+                    lastName: action.lastName
+                }
+            }));
+
+            strapi.setToken(token.jwt);
 
             // TODO Validation link
 
@@ -371,8 +381,30 @@ function* onFetchLocalWallet(action: IFetchLocalWallet): SagaIterator {
     try {
         const me = yield call(strapi.getEntry.bind(strapi), 'users', 'me');
 
+        yield put(SetUserInfos(me.firstName, me.lastName));
         yield put(SetLocalWallet(me.encrypted_wallet));
         yield put(StartVortex());
+    } catch (e) {
+        yield put(SetWalletProvider(WalletProviderType.None));
+        return yield put(Status(AppStatus.CannotReachServer));
+    }
+}
+
+function *onUpdateUserInfos(action: IUpdateUserInfos): SagaIterator {
+    const state: AppState = (yield select());
+    const strapi: Strapi = state.app.strapi;
+    const strapi_endpoint = state.app.config.strapi_endpoint;
+
+    try {
+        const new_user = yield call(strapi.request.bind(strapi), 'post', `${strapi_endpoint}/users/updateinfos`, {
+            data: {
+                firstName: action.firstName,
+                lastName: action.lastName
+            }
+        });
+
+        yield put(SetUserInfos(new_user.firstName, new_user.lastName));
+
     } catch (e) {
         yield put(SetWalletProvider(WalletProviderType.None));
         return yield put(Status(AppStatus.CannotReachServer));
@@ -423,4 +455,5 @@ export function* AppSaga(): SagaIterator {
     yield takeEvery(AppActions.SetToken, onSetToken);
     yield takeEvery(AppActions.FetchLocalWallet, onFetchLocalWallet);
     yield takeEvery(AppActions.SubmitEncryptedWallet, onSubmitEncryptedWallet);
+    yield takeEvery(AppActions.UpdateUserInfos, onUpdateUserInfos);
 }

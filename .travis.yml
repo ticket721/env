@@ -12,9 +12,9 @@ cache:
 stages:
     - name: test
     - name: build
-      if: branch = ropsten AND type IN (push)
+      if: (branch = ropsten OR branch = rinkeby) AND type IN (push)
     - name: deploy
-      if: branch = ropsten AND type IN (push)
+      if: (branch = ropsten OR branch = rinkeby) AND type IN (push)
 
 jobs:
     include:
@@ -28,7 +28,7 @@ jobs:
               - npm run test:editorconfig
               - npm run test:configure
               - npm run test:compile
-              - npm run test:solidity-coverage
+              - npm run test:mocha
 
         # Test Server utilities
         - name: "Test Server"
@@ -85,15 +85,16 @@ jobs:
         # Build and deploy docker image for the Web App
         - stage: build
           name: "Build & Publish WebApp Docker Image"
+          node_js: "10"
           install: skip
           script:
               - cd web-app
               - ./build.sh
-              - npm install signale
               - node publish.js
 
         # Build and deploy docker image for the Server & Server Modules
         - name: "Build & Publish Server & Server Modules Docker Image"
+          node_js: "10"
           install: skip
           script:
               - cd server
@@ -102,6 +103,7 @@ jobs:
 
         # Deploys current commit to ropsten infrastructure
         - stage: deploy
+          node_js: "10"
           install: skip
           name: "Deploying to GKE"
           script:

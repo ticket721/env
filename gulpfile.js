@@ -59,7 +59,7 @@ exports.clean = series(server['server:clean'], contracts['contracts:clean'], net
 
 // Deploys contracts and get portal ready for api and web-app
 exports.deploy = series(identity['identity:inject'], network['network:start'], contracts['contracts:configure'], contracts['contracts:deploy']);
-exports.deploy_ropsten = series(load_net_config, exports.deploy, portalize_freeze);
+exports.deploy_rinkeby = series(load_net_config, exports.deploy, portalize_freeze);
 
 // Generate fake events and tickets
 exports.simulation = series(contracts['contracts:simulation']);

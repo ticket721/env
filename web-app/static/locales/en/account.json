@@ -23,5 +23,12 @@
     "settings_companion_set_new": "Input code provided by Companion",
     "settings_companion_set_new_placeholder": "Input code",
     "settings_companion_upload_error": "An error occured while trying to link Account to Companion. The code might be invalid",
-    "settings_companion_upload_success": "Succesfully updated linked Companion"
+    "settings_companion_upload_success": "Succesfully updated linked Companion",
+
+    "profile_title": "Profile",
+    "profile_edit": "Edit your information",
+    "profile_firstName_title": "First Name",
+    "profile_firstName_set_new_placeholder": "First Name",
+    "profile_lastName_title": "Last Name",
+    "profile_lastName_set_new_placeholder": "First Name"
 }

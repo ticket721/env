@@ -23,6 +23,7 @@ export interface EventBuyModalContentProps {
     tx_id: number;
     ended: boolean;
     sold_out: boolean;
+    mint_count: number;
 }
 
 const content = [
@@ -108,45 +109,64 @@ export default class EventBuyModalContent extends React.Component<EventBuyModalC
                 </div>
             </div>
             {
-                this.props.tx_id === null
+                this.props.mint_count > 0
 
                     ?
-                    this.props.ended || this.props.sold_out
+                    <div style={{width: '50%', height: '100%', float: 'left', paddingRight: 24, paddingLeft: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column'}}>
+                        <Typography.Text
+                            style={{fontSize: 32, color: theme.dark2}}
+                        >
+                            {this.props.t(`buy_modal_ticket_already_owned`)}
+                        </Typography.Text>
+                        <br/>
+                        <br/>
+                        <Typography.Text
+                            style={{fontSize: 20, color: theme.dark2}}
+                        >
+                            {this.props.t(`buy_modal_install_companion`)}
+                        </Typography.Text>
+                    </div>
+
+                    :
+                    this.props.tx_id === null
 
                         ?
-                        <div style={{width: '50%', height: '100%', float: 'left', paddingRight: 24, paddingLeft: 24, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                            <Typography.Text
-                                style={{fontSize: 32, color: theme.dark2}}
-                            >
-                                {this.props.t(`buy_modal_second_title_${this.props.ended ? 'sale_ended' : 'sale_sold_out'}`)}
-                            </Typography.Text>
-                        </div>
+                        this.props.ended || this.props.sold_out
 
-                        :
-                        <div style={{width: '50%', height: '100%', float: 'left', paddingRight: 24, paddingLeft: 24}}>
-                            <Typography.Text
-                                style={{fontSize: 42, color: theme.dark2}}
-                            >
-                                {this.props.t('buy_modal_second_title')}
-                            </Typography.Text>
-                            <div style={{height: '90%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                                <List
-                                    style={{width: '100%'}}
-                                    dataSource={filled_content}
-                                    renderItem={this.render_item}
-                                />
+                            ?
+                            <div style={{width: '50%', height: '100%', float: 'left', paddingRight: 24, paddingLeft: 24, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                                <Typography.Text
+                                    style={{fontSize: 32, color: theme.dark2}}
+                                >
+                                    {this.props.t(`buy_modal_second_title_${this.props.ended ? 'sale_ended' : 'sale_sold_out'}`)}
+                                </Typography.Text>
                             </div>
-                        </div>
-                    :
-                    <TxProgress
-                        t={this.props.t}
-                        tx={this.props.tx}
-                        scope='buy_modal'
-                        route='account'
-                        error_call={this.RGA_on_ticket_purchase_error}
-                        confirmed_call={this.RGA_on_ticket_purchase_confirmed}
-                        confirmation_in_progress_call={this.RGA_on_ticket_purchase_confirming}
-                    />
+
+                            :
+                            <div style={{width: '50%', height: '100%', float: 'left', paddingRight: 24, paddingLeft: 24}}>
+                                <Typography.Text
+                                    style={{fontSize: 42, color: theme.dark2}}
+                                >
+                                    {this.props.t('buy_modal_second_title')}
+                                </Typography.Text>
+                                <div style={{height: '90%', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                                    <List
+                                        style={{width: '100%'}}
+                                        dataSource={filled_content}
+                                        renderItem={this.render_item}
+                                    />
+                                </div>
+                            </div>
+                        :
+                        <TxProgress
+                            t={this.props.t}
+                            tx={this.props.tx}
+                            scope='buy_modal'
+                            route='account'
+                            error_call={this.RGA_on_ticket_purchase_error}
+                            confirmed_call={this.RGA_on_ticket_purchase_confirmed}
+                            confirmation_in_progress_call={this.RGA_on_ticket_purchase_confirming}
+                        />
             }
         </div>;
     }

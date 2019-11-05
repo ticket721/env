@@ -95,5 +95,15 @@
     "event_edit_informations_upload_error": "Uploading Error",
     "event_edit_informations_upload_success": "Successful Upload",
 
-    "create_event": "Create Event"
+    "create_event": "Create Event",
+
+    "buy_modal_ticket_already_owned": "You already have a ticket for this event !",
+    "buy_modal_install_companion": "Go into your account settings to link your Companion Application & generate your QR Codes",
+    "list_button": "Attendees",
+    "event_list_cancel_button": "Back",
+    "list_firstName": "First Name",
+    "list_lastName": "Last Name",
+    "list_email": "Email",
+    "list_ticketID": "Ticket ID",
+    "list_address": "User Address"
 }

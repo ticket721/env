@@ -18,10 +18,17 @@
     "settings_username_upload_success": "Modification du nom d'utilisateur effectuée",
 
     "settings_companion_title": "Compagnon",
-    "settings_companion_linked_to": "Compte connecté au Compagnon avant l'ID",
-    "settings_companion_not_linked": "Compte connecté a aucun Compagnon",
+    "settings_companion_linked_to": "Compte connecté au Compagnon ayant l'ID",
+    "settings_companion_not_linked": "Aucun Compagnon connecté",
     "settings_companion_set_new": "Entrez votre code Compagnon",
     "settings_companion_set_new_placeholder": "Entrez votre code",
     "settings_companion_upload_error": "Une erreur est survenue lors de la connection entre le compte et le Compagnon. Votre code est probablement erroné",
-    "settings_companion_upload_success": "Connection effectuée entre le compte et le Compagnon"
+    "settings_companion_upload_success": "Connection effectuée entre le compte et le Compagnon",
+
+    "profile_title": "Profile",
+    "profile_edit": "Modifiez vos informations",
+    "profile_firstName_title": "Prénom",
+    "profile_firstName_set_new_placeholder": "Prénom",
+    "profile_lastName_title": "Nom",
+    "profile_lastName_set_new_placeholder": "Nom"
 }

@@ -355,6 +355,21 @@
             }
         },
         {
+            "method": "POST",
+            "path": "/users/updateinfos",
+            "handler": "User.setInfos",
+            "config": {
+                "policies": [],
+                "prefix": "",
+                "description": "Update an existing user's infos",
+                "tag": {
+                    "plugin": "users-permissions",
+                    "name": "User",
+                    "actionType": "update"
+                }
+            }
+        },
+        {
             "method": "PUT",
             "path": "/users/:_id",
             "handler": "User.update",

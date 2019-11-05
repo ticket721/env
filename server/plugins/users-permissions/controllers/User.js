@@ -14,6 +14,22 @@ const _ = require('lodash');
 
 module.exports = {
 
+    setInfos: async (ctx) => {
+
+        const user = ctx.state.user;
+
+        if (!user) {
+            return ctx.badRequest(null, [{ messages: [{ id: 'No authorization header was found' }] }]);
+        }
+
+        const { firstName, lastName } = ctx.request.body;
+
+        const data = await strapi.query('user', 'users-permissions').update(_.assign({id: user.id}, {firstName, lastName}));
+
+        ctx.send(data);
+
+    },
+
     /**
      * Sets the encrypted wallet
      *

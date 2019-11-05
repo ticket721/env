@@ -51,24 +51,24 @@ interface QueuedEventViewRDispatch {
 type MergedQueuedEventViewProps = QueuedEventViewProps & QueuedEventViewRState & QueuedEventViewRDispatch;
 
 interface QueuedEventViewState {
-    preview: boolean;
+    mode: string;
 }
 
 class QueuedEventView extends React.Component<MergedQueuedEventViewProps, QueuedEventViewState> {
 
     state: QueuedEventViewState = {
-        preview: true
+        mode: 'preview'
     };
 
     edit_mode_on = (): void => {
         this.setState({
-            preview: false
+            mode: 'edit'
         });
     }
 
     edit_mode_off = (): void => {
         this.setState({
-            preview: true
+            mode: 'preview'
         });
     }
 
@@ -122,35 +122,37 @@ class QueuedEventView extends React.Component<MergedQueuedEventViewProps, Queued
         if (loading) {
             return <FullPageLoader/>;
         } else {
-            if (this.state.preview) {
-                return <div style={{width: '100%', height: '100%'}}>
-                    <QueuedEventWarning
-                        edit={this.edit_mode_on}
-                        start={this.start_sale}
-                    />
-                    <QueuedEventImages
-                        queued_event={this.props.queued_event}
-                        strapi_url={this.props.strapi_url}
-                    />
-                    <QueuedEventInformationGrid queued_event={this.props.queued_event}/>
-                    <QueuedEventTicketsGrid
-                        queued_event={this.props.queued_event}
-                        contract={this.props.contract}
-                        minters={this.props.minters}
-                        marketers={this.props.marketers}
-                        approvers={this.props.approvers}
-                        strapi_url={this.props.strapi_url}
-                    />
+            switch (this.state.mode) {
+                case 'preview':
+                    return <div style={{width: '100%', height: '100%'}}>
+                        <QueuedEventWarning
+                            edit={this.edit_mode_on}
+                            start={this.start_sale}
+                        />
+                        <QueuedEventImages
+                            queued_event={this.props.queued_event}
+                            strapi_url={this.props.strapi_url}
+                        />
+                        <QueuedEventInformationGrid queued_event={this.props.queued_event}/>
+                        <QueuedEventTicketsGrid
+                            queued_event={this.props.queued_event}
+                            contract={this.props.contract}
+                            minters={this.props.minters}
+                            marketers={this.props.marketers}
+                            approvers={this.props.approvers}
+                            strapi_url={this.props.strapi_url}
+                        />
 
-                </div>;
-            } else {
-                return <div style={{width: '100%', height: '100%', marginTop: -24, marginBottom: -24, paddingTop: 24, paddingBottom: 24}}>
-                    <div style={{width: '100%', backgroundColor: theme.white, padding: 24, borderRadius: 5}}>
-                        <QueuedEventEditCancel cancel={this.edit_mode_off}/>
-                        <Divider/>
-                        <QueuedEventEditInformations event={this.props.queued_event} cancel={this.edit_mode_off}/>
-                    </div>
-                </div>;
+                    </div>;
+                case 'edit':
+                    return <div style={{width: '100%', height: '100%', marginTop: -24, marginBottom: -24, paddingTop: 24, paddingBottom: 24}}>
+                        <div style={{width: '100%', backgroundColor: theme.white, padding: 24, borderRadius: 5}}>
+                            <QueuedEventEditCancel cancel={this.edit_mode_off}/>
+                            <Divider/>
+                            <QueuedEventEditInformations event={this.props.queued_event} cancel={this.edit_mode_off}/>
+                        </div>
+                    </div>;
+
             }
         }
     }
