@@ -1,0 +1,22 @@
+export default {
+    'invalid_network_added': 'Réseau invalide',
+    'invalid_network_delete': 'Réseau inconnu',
+    'invalid_network_selected': 'Réseau inconnu',
+    'cannot_reach_network': 'Impossible de joindre le réseau',
+    'cannot_reach_selected_server': 'Impossible de joindre le serveur',
+    'invalid_event_id': 'Id de l\'évenement invalide',
+    'invalid_event_added': 'Evenement invalide',
+    'invalid_event_removed': 'Evenement inexistant',
+    'invalid_verified_ticket_added': 'Ticket invalide',
+    'invalid_ticket_removed': 'Ticket inexistant',
+    'requesting_permission': 'Demande de permission pour la camera',
+    'no_access': 'Pas d\'accès à la camera',
+    'already_added': 'Cet évenement est déjà dans la liste',
+    'event_added': 'Evenement ajouté',
+    'ticket_checked': 'Ticket vérifié',
+    'invalid_ticket': 'Ticket invalide',
+    'already_verified': 'Ce Ticket est déjà vérifié',
+    'invalid_qr': 'QRCode invalide',
+    'deprecated_qr': 'QRCode périmé',
+    'unrelated_event': 'Mauvais évenement'
+};

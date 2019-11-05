@@ -159,12 +159,12 @@ For the `public` role:
 | Permissions - Height | `count`, `find`, `findone` |
 | Permissions - Marketer | `count`, `find`, `findone` |
 | Permissions - Eventcontract | `count`, `find`, `findone` |
-| Permissions - Ticket | `count`, `find`, `findone`, `companionlist` |
+| Permissions - Ticket | `count`, `find`, `findone`, `companionlist`, `checkowner` |
 | Permissions - Network | `count`, `find`, `findone` |
 | Permissions - Minter | `count`, `find`, `findone` |
 | Permissions - Address | `count`, `find`, `findone`, `eventsoftickets`, `update`, `companionlink` |
 | Permissions - Action | `count`, `find`, `findone` |
-| Permissions - Event | `count`, `find`, `findone`, `update`, `countallincoming`, `findallincoming` |
+| Permissions - Event | `count`, `find`, `findone`, `update`, `countallincoming`, `findallincoming`, `findbyaddress`, `scannerrefresh` |
 | Upload - Upload | `upload` |
 
 For the `authenticated` role:
@@ -178,12 +178,12 @@ For the `authenticated` role:
 | Permissions - Height | `count`, `find`, `findone` |
 | Permissions - Marketer | `count`, `find`, `findone` |
 | Permissions - Eventcontract | `count`, `find`, `findone` |
-| Permissions - Ticket | `count`, `find`, `findone`, `companionlist` |
+| Permissions - Ticket | `count`, `find`, `findone`, `companionlist`, `checkowner` |
 | Permissions - Network | `count`, `find`, `findone` |
 | Permissions - Minter | `count`, `find`, `findone` |
 | Permissions - Address | `count`, `find`, `findone`, `eventsoftickets`, `update`, `companionlink` |
 | Permissions - Action | `count`, `find`, `findone` |
-| Permissions - Event | `count`, `find`, `findone`, `update`, `countallincoming`, `findallincoming` |
+| Permissions - Event | `count`, `find`, `findone`, `update`, `countallincoming`, `findallincoming`. `findbyaddress`, `scannerrefresh` |
 | Upload - Upload | `upload` |
 | User Permissions - User | `setwallet` |
 

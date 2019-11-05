@@ -2,6 +2,14 @@
     "routes": [
         {
             "method": "POST",
+            "path": "/tickets/checkowner",
+            "handler": "Ticket.checkOwner",
+            "config": {
+                "policies": []
+            }
+        },
+        {
+            "method": "POST",
             "path": "/tickets/companionlist",
             "handler": "Ticket.companionList",
             "config": {

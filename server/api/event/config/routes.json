@@ -1,6 +1,22 @@
 {
     "routes": [
         {
+            "method": "POST",
+            "path": "/events/scannerrefresh",
+            "handler": "Event.scannerRefresh",
+            "config": {
+                "policies": []
+            }
+        },
+        {
+            "method": "POST",
+            "path": "/events/byaddress",
+            "handler": "Event.findByAddress",
+            "config": {
+                "policies": []
+            }
+        },
+        {
             "method": "GET",
             "path": "/events/dashboard_count",
             "handler": "Event.countAllIncoming",

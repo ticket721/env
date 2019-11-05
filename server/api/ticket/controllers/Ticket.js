@@ -9,6 +9,52 @@ const CompanionAuthProof = require('../../../sign_utils/CompanionAuthProof');
 
 module.exports = {
 
+    /**
+     * Check if owner owned ticket and return username
+     *
+     * @return {string}
+     */
+
+    checkOwner: async (ctx) => {
+        const edit_event_id = ctx.request.body.event_id;
+        const edit_companion_address = ctx.request.body.companion_address;
+        const edit_ticket_id = ctx.request.body.ticket_id;
+        if (!edit_event_id || !edit_companion_address || !edit_ticket_id) {
+            return ctx.response.badRequest('Body is incomplete');
+        }
+
+        const address = await strapi.services.address.fetchAll({
+            address: edit_companion_address
+        });
+
+        const companion = await strapi.services.companion.fetchAll({
+            companion: address[0].id
+        });
+
+        const ticket = await strapi.services.ticket.fetchAll({
+            ticket_id: edit_ticket_id,
+            owner: companion[0].wallet.id,
+            event: edit_event_id
+        });
+
+        const event_ticket = await strapi.services.ticket.fetchAll({
+            event: edit_event_id,
+            ticket_id: edit_ticket_id
+        });
+
+        if (ticket) {
+            if (event_ticket.length === 0) {
+                return ctx.response.badRequest('Unrelated Event');
+            }
+
+            return {
+                username: ticket[0].owner.username,
+                user_id: ticket[0].owner.id
+            };
+        }
+
+        return ctx.response.badRequest('Not the owner');
+    },
 
     /**
      * Retrieve ticket records of wallet linked to companion

@@ -1,0 +1,22 @@
+export default {
+    'invalid_network_added': 'Invalid network added',
+    'invalid_network_delete': 'No such network',
+    'invalid_network_selected': 'No such network',
+    'cannot_reach_network': 'Cannot reach network',
+    'cannot_reach_selected_server': 'Cannot reach server',
+    'invalid_event_id': 'Event id is invalid',
+    'invalid_event_added': 'Invalid event added',
+    'invalid_event_removed': 'No such event',
+    'invalid_verified_ticket_added': 'Invalid ticket added',
+    'invalid_ticket_removed': 'No such ticket',
+    'requesting_permission': 'Requesting for camera permission',
+    'no_access': 'No access to camera',
+    'already_added': 'This event is already in the List',
+    'event_added': 'Event added',
+    'ticket_checked': 'Ticket verified',
+    'invalid_ticket': 'Ticket is not valid',
+    'already_verified': 'Ticket is already verified',
+    'invalid_qr': 'QRCode is not valid',
+    'deprecated_qr': 'QRCode is not valid anymore',
+    'unrelated_event': 'Unrelated Event'
+};

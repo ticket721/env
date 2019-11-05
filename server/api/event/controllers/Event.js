@@ -11,6 +11,38 @@ const sort_types = ['start'];
 
 module.exports = {
 
+    scannerRefresh: async (ctx) => {
+        const event_ids = ctx.request.body.event_ids;
+
+        if(!event_ids) {
+            return ctx.response.badRequest('Body is incomplete');
+        }
+
+        const events = await strapi.services.event.fetchAll({
+            id: event_ids
+        }, ['address', 'banners', 'image']);
+
+        return events;
+    },
+
+    findByAddress: async (ctx) => {
+        const address = ctx.request.body.address;
+
+        if (!address) {
+            return ctx.response.badRequest('Body is incomplete');
+        }
+
+        const addressInfos = await strapi.services.address.fetchAll({
+            address: address
+        }, ['linked_event']);
+
+        if (addressInfos.length === 0) {
+            return null;
+        }
+
+        return addressInfos[0].linked_event;
+    },
+
     countAllIncoming: async (ctx, next, {populate} = {}) => {
 
         const count = await Event.query(

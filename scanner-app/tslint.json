@@ -1,0 +1,7 @@
+{
+    "extends": ["tslint-react", "linted"],
+    "rules": {
+        "jsx-no-multiline-js": false,
+        "jsx-wrap-multiline": false
+    }
+}
