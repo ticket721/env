@@ -1,4 +1,4 @@
-FROM node:lts
+FROM node:10.17
 
 WORKDIR /usr/src/modules
 COPY ./modules_sources ./modules_sources

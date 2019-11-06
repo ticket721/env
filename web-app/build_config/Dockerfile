@@ -1,4 +1,4 @@
-FROM node:lts
+FROM node:10.17
 
 WORKDIR /usr/src/t721
 COPY ./ ./

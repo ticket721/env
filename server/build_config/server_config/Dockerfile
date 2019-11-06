@@ -1,4 +1,4 @@
-FROM node:lts
+FROM node:10.17
 
 ARG server_mode
 
