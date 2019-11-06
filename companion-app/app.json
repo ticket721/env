@@ -15,7 +15,8 @@
             "buildNumber": "4"
         },
         "android": {
-            "package": "com.ticket721.companion"
+            "package": "com.ticket721.companion",
+            "versionCode": 1
         },
         "version": "1.0.1",
         "orientation": "portrait",
