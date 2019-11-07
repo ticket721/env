@@ -22,7 +22,7 @@
         "gulp": "^4.0.2",
         "ncp": "^2.0.0",
         "portalize": "^1.0.4",
-        "rimraf": "^2.6.3",
+        "rimraf": "^3.0.0",
         "signale": "^1.4.0"
     },
     "editorconfig-cli": [
