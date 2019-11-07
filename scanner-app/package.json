@@ -61,7 +61,7 @@
         "geopattern": "^1.2.3",
         "i18n-js": "^3.3.0",
         "js-logger": "^1.6.0",
-        "mocha": "^6.2.0",
+        "mocha": "^6.2.2",
         "moment": "^2.24.0",
         "portalize": "^1.0.4",
         "pouchdb-adapter-asyncstorage": "^6.4.1",
