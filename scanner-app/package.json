@@ -101,7 +101,7 @@
         "ts-mocha": "^6.0.0",
         "tslint": "^5.20.0",
         "tslint-react": "^4.1.0",
-        "typescript": "^3.5.3"
+        "typescript": "^3.7.2"
     },
     "editorconfig-cli": [
         "./package.json"
