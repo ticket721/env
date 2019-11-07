@@ -23,7 +23,7 @@
         "deep-extend": ">=0.5.1",
         "dockerode": "^2.5.8",
         "ethereumjs-abi": "^0.6.7",
-        "ethereumjs-util": "^6.1.0",
+        "ethereumjs-util": "^6.2.0",
         "gulp": "4.0.2",
         "hdkey": "^1.1.1",
         "merge": ">=1.2.1",
