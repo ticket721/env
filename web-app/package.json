@@ -109,7 +109,7 @@
         "moment": "^2.24.0",
         "ncp": "^2.0.0",
         "next": "^8.1.0",
-        "next-i18next": "^0.34.0",
+        "next-i18next": "^2.0.0",
         "next-images": "^1.1.0",
         "next-redux-saga": "^4.0.2",
         "next-redux-wrapper": "^2.1.0",
