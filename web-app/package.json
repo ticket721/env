@@ -73,7 +73,7 @@
         "@types/react": "^16.8.3",
         "@types/react-dom": "^16.8.2",
         "@types/react-redux": "^7.0.1",
-        "@uppy/core": "^1.0.0",
+        "@uppy/core": "^1.6.0",
         "@uppy/google-drive": "^1.0.0",
         "@uppy/react": "^1.0.0",
         "@uppy/store-redux": "^0.28.3",
