@@ -33,7 +33,7 @@
         "@types/node": "^11.9.4",
         "bip39": "^3.0.2",
         "bookshelf": "^0.14.2",
-        "eth-sig-util": "1.4.2",
+        "eth-sig-util": "2.5.0",
         "ethers": "^4.0.28",
         "js-sha3": "^0.8.0",
         "knex": "0.16.5",
