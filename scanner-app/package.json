@@ -52,7 +52,7 @@
         "@ticket721/e712": "0.1.1",
         "chai": "^4.2.0",
         "chai-as-promised": "^7.1.1",
-        "expo": "^34.0.1",
+        "expo": "^35.0.1",
         "expo-barcode-scanner": "^6.0.0",
         "expo-brightness": "^6.0.0",
         "expo-font": "^6.0.1",
