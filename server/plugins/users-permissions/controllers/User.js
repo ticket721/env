@@ -94,7 +94,7 @@ module.exports = {
                             web3.eth.sendTransaction({
                                 from: extraconfig.funding_account,
                                 to: formatted_address,
-                                value: web3.utils.toWei('5', 'ether')
+                                value: web3.utils.toWei('0.1', 'ether')
                             })
                                 .on('transactionHash', ok)
                                 .on('error', ko)
