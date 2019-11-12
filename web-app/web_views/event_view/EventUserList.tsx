@@ -64,7 +64,7 @@ class EventUserList extends React.Component<EventUserListMergedProps> {
         ];
 
         return <div>
-            <Table dataSource={dataSource} columns={columns} />;
+            <Table dataSource={dataSource} columns={columns} />
         </div>;
     }
 }
