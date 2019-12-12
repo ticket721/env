@@ -91,10 +91,9 @@ spec:
                       - geth
                   args:
                           {{ if .Values.geth.rinkeby.enabled }}
-                    - "--networkid={{ .Values.geth.rinkeby.networkid }}"
+                    - "--rinkeby"
                     - "--ethstats"
                     - "🎫 T721 (ticket721.com):Respect my authoritah!@stats.rinkeby.io"
-                    - "--bootnodes={{ .Values.geth.rinkeby.bootnodes }}"
                     - "--syncmode=fast"
                     - "--datadir=/root/.ethereum/rinkeby"
                           {{ end }}

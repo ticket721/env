@@ -4,6 +4,7 @@ import image                  from './image.svg';
 import { NamespacesConsumer } from 'react-i18next';
 import { theme }              from '../../../utils/theme';
 import { RGA }                from '../../../utils/misc/ga';
+import { withCookies, Cookies, ReactCookieProps } from 'react-cookie';
 
 // Props
 
@@ -11,13 +12,27 @@ export interface GatesErrorsProps {
     message: string;
 }
 
-export class GatesErrors extends React.Component<GatesErrorsProps> {
+class GatesErrorsContainer extends React.Component<GatesErrorsProps & ReactCookieProps> {
 
     componentDidMount(): void {
         RGA.pageview('/gate/' + this.props.message);
+
+        if (this.props.cookies) {
+            const cookies = this.props.cookies;
+            cookies.remove('jwt');
+        }
+
+        if (this.props.message === 'app_cannot_reach_server') {
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+        }
+
     }
 
     render(): React.ReactNode {
+        console.log('gate');
+        console.log(this.props.message);
         return <div
             style={{
                 width: '100%',
@@ -50,3 +65,5 @@ export class GatesErrors extends React.Component<GatesErrorsProps> {
         </div>;
     }
 }
+
+export const GatesErrors =  withCookies(GatesErrorsContainer);

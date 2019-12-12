@@ -119,6 +119,7 @@
         "portalize": "^1.0.4",
         "pouchdb-adapter-idb": "^7.1.1",
         "react": "^16.8.2",
+        "react-cookie": "^4.0.1",
         "react-css-blur": "^1.1.1",
         "react-date-range": "^1.0.0-beta",
         "react-dom": "^16.8.2",
